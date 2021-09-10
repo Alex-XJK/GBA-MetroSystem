@@ -17,6 +17,7 @@ public class HelloWorld {
     public static void main(String[] args)
     {
         member.add("Alex_XU");
+        member.add("zx");
         // To-do 
         // member.add("Your_Name_Here!");
 
