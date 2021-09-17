@@ -1,6 +1,6 @@
 # CS3343_Group6
 The project repository for our CS3343 group project
 
-Please work in your own branch!  
+This <webpage-branch> is for web publish only!  
 
-This is our project webpage https://alex-xjk.github.io/CS3343_Group6/
+Our project webpage at https://alex-xjk.github.io/CS3343_Group6/
