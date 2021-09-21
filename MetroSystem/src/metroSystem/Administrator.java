@@ -1,4 +1,4 @@
 package metroSystem;
-public class Administrator {
-    
+
+public interface Administrator {
 }
