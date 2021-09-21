@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2e249225-ff56-4ade-8543-60dde6ecef62" name="Changes" comment="Preliminary construction of the project structure&#10;(Used external .jar file to load the excel data)" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$PROJECT_DIR$/lib/poi-ooxml-5.0.0.jar!/org/apache/poi/xssf/usermodel/XSSFWorkbook.class" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProjectId" id="1yPCefnX7i382AqNWkfumpszHPa" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/xmlbeans-5.0.1.jar" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Language Defaults" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\城大\课程\Year 3 Sem A\CS3343\CS3343_Group6\MetroSystem\lib" />
+      <recent name="D:\城大\课程\Year 3 Sem A\CS3343\CS3343_Group6\MetroSystem\data" />
+      <recent name="D:\城大\课程\Year 3 Sem A\CS3343\CS3343_Group6\MetroSystem\src\metroSystem" />
+      <recent name="C:\Users\18463\Desktop\MetroSystem\lib" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="metroSystem.Main" />
+      <module name="MetroSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="metroSystem.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2e249225-ff56-4ade-8543-60dde6ecef62" name="Changes" comment="" />
+      <created>1632143935032</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1632143935032</updated>
+      <workItem from="1632143936615" duration="6428000" />
+      <workItem from="1632189980060" duration="11560000" />
+    </task>
+    <task id="LOCAL-00001" summary="Use IDEA to standardize the file structure">
+      <created>1632190302655</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1632190302655</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Use IDEA to standardize the file structure">
+      <created>1632190418460</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1632190418460</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Preliminary construction of the project structure&#10;(Used external .jar file to load the excel data)">
+      <created>1632211223101</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1632211223101</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Use IDEA to standardize the file structure" />
+    <MESSAGE value="Preliminary construction of the project structure&#10;(Used external .jar file to load the excel data)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Preliminary construction of the project structure&#10;(Used external .jar file to load the excel data)" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassNotFoundException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
