@@ -6,11 +6,10 @@ public class Main
 {
    public static void main(String[] args) {
        MetroSystem m = MetroSystem.getInstance();
-       m.setSystemLanguage(LanguageTraditionalChinese.getInstance());
+       m.setSystemLanguage(LanguageSimplifiedChinese.getInstance());
 
-       ArrayList<Station> allStations = m.getDatabase().getAllStations();
-       for(Station s : allStations) {
-           System.out.println(s.getName());
-       }
+       Line testLine = m.getDatabase().getLineByName("11号线", LanguageSimplifiedChinese.getInstance());
+       System.out.println(testLine.getName());
+       testLine.getViaStations();
    }
 }
