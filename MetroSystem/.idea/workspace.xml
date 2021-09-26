@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e249225-ff56-4ade-8543-60dde6ecef62" name="Changes" comment="Preliminary construction of the project structure&#10;(Used external .jar file to load the excel data)">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/metroSystem/Line.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/stations_HK.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/stations_HK.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/stations_SZ.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/stations_SZ.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/metroSystem/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/metroSystem/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/metroSystem/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/metroSystem/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/metroSystem/MetroSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/metroSystem/MetroSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lines_SZ.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/lines_SZ.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +81,7 @@
       <workItem from="1632143936615" duration="6428000" />
       <workItem from="1632189980060" duration="11560000" />
       <workItem from="1632452440013" duration="498000" />
-      <workItem from="1632622541976" duration="5610000" />
+      <workItem from="1632622541976" duration="6345000" />
     </task>
     <task id="LOCAL-00001" summary="Use IDEA to standardize the file structure">
       <created>1632190302655</created>
