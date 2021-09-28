@@ -1,4 +1,4 @@
 package MetroSystem.src.metroSystem;
 
-public interface Administrator {
+public abstract class Criteria {
 }
