@@ -122,4 +122,8 @@ public class Database {
         }
         return null;
     }
+
+    // Todo:
+    //  Create the Adjacency Matrix according to the station data
+    //  Not sure whether a {@code DBwithAdjMatrix} child class should be used
 }
