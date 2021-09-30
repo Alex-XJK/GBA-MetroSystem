@@ -1,4 +1,4 @@
-package MetroSystem.src.metroSystem;
+package metroSystem;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ public class Main
            System.out.println(e.toString());
        System.out.println();
 
-       Station testStation = m.getDatabase().getStationByName("九龍塘", LanguageTraditionalChinese.getInstance());
+       Station testStation = m.getDatabase().getStationByName("九龍塘", LanguageTraditionalChinese.getInstance(), AdministratorHK.getInstance());
        System.out.println(testStation.getName());
        edges = testStation.getEdgeTo();
        for (Edge e : edges)

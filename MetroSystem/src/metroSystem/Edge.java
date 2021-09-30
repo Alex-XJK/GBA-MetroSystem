@@ -1,7 +1,5 @@
 package metroSystem;
 
-import javax.lang.model.type.PrimitiveType;
-
 public class Edge {
     private final int identifier;
     private final Station st_station, ed_station;
@@ -31,6 +29,8 @@ public class Edge {
     }
 
     public String getLine() {
+        if(inLine == null)
+            return "null";
         return inLine.getName();
     }
 }

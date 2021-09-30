@@ -1,4 +1,4 @@
-package MetroSystem.src.metroSystem;
+package metroSystem;
 import java.util.*;
 
 public class Station
@@ -39,6 +39,10 @@ public class Station
 		if(language instanceof LanguageSimplifiedChinese)
 			return simplifiedChineseName;
 		return "Error";
+	}
+
+	public Administrator getAdmin() {
+		return admin;
 	}
 
 	public ArrayList<Edge> getEdgeTo() {
