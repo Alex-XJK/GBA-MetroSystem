@@ -1,13 +1,13 @@
-package metroSystem;
+package MetroSystem.src.metroSystem;
+
 import java.util.*;
 import java.io.*;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.*;
 
-
 public class Database {
 
-    private static Database instance = new Database();
+    private volatile static Database uniqueInstance;
     private ArrayList<Station> allStations;
     private ArrayList<Edge> allEdges;
     private ArrayList<Line> allLines;
@@ -19,8 +19,20 @@ public class Database {
         allLines = new ArrayList<>();
     }
 
+    /**
+     * Apply double-checked locking method to create this important singleton object.
+     * @return  the unique Database instance
+     * @since   Sept. 29, 2021
+     */
     public static Database getInstance() {
-        return instance;
+        if(uniqueInstance == null) {
+            synchronized (Database.class) {
+                if(uniqueInstance == null) {
+                    uniqueInstance = new Database();
+                }
+            }
+        }
+        return uniqueInstance;
     }
 
     public void loadStations() {
@@ -205,6 +217,7 @@ public class Database {
         return null;
     }
 
+
     public Station getStationByName(String name, Language language) {
         for(Station s : allStations) {
             if(s.getNameInSpecificLanguage(language).equals(name))
@@ -212,4 +225,8 @@ public class Database {
         }
         return null;
     }
+
+    // Todo:
+    //  Create a place for others to get the specified station data.
+
 }
