@@ -1,4 +1,4 @@
-package MetroSystem.src.metroSystem;
+package metroSystem;
 
 import java.util.*;
 import java.io.*;
@@ -218,9 +218,9 @@ public class Database {
     }
 
 
-    public Station getStationByName(String name, Language language) {
+    public Station getStationByName(String name, Language language, Administrator admin) {
         for(Station s : allStations) {
-            if(s.getNameInSpecificLanguage(language).equals(name))
+            if(s.getNameInSpecificLanguage(language).equals(name) && s.getAdmin() == admin)
                 return s;
         }
         return null;
