@@ -12,6 +12,7 @@ public class MetroSystem
         systemLanguage = LanguageEnglish.getInstance();
         database = Database.getInstance();
         database.loadStations();
+        database.loadEdges();
         database.loadLines();
     }
 
