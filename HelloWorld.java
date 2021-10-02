@@ -18,6 +18,7 @@ public class HelloWorld {
     {
         member.add("xrr");
         member.add("Alex_XU");
+        member.add("zx");
         // To-do 
         // member.add("Your_Name_Here!");
 

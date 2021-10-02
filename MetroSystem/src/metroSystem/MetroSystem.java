@@ -1,4 +1,4 @@
-package MetroSystem.src.metroSystem;
+package metroSystem;
 import java.util.*;
 
 public class MetroSystem
@@ -12,6 +12,7 @@ public class MetroSystem
         systemLanguage = LanguageEnglish.getInstance();
         database = Database.getInstance();
         database.loadStations();
+        database.loadEdges();
         database.loadLines();
     }
 
