@@ -1,4 +1,4 @@
-package metroSystem;
+package MetroSystem.src.metroSystem;
 
 public class AdministratorSZ implements Administrator {
     private static AdministratorSZ instance = new AdministratorSZ();
