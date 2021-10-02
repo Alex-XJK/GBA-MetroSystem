@@ -1,4 +1,4 @@
-package metroSystem;
+package MetroSystem.src.metroSystem;
 
 public class LanguageSimplifiedChinese implements Language {
 
