@@ -5,16 +5,17 @@ import java.util.ArrayList;
 public abstract class Criteria {
     private final String criteriaName;
     protected Algorithm algorithm;
-    protected ArrayList<ArrayList<Double>> adjacencyList;
+    protected DataList adjacencyList;
 
     public Criteria(String name){
         this.criteriaName = name;
+        this.adjacencyList = createDataList();
     }
 
     /**
      * Read specified data from Database and create our own AdjacencyList.
      */
-    public abstract void createAdjList();
+    protected abstract DataList createDataList();
 
     /**
      * Find the optimal route using the pre-defined algorithm.

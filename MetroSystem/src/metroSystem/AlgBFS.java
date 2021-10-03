@@ -23,7 +23,7 @@ public class AlgBFS implements Algorithm{
     }
 
     @Override
-    public ArrayList<Integer> findRoute(int startId, int endId, ArrayList<ArrayList<Double>> data) {
+    public ArrayList<Integer> findRoute(int startId, int endId, DataList data) {
         //Todo: Implement BFS algorithm
         return dummyArrayList(startId, endId);
     }
