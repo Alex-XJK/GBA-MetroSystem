@@ -229,7 +229,12 @@ public class Database {
         return null;
     }
 
-    // Todo:
-    //  Create a place for others to get the specified station data.
+    public int getStationCount(){
+        return allStations.size();
+    }
+
+    public ArrayList<Edge> getEdges(){
+        return allEdges;
+    }
 
 }

@@ -34,6 +34,14 @@ public class Edge {
             return "null";
         return inLine.getName();
     }
+
+    public Station getStartSta(){
+        return st_station;
+    }
+
+    public  Station getEndSta(){
+        return ed_station;
+    }
     
     /**
      * A member of {@code getData} member series to retrieve IsConnected data.

@@ -9,6 +9,6 @@ public class CrtStation extends Criteria{
 
     @Override
     protected DataList createDataList() {
-        return DLConnectivity.getInstance();
+        return new DLConnectivity();
     }
 }
