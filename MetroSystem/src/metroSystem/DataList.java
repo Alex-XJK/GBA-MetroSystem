@@ -22,7 +22,7 @@ public abstract class DataList {
 //        if(uniqueInstance == null) {
 //            synchronized (DataList.class) {
 //                if(uniqueInstance == null) {
-//                    uniqueInstance = new DLConnectivity();
+//                    uniqueInstance = new DataList();
 //                }
 //            }
 //        }
@@ -49,5 +49,19 @@ public abstract class DataList {
      */
     public ArrayList<NodeEntry> getNeighbors(int index){
         return data[index];
+    }
+
+    /**
+     * Print out the Data_List as an Adjacency_List for debug use only.
+     */
+    public void debugPrint(){
+        for (int i = 0; i < data.length; i++ ) {
+            System.out.printf("Station %d >>>\t", i);
+            ArrayList<NodeEntry> array = data[i];
+            for (NodeEntry node : array) {
+                System.out.print("<" + node.getKey() + " (" + node.getValue() + ")> - ");
+            }
+            System.out.println();
+        }
     }
 }
