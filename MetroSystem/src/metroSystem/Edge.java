@@ -24,6 +24,7 @@ public class Edge {
         this.isOpen = b;
     }
 
+    @Override
     public String toString() {
         return st_station.getName() + "->" + ed_station.getName();
     }
@@ -32,5 +33,21 @@ public class Edge {
         if(inLine == null)
             return "null";
         return inLine.getName();
+    }
+
+    public Station getStartSta(){
+        return st_station;
+    }
+
+    public  Station getEndSta(){
+        return ed_station;
+    }
+    
+    /**
+     * A member of {@code getData} member series to retrieve IsConnected data.
+     * @return	whether this edge is OK to use (in case some station is offline temporally)
+     */
+    public boolean dataIsConnect() {
+    	return this.isOpen;
     }
 }

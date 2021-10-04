@@ -41,6 +41,10 @@ public class Station
 		return "Error";
 	}
 
+	public int getId(){
+		return identifier;
+	}
+
 	public Administrator getAdmin() {
 		return admin;
 	}
