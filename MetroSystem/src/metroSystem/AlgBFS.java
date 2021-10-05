@@ -13,7 +13,7 @@ public class AlgBFS implements Algorithm{
     	// Initialize
         ArrayList<Integer> shortestRoute = new ArrayList<>();
         Queue<Integer> bfsQueue = new LinkedList<Integer>();
-        int size = data.getSize();
+        int size = data.getSize() + 1;
         int parent[] = new int[size];
         boolean visited[] = new boolean[size];
         for (int i=0; i<size; i++) {
