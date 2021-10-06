@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Main
 {
-   public static void main(String[] args) {
+    public static void main(String[] args) {
         MetroSystem m = MetroSystem.getInstance();
         m.setSystemLanguage(LanguageSimplifiedChinese.getInstance());
 
@@ -24,9 +24,18 @@ public class Main
         //     System.out.println(e.toString() + ' ' + e.getLine());
         // }
 
+        //Declare new criteria
         Criteria c = new CrtStation();
-        ArrayList<Integer> result = c.findRoute(5, 88);
-        System.out.println(result);
-   }
+        System.out.println(c.toString());
+
+        //Compute the shortest path
+        int start_station_id = 5;
+        int end_station_id = 88;
+        ArrayList<Integer> result = c.findRoute(start_station_id, end_station_id);
+
+        //Print out the final result
+        ArrayList<String> nameResult = m.getDatabase().translateId2Name(result);
+        System.out.println(nameResult);
+    }
    
 }
