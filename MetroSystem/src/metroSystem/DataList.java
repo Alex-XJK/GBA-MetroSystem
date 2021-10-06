@@ -11,6 +11,9 @@ public abstract class DataList {
         Database db = Database.getInstance();
         size = db.getStationCount();
         data = new ArrayList[size+1];
+        for (int i = 0; i < size+1; i++) {
+        	data[i] = new ArrayList<NodeEntry>();
+        }
         createGraph();
     }
 
@@ -23,7 +26,7 @@ public abstract class DataList {
 //        if(uniqueInstance == null) {
 //            synchronized (DataList.class) {
 //                if(uniqueInstance == null) {
-//                    uniqueInstance = new DLConnectivity();
+//                    uniqueInstance = new DataList();
 //                }
 //            }
 //        }
@@ -58,5 +61,19 @@ public abstract class DataList {
      */
     public Integer getSize() {
     	return size;
+    }
+    
+    /**
+     * Print out the Data_List as an Adjacency_List for debug use only.
+     */
+    public void debugPrint(){
+        for (int i = 0; i < data.length; i++ ) {
+            System.out.printf("Station %d >>>\t", i);
+            ArrayList<NodeEntry> array = data[i];
+            for (NodeEntry node : array) {
+                System.out.print("<" + node.getKey() + " (" + node.getValue() + ")> - ");
+            }
+            System.out.println();
+        }
     }
 }

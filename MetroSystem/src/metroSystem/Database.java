@@ -42,8 +42,8 @@ public class Database {
         XSSFWorkbook workbookHK = null, workbookSZ = null;
         try {
             System.out.println("Current workspace: " + System.getProperty("user.dir"));
-            File fileHK = new File("./data/stations_HK.xlsx");
-            File fileSZ = new File("./data/stations_SZ.xlsx");
+            File fileHK = new File("./MetroSystem/data/stations_HK.xlsx");
+            File fileSZ = new File("./MetroSystem/data/stations_SZ.xlsx");
             InputStream inputStreamHK = new FileInputStream(fileHK);
             InputStream inputStreamSZ = new FileInputStream(fileSZ);
             workbookHK = new XSSFWorkbook(inputStreamHK);
@@ -76,9 +76,9 @@ public class Database {
     public void loadEdges() {
         XSSFWorkbook workbookHK = null, workbookSZ = null, workbookBorder = null;
         try {
-            File fileHK = new File("./data/edges_HK.xlsx");
-            File fileSZ = new File("./data/edges_SZ.xlsx");
-            File fileBorder = new File("./data/edges_border.xlsx");
+            File fileHK = new File("./MetroSystem/data/edges_HK.xlsx");
+            File fileSZ = new File("./MetroSystem/data/edges_SZ.xlsx");
+            File fileBorder = new File("./MetroSystem/data/edges_border.xlsx");
             InputStream inputStreamHK = new FileInputStream(fileHK);
             InputStream inputStreamSZ = new FileInputStream(fileSZ);
             InputStream inputStreamBorder = new FileInputStream(fileBorder);
@@ -171,8 +171,8 @@ public class Database {
     public void loadLines() {
         XSSFWorkbook workbookHK = null, workbookSZ = null;
         try {
-            File fileHK = new File("./data/lines_HK.xlsx");
-            File fileSZ = new File("./data/lines_SZ.xlsx");
+            File fileHK = new File("./MetroSystem/data/lines_HK.xlsx");
+            File fileSZ = new File("./MetroSystem/data/lines_SZ.xlsx");
             InputStream inputStreamHK = new FileInputStream(fileHK);
             InputStream inputStreamSZ = new FileInputStream(fileSZ);
             workbookHK = new XSSFWorkbook(inputStreamHK);
