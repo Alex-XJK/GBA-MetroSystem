@@ -8,17 +8,23 @@ public class Main
        MetroSystem m = MetroSystem.getInstance();
        m.setSystemLanguage(LanguageSimplifiedChinese.getInstance());
 
-       Line testLine = m.getDatabase().getLineByName("æ±éµç·š", LanguageTraditionalChinese.getInstance());
+       Line testLine = m.getDatabase().getLineByName("–|èF¾€", LanguageTraditionalChinese.getInstance());
        System.out.println(testLine.getName());
        ArrayList<Edge> edges = testLine.getEdges();
        for (Edge e : edges)
            System.out.println(e.toString());
        System.out.println();
 
-       Station testStation = m.getDatabase().getStationByName("ä¹é¾å¡˜", LanguageTraditionalChinese.getInstance(), AdministratorHK.getInstance());
+       Station testStation = m.getDatabase().getStationByName("¾ÅıˆÌÁ", LanguageTraditionalChinese.getInstance(), AdministratorHK.getInstance());
        System.out.println(testStation.getName());
        edges = testStation.getEdgeTo();
-       for (Edge e : edges)
+       for (Edge e : edges) {
            System.out.println(e.toString() + ' ' + e.getLine());
+       }
+       
+       Criteria c = new CrtStation();
+       ArrayList<Integer> result = c.findRoute(5, 88);
+       System.out.println(result);
    }
+   
 }
