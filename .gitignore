@@ -22,15 +22,13 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# ALEX added for IntelliJ IDEA users
+# For IntelliJ IDEA users
 .idea/
 out/
 CS3343_Group6.iml
-
-# xrr233 added for IntelliJ IDEA users
 MetroSystem.iml
 
-# ALEX added for Eclipse users
+# For Eclipse users
 .settings/
 .classpath
 .project
