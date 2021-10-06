@@ -5,11 +5,15 @@ import java.util.ArrayList;
 public abstract class DataList {
     //    private volatile static DataList uniqueInstance;
     protected ArrayList<NodeEntry>[] data;
+    protected Integer size;
 
     public DataList() {
         Database db = Database.getInstance();
-        int size = db.getStationCount();
+        size = db.getStationCount();
         data = new ArrayList[size+1];
+        for (int i = 0; i < size+1; i++) {
+        	data[i] = new ArrayList<NodeEntry>();
+        }
         createGraph();
     }
 
@@ -50,7 +54,15 @@ public abstract class DataList {
     public ArrayList<NodeEntry> getNeighbors(int index){
         return data[index];
     }
-
+    
+    /**
+     * Retrieve back the size of the stations.
+     * @return  A Integer.
+     */
+    public Integer getSize() {
+    	return size;
+    }
+    
     /**
      * Print out the Data_List as an Adjacency_List for debug use only.
      */
