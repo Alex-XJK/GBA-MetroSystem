@@ -1,4 +1,7 @@
 package MetroSystem.src.metroSystem;
 
-public interface Language {
+public enum Language {
+    English,
+    TraditionalChinese,
+    SimplifiedChinese
 }

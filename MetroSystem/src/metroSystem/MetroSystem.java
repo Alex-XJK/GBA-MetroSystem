@@ -9,7 +9,7 @@ public class MetroSystem
     
 
     private MetroSystem() {
-        systemLanguage = LanguageEnglish.getInstance();
+        systemLanguage = Language.English;
         database = Database.getInstance();
         database.loadStations();
         database.loadEdges();

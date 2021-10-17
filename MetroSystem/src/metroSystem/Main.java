@@ -6,10 +6,10 @@ public class Main
 {
     public static void main(String[] args) {
         MetroSystem m = MetroSystem.getInstance();
-        m.setSystemLanguage(LanguageSimplifiedChinese.getInstance());
+        m.setSystemLanguage(Language.SimplifiedChinese);
 
         // Commented out due to character cannot be resolved
-        // Line testLine = m.getDatabase().getLineByName("�|�F��", LanguageTraditionalChinese.getInstance());
+        // Line testLine = m.getDatabase().getLineByName("�|�F��", Language.TraditionalChinese);
         // System.out.println(testLine.getName());
         // ArrayList<Edge> edges = testLine.getEdges();
         // for (Edge e : edges)
@@ -17,7 +17,7 @@ public class Main
         // System.out.println();
 
         // Commented out due to character cannot be resolved
-        // Station testStation = m.getDatabase().getStationByName("������", LanguageTraditionalChinese.getInstance(), AdministratorHK.getInstance());
+        // Station testStation = m.getDatabase().getStationByName("������", Language.TraditionalChinese, AdministratorHK.getInstance());
         // System.out.println(testStation.getName());
         // edges = testStation.getEdgeTo();
         // for (Edge e : edges) {
@@ -29,8 +29,8 @@ public class Main
         System.out.println(c.toString());
 
         //Compute the shortest path
-        int start_station_id = 5;
-        int end_station_id = 88;
+        int start_station_id = m.getDatabase().getStationByName("屯门", Language.SimplifiedChinese, AdministratorHK.getInstance()).getId();
+        int end_station_id = m.getDatabase().getStationByName("少年宫", Language.SimplifiedChinese, AdministratorSZ.getInstance()).getId();
         ArrayList<Integer> result = c.findRoute(start_station_id, end_station_id);
 
         //Print out the final result
