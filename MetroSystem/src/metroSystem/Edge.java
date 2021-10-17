@@ -17,6 +17,8 @@ public class Edge {
         this.time = 1;
         this.admin = admin;
         this.isOpen = true;
+        this.distance = 1;
+        this.time = 1;
         st_station.addEdgeTo(this);
     }
 
