@@ -1,4 +1,4 @@
-package metroSystem;
+package MetroSystem.src.metroSystem;
 
 public class CrtStation extends Criteria{
 
@@ -8,7 +8,7 @@ public class CrtStation extends Criteria{
     }
 
     @Override
-    public void createAdjList() {
-        // Todo: Create it!
+    protected DataList createDataList() {
+        return new DLConnectivity();
     }
 }

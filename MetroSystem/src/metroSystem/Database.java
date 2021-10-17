@@ -1,7 +1,10 @@
-package metroSystem;
+package MetroSystem.src.metroSystem;
 
-import java.util.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.*;
 
@@ -39,8 +42,8 @@ public class Database {
         XSSFWorkbook workbookHK = null, workbookSZ = null;
         try {
             System.out.println("Current workspace: " + System.getProperty("user.dir"));
-            File fileHK = new File("./data/stations_HK.xlsx");
-            File fileSZ = new File("./data/stations_SZ.xlsx");
+            File fileHK = new File("./MetroSystem/data/stations_HK.xlsx");
+            File fileSZ = new File("./MetroSystem/data/stations_SZ.xlsx");
             InputStream inputStreamHK = new FileInputStream(fileHK);
             InputStream inputStreamSZ = new FileInputStream(fileSZ);
             workbookHK = new XSSFWorkbook(inputStreamHK);
@@ -73,9 +76,9 @@ public class Database {
     public void loadEdges() {
         XSSFWorkbook workbookHK = null, workbookSZ = null, workbookBorder = null;
         try {
-            File fileHK = new File("./data/edges_HK.xlsx");
-            File fileSZ = new File("./data/edges_SZ.xlsx");
-            File fileBorder = new File("./data/edges_border.xlsx");
+            File fileHK = new File("./MetroSystem/data/edges_HK.xlsx");
+            File fileSZ = new File("./MetroSystem/data/edges_SZ.xlsx");
+            File fileBorder = new File("./MetroSystem/data/edges_border.xlsx");
             InputStream inputStreamHK = new FileInputStream(fileHK);
             InputStream inputStreamSZ = new FileInputStream(fileSZ);
             InputStream inputStreamBorder = new FileInputStream(fileBorder);
@@ -168,8 +171,8 @@ public class Database {
     public void loadLines() {
         XSSFWorkbook workbookHK = null, workbookSZ = null;
         try {
-            File fileHK = new File("./data/lines_HK.xlsx");
-            File fileSZ = new File("./data/lines_SZ.xlsx");
+            File fileHK = new File("./MetroSystem/data/lines_HK.xlsx");
+            File fileSZ = new File("./MetroSystem/data/lines_SZ.xlsx");
             InputStream inputStreamHK = new FileInputStream(fileHK);
             InputStream inputStreamSZ = new FileInputStream(fileSZ);
             workbookHK = new XSSFWorkbook(inputStreamHK);
@@ -217,7 +220,6 @@ public class Database {
         return null;
     }
 
-
     public Station getStationByName(String name, Language language, Administrator admin) {
         for(Station s : allStations) {
             if(s.getNameInSpecificLanguage(language).equals(name) && s.getAdmin() == admin)
@@ -226,7 +228,50 @@ public class Database {
         return null;
     }
 
-    // Todo:
-    //  Create a place for others to get the specified station data.
+    /***
+     * Find a station according to its station_id.
+     * @param id    The id of your target station
+     * @return      The reference of your target station
+     * @throws ExStationNotFound    If the given id cannot be matching with any station in database
+     */
+    public Station getStationById(int id) throws ExStationNotFound {
+        for(Station s : allStations) {
+            if(s.getId() == id) {
+                return s;
+            }
+        }
+        String exp = "Station of id = " + id +" cannot be found in our database!";
+        throw new ExStationNotFound(exp);
+    }
+
+    public int getStationCount(){
+        return allStations.size();
+    }
+
+    public ArrayList<Edge> getEdges(){
+        return allEdges;
+    }
+
+    /***
+     * Translate an array of station id to its station name
+     * @param ids       An arraylist of station_id in integer format
+     * @return An arraylist of station_name in your desired language with the original order
+     */
+    public ArrayList<String> translateId2Name(ArrayList<Integer> ids){
+        ArrayList<String> names = new ArrayList<>();
+        for (int id : ids) {
+            String name = "?";
+            try{
+                name = getStationById(id).getName();
+            }
+            catch (ExStationNotFound e){
+                System.out.println(e.getMessage());
+            }
+            finally {
+                names.add(name);
+            }
+        }
+        return names;
+    }
 
 }
