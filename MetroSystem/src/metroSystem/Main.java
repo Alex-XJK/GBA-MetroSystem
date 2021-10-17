@@ -29,8 +29,8 @@ public class Main
         System.out.println(c.toString());
 
         //Compute the shortest path
-        int start_station_id = 5;
-        int end_station_id = 88;
+        int start_station_id = m.getDatabase().getStationByName("碧头", LanguageSimplifiedChinese.getInstance(), AdministratorSZ.getInstance()).getId();
+        int end_station_id = m.getDatabase().getStationByName("柴灣", LanguageTraditionalChinese.getInstance(), AdministratorHK.getInstance()).getId();
         ArrayList<Integer> result = c.findRoute(start_station_id, end_station_id);
 
         //Print out the final result

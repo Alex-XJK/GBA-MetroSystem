@@ -184,8 +184,6 @@ public class Database {
         XSSFSheet sheetHK = workbookHK.getSheetAt(0);
         XSSFSheet sheetSZ = workbookSZ.getSheetAt(0);
 
-
-
         for (Row row : sheetHK) {
             if (row.getRowNum() == 0)
                 continue;

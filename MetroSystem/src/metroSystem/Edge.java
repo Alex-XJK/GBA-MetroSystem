@@ -6,11 +6,15 @@ public class Edge {
     private Line inLine = null;
     private final Administrator admin;
     private boolean isOpen;
+    private final int distance;
+    private final int time;
 
     public Edge(int id, Station st_station, Station ed_station, Administrator admin) {
         this.identifier = id;
         this.st_station = st_station;
         this.ed_station = ed_station;
+        this.distance = 1;
+        this.time = 1;
         this.admin = admin;
         this.isOpen = true;
         st_station.addEdgeTo(this);
