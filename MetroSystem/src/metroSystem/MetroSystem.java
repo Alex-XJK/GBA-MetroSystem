@@ -14,6 +14,7 @@ public class MetroSystem
         database.loadStations();
         database.loadEdges();
         database.loadLines();
+        database.loadPrice();
     }
 
     public static MetroSystem getInstance() {

@@ -8,34 +8,44 @@ public class Main
         MetroSystem m = MetroSystem.getInstance();
         m.setSystemLanguage(Language.SimplifiedChinese);
 
-        // Commented out due to character cannot be resolved
-        // Line testLine = m.getDatabase().getLineByName("�|�F��", Language.TraditionalChinese);
-        // System.out.println(testLine.getName());
-        // ArrayList<Edge> edges = testLine.getEdges();
-        // for (Edge e : edges)
-        //     System.out.println(e.toString());
-        // System.out.println();
+        // Demo of "edgeTo"
+        Line testLine = m.getDatabase().getLineByName("Line 7", Language.English);
+        System.out.println(testLine.getName());
+        ArrayList<Edge> edges = testLine.getEdges();
+        for (Edge e : edges)
+            System.out.println(e.toString());
+        System.out.println();
 
-        // Commented out due to character cannot be resolved
-        // Station testStation = m.getDatabase().getStationByName("������", Language.TraditionalChinese, AdministratorHK.getInstance());
-        // System.out.println(testStation.getName());
-        // edges = testStation.getEdgeTo();
-        // for (Edge e : edges) {
-        //     System.out.println(e.toString() + ' ' + e.getLine());
-        // }
+        Station testStation = m.getDatabase().getStationByName("Kowloon Tong", Language.English, AdministratorHK.getInstance());
+        System.out.println(testStation.getName());
+        edges = testStation.getEdgeTo();
+        for (Edge e : edges) {
+            System.out.println(e.toString() + ' ' + e.getLine());
+        }
+        System.out.println();
 
         //Declare new criteria
         Criteria c = new CrtStation();
         System.out.println(c.toString());
 
         //Compute the shortest path
-        int start_station_id = m.getDatabase().getStationByName("屯门", Language.SimplifiedChinese, AdministratorHK.getInstance()).getId();
-        int end_station_id = m.getDatabase().getStationByName("少年宫", Language.SimplifiedChinese, AdministratorSZ.getInstance()).getId();
-        ArrayList<Integer> result = c.findRoute(start_station_id, end_station_id);
+        Station startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
+        Station endStation = m.getDatabase().getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
+        ArrayList<Integer> result = c.findRoute(startStation.getId(), endStation.getId());
 
         //Print out the final result
         ArrayList<String> nameResult = m.getDatabase().translateId2Name(result);
         System.out.println(nameResult);
+
+        // Demo of "Price" function
+        System.out.println();
+        m.getDatabase().getPrice(startStation, endStation);
+        endStation = m.getDatabase().getStationByName("Lo Wu", Language.English, AdministratorHK.getInstance());
+        m.getDatabase().getPrice(startStation, endStation);
+        startStation = m.getDatabase().getStationByName("Luohu", Language.English, AdministratorSZ.getInstance());
+        endStation = m.getDatabase().getStationByName("Bitou", Language.English, AdministratorSZ.getInstance());
+        m.getDatabase().getPrice(startStation, endStation);
+
     }
    
 }

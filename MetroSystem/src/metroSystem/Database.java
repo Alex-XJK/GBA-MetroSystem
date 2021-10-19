@@ -14,7 +14,8 @@ public class Database {
     private ArrayList<Station> allStations;
     private ArrayList<Edge> allEdges;
     private ArrayList<Line> allLines;
-    private int stationsHK, edgesHK, edgesSZ;
+    private float[][] priceHK, priceSZ;
+    private int stationsHK, stationsSZ, edgesHK, edgesSZ;
 
     private Database() {
         allStations = new ArrayList<>();
@@ -71,6 +72,7 @@ public class Database {
             String simplifiedChineseName = row.getCell(2).getStringCellValue();
             allStations.add(new Station(allStations.size() + 1, englishName, traditionalChineseName, simplifiedChineseName, AdministratorSZ.getInstance()));
         }
+        stationsSZ = allStations.size() - stationsHK;
     }
 
     public void loadEdges() {
@@ -172,6 +174,52 @@ public class Database {
         }
     }
 
+    public void loadPrice() {
+        XSSFWorkbook workbookHK = null, workbookSZ = null;
+        try {
+            File fileHK = new File("./MetroSystem/data/price_HK.xlsx");
+            File fileSZ = new File("./MetroSystem/data/price_SZ.xlsx");
+            InputStream inputStreamHK = new FileInputStream(fileHK);
+            InputStream inputStreamSZ = new FileInputStream(fileSZ);
+            workbookHK = new XSSFWorkbook(inputStreamHK);
+            workbookSZ = new XSSFWorkbook(inputStreamSZ);
+        }
+        catch (Exception e) {
+            System.out.println("Fail to load file!\nDetails: " + e);
+        }
+        XSSFSheet sheetHK = workbookHK.getSheetAt(0);
+        XSSFSheet sheetSZ = workbookSZ.getSheetAt(0);
+
+        Row row = sheetHK.getRow(sheetHK.getLastRowNum());
+        int rows = sheetHK.getLastRowNum(), columns = row.getLastCellNum() - 1;
+
+        priceHK = new float[stationsHK + 1][stationsHK + 1];
+        for(int i = 1; i <= rows; i++) {
+            row = sheetHK.getRow(i);
+            for (int j = 1; j <= columns; j++) {
+                float price = (float) row.getCell(j).getNumericCellValue();
+                int startStationId = (int)sheetHK.getRow(i).getCell(0).getNumericCellValue();
+                int endStationId = (int)sheetHK.getRow(0).getCell(j).getNumericCellValue();
+                priceHK[startStationId][endStationId] = price;
+            }
+        }
+
+        row = sheetSZ.getRow(sheetSZ.getLastRowNum());
+        rows = sheetSZ.getLastRowNum();
+        columns = row.getLastCellNum() - 1;
+
+        priceSZ = new float[stationsSZ + 1][stationsSZ + 1];
+        for(int i = 1; i <= rows; i++) {
+            row = sheetSZ.getRow(i);
+            for (int j = 1; j <= columns; j++) {
+                float price = (float) row.getCell(j).getNumericCellValue();
+                int startStationId = (int)sheetSZ.getRow(i).getCell(0).getNumericCellValue();
+                int endStationId = (int)sheetSZ.getRow(0).getCell(j).getNumericCellValue();
+                priceSZ[startStationId][endStationId] = price;
+            }
+        }
+    }
+
     public Line getLineByName(String name, Language language) {
         for(Line l : allLines) {
             if(l.getNameInSpecificLanguage(language).equals(name))
@@ -234,4 +282,21 @@ public class Database {
         return names;
     }
 
+    public void getPrice(Station startStation, Station endStation) {
+        if(startStation.getAdmin() == endStation.getAdmin()) {
+            int startStationId = startStation.getId(), endStationId = endStation.getId();
+            if(startStation.getAdmin() == AdministratorHK.getInstance())
+                System.out.println(startStation.getName() + "->" + endStation.getName() + ": " + priceHK[startStationId][endStationId]);
+            else if(startStation.getAdmin() == AdministratorSZ.getInstance())
+                System.out.println(startStation.getName() + "->" + endStation.getName() + ": " + priceSZ[startStationId - stationsHK][endStationId - stationsHK]);
+        }
+        else {
+            if(MetroSystem.getInstance().getSystemLanguage() == Language.English)
+                System.out.println("The two stations belong to different administrations, and the cross-segment calculation should be carried out according to the stations through the route");
+            if(MetroSystem.getInstance().getSystemLanguage() == Language.TraditionalChinese)
+                System.out.println("兩站屬於不同管轄範圍，需根據路線經過站進行跨段計算");
+            if(MetroSystem.getInstance().getSystemLanguage() == Language.SimplifiedChinese)
+                System.out.println("两站属于不同管辖范围，需根据路线经过站进行跨段计算");
+        }
+    }
 }
