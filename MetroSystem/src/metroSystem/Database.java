@@ -97,8 +97,9 @@ public class Database {
                 continue;
             Station st_station = allStations.get((int) row.getCell(0).getNumericCellValue() - 1);
             Station ed_station = allStations.get((int) row.getCell(1).getNumericCellValue() - 1);
-            allEdges.add(new Edge(allEdges.size() + 1, st_station, ed_station, AdministratorHK.getInstance()));
-            allEdges.add(new Edge(allEdges.size() + 1, ed_station, st_station, AdministratorHK.getInstance()));
+            int time = (int) row.getCell(2).getNumericCellValue();
+            allEdges.add(new Edge(allEdges.size() + 1, st_station, ed_station, time, AdministratorHK.getInstance()));
+            allEdges.add(new Edge(allEdges.size() + 1, ed_station, st_station, time, AdministratorHK.getInstance()));
         }
         edgesHK = allEdges.size() / 2;
         for (Row row : sheetSZ) {
@@ -106,8 +107,9 @@ public class Database {
                 continue;
             Station st_station = allStations.get(stationsHK + (int)row.getCell(0).getNumericCellValue() - 1);
             Station ed_station = allStations.get(stationsHK + (int)row.getCell(1).getNumericCellValue() - 1);
-            allEdges.add(new Edge(allEdges.size() + 1, st_station, ed_station, AdministratorSZ.getInstance()));
-            allEdges.add(new Edge(allEdges.size() + 1, ed_station, st_station, AdministratorSZ.getInstance()));
+            int time = (int) row.getCell(2).getNumericCellValue();
+            allEdges.add(new Edge(allEdges.size() + 1, st_station, ed_station, time, AdministratorSZ.getInstance()));
+            allEdges.add(new Edge(allEdges.size() + 1, ed_station, st_station, time, AdministratorSZ.getInstance()));
         }
         edgesSZ = allEdges.size() / 2 - edgesHK;
         for (Row row : sheetBorder) {
@@ -116,57 +118,15 @@ public class Database {
             Station st_station = allStations.get((int)row.getCell(0).getNumericCellValue() - 1);
             Station ed_station = allStations.get(stationsHK + (int)row.getCell(1).getNumericCellValue() - 1);
             boolean isOpen = ((int)row.getCell(2).getNumericCellValue()) == 0? false : true;
-            Edge tempEdge = new Edge(allEdges.size() + 1, st_station, ed_station, AdministratorBorder.getInstance());
+            int time = (int) row.getCell(3).getNumericCellValue();
+            Edge tempEdge = new Edge(allEdges.size() + 1, st_station, ed_station, time, AdministratorBorder.getInstance());
             allEdges.add(tempEdge);
             tempEdge.setIsOpen(isOpen);
-            tempEdge = new Edge(allEdges.size() + 1, ed_station, st_station, AdministratorBorder.getInstance());
+            tempEdge = new Edge(allEdges.size() + 1, ed_station, st_station, time, AdministratorBorder.getInstance());
             allEdges.add(tempEdge);
             tempEdge.setIsOpen(isOpen);
         }
     }
-
-    /*
-    public void loadLinesOld() {
-        XSSFWorkbook workbookHK = null, workbookSZ = null;
-        try {
-            File fileHK = new File("./data/lines_HK_old.xlsx");
-            File fileSZ = new File("./data/lines_SZ_old.xlsx");
-            InputStream inputStreamHK = new FileInputStream(fileHK);
-            InputStream inputStreamSZ = new FileInputStream(fileSZ);
-            workbookHK = new XSSFWorkbook(inputStreamHK);
-            workbookSZ = new XSSFWorkbook(inputStreamSZ);
-        }
-        catch (Exception e) {
-            System.out.println("Fail to load file!\nDetails: " + e);
-        }
-        XSSFSheet sheetHK = workbookHK.getSheetAt(0);
-        XSSFSheet sheetSZ = workbookSZ.getSheetAt(0);
-
-        ArrayList<Integer> tempStations = new ArrayList<>();
-        int tempStationSize;
-
-        for (Row row : sheetHK) {
-            String englishName = row.getCell(0).getStringCellValue();
-            String traditionalChineseName = row.getCell(1).getStringCellValue();
-            String simplifiedChineseName = row.getCell(2).getStringCellValue();
-            tempStations.clear();
-            tempStationSize = 3;
-            while (row.getCell(tempStationSize) != null)
-                tempStations.add((int)row.getCell(tempStationSize++).getNumericCellValue());
-            allLines.add(new Line(allLines.size() + 1, englishName, traditionalChineseName, simplifiedChineseName, AdministratorHK.getInstance(), tempStations));
-        }
-        for (Row row : sheetSZ) {
-            String englishName = row.getCell(0).getStringCellValue();
-            String traditionalChineseName = row.getCell(1).getStringCellValue();
-            String simplifiedChineseName = row.getCell(2).getStringCellValue();
-            tempStations.clear();
-            tempStationSize = 3;
-            while (row.getCell(tempStationSize) != null)
-                tempStations.add((int)row.getCell(tempStationSize++).getNumericCellValue() + stationsHK);
-            allLines.add(new Line(allLines.size() + 1, englishName, traditionalChineseName, simplifiedChineseName, AdministratorSZ.getInstance(), tempStations));
-        }
-    }
-     */
 
     public void loadLines() {
         XSSFWorkbook workbookHK = null, workbookSZ = null;
