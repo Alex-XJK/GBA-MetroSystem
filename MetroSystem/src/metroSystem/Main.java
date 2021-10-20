@@ -26,7 +26,7 @@ public class Main
 
         //Declare new criteria
         Criteria c = new CrtStation();
-        System.out.println(c.toString());
+        System.out.println(c);
 
         //Compute the shortest path
         Station startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
@@ -39,12 +39,12 @@ public class Main
 
         // Demo of "Price" function
         System.out.println();
-        m.getDatabase().getPrice(startStation, endStation);
+        Station.getStationPrice(startStation, endStation);
         endStation = m.getDatabase().getStationByName("Lo Wu", Language.English, AdministratorHK.getInstance());
-        m.getDatabase().getPrice(startStation, endStation);
+        Station.getStationPrice(startStation, endStation);
         startStation = m.getDatabase().getStationByName("Luohu", Language.English, AdministratorSZ.getInstance());
         endStation = m.getDatabase().getStationByName("Bitou", Language.English, AdministratorSZ.getInstance());
-        m.getDatabase().getPrice(startStation, endStation);
+        Station.getStationPrice(startStation, endStation);
 
     }
    

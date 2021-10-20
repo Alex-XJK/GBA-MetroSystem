@@ -282,21 +282,13 @@ public class Database {
         return names;
     }
 
-    public void getPrice(Station startStation, Station endStation) {
-        if(startStation.getAdmin() == endStation.getAdmin()) {
-            int startStationId = startStation.getId(), endStationId = endStation.getId();
-            if(startStation.getAdmin() == AdministratorHK.getInstance())
-                System.out.println(startStation.getName() + "->" + endStation.getName() + ": " + priceHK[startStationId][endStationId]);
-            else if(startStation.getAdmin() == AdministratorSZ.getInstance())
-                System.out.println(startStation.getName() + "->" + endStation.getName() + ": " + priceSZ[startStationId - stationsHK][endStationId - stationsHK]);
+    public float getPrice(int startStationId, int endStationId, Administrator adm) {
+        if(adm == AdministratorHK.getInstance()) {
+            return priceHK[startStationId][endStationId];
         }
-        else {
-            if(MetroSystem.getInstance().getSystemLanguage() == Language.English)
-                System.out.println("The two stations belong to different administrations, and the cross-segment calculation should be carried out according to the stations through the route");
-            if(MetroSystem.getInstance().getSystemLanguage() == Language.TraditionalChinese)
-                System.out.println("兩站屬於不同管轄範圍，需根據路線經過站進行跨段計算");
-            if(MetroSystem.getInstance().getSystemLanguage() == Language.SimplifiedChinese)
-                System.out.println("两站属于不同管辖范围，需根据路线经过站进行跨段计算");
+        else if(adm == AdministratorSZ.getInstance()) {
+            return priceSZ[startStationId - stationsHK][endStationId - stationsHK];
         }
+        return -1;
     }
 }
