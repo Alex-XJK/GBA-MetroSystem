@@ -20,21 +20,21 @@ public class Line {
     }
 
     public String getName() {
-        if(MetroSystem.getInstance().getSystemLanguage() instanceof LanguageEnglish)
+        if(MetroSystem.getInstance().getSystemLanguage() == Language.English)
             return englishName;
-        if(MetroSystem.getInstance().getSystemLanguage() instanceof LanguageTraditionalChinese)
+        if(MetroSystem.getInstance().getSystemLanguage() == Language.TraditionalChinese)
             return traditionalChineseName;
-        if(MetroSystem.getInstance().getSystemLanguage() instanceof LanguageSimplifiedChinese)
+        if(MetroSystem.getInstance().getSystemLanguage() == Language.SimplifiedChinese)
             return simplifiedChineseName;
         return "Error";
     }
 
     public String getNameInSpecificLanguage(Language language) {
-        if(language instanceof LanguageEnglish)
+        if(language == Language.English)
             return englishName;
-        if(language instanceof LanguageTraditionalChinese)
+        if(language == Language.TraditionalChinese)
             return traditionalChineseName;
-        if(language instanceof LanguageSimplifiedChinese)
+        if(language == Language.SimplifiedChinese)
             return simplifiedChineseName;
         return "Error";
     }
