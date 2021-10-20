@@ -15,7 +15,7 @@ public class DLConnectivity extends DataList{
         for (Edge e : allEdges) {
             int sta1 = e.getStartSta().getId();
             int sta2 = e.getEndSta().getId();
-//            if (e.dataIsConnect()){
+//            if (e.getIsConnect()){
             data[sta1].add(new NodeEntry<Integer, Integer>(sta2, 1));
             data[sta2].add(new NodeEntry<Integer, Integer>(sta1, 1));
 //            }
