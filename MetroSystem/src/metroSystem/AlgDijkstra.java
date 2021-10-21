@@ -12,7 +12,7 @@ public class AlgDijkstra implements Algorithm{
         ArrayList<Integer> shortestRoute = new ArrayList<>();
         PriorityQueue<NodeEntry> dijkstraQueue = new PriorityQueue<NodeEntry>();
         int size = data.getSize() + 1;
-        int parent[] = new int[size]; // ´ý¶¨
+        int parent[] = new int[size];
         boolean visited[] = new boolean[size];
         for (int i=0; i<size; i++) {
         	visited[i] = false;
@@ -23,19 +23,17 @@ public class AlgDijkstra implements Algorithm{
         visited[startId] = true;
         for (NodeEntry e : data.getNeighbors(startId)) {
         	dijkstraQueue.offer(e); // for the next possible nodes
-        	parent[toInt(e.getKey())] = startId; // ´ý¶¨
         }
         
         while (!dijkstraQueue.isEmpty()) {
         	NodeEntry head = dijkstraQueue.poll(); // the shortest edge
-        	int headId = toInt(head.getKey()); 
-        	if (!visited[headId]) { // if haven't been visited yet
-    			visited[headId] = true;
-    			for (NodeEntry e : data.getNeighbors(headId)) {
-    	        	dijkstraQueue.offer(e);
-    	        }
-    		} else {
-    			continue;
+        	int headId = toInt(((ArrayList) head.getKey()).get(1)); 
+    		visited[headId] = true;
+    		parent[headId] = toInt(((ArrayList) head.getKey()).get(0)); 
+    		for (NodeEntry e : data.getNeighbors(headId)) {
+    			if (!visited[toInt(((ArrayList) e.getKey()).get(1))]) { // if haven't been visited yet
+    	        dijkstraQueue.offer(e);
+    	        } 
     		}
         	if (headId == endId) {
         		Stack<Integer> backtracking = new Stack<Integer>(); // for backtracking
