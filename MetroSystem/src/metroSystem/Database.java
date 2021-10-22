@@ -220,6 +220,7 @@ public class Database {
         }
     }
 
+    //TODO: Consider whether we need to refactor into the Line class
     public Line getLineByName(String name, Language language) {
         for(Line l : allLines) {
             if(l.getNameInSpecificLanguage(language).equals(name))
@@ -228,14 +229,17 @@ public class Database {
         return null;
     }
 
-    public Station getStationByName(String name, Language language, Administrator admin) {
+    //TODO: Consider whether we need to refactor into the Station class
+    //TODO: Resolve all Exceptions
+    public Station getStationByName(String name, Language language, Administrator admin) throws ExStationNotFound {
         for(Station s : allStations) {
             if(s.getNameInSpecificLanguage(language).equals(name) && s.getAdmin() == admin)
                 return s;
         }
-        return null;
+        throw new ExStationNotFound();
     }
 
+    //TODO: Consider whether we need to refactor into the Station class
     /***
      * Find a station according to its station_id.
      * @param id    The id of your target station
