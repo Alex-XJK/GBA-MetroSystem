@@ -32,4 +32,7 @@ public abstract class Criteria {
         return String.format("The criteria : %s", this.criteriaName);
     }
 
+    public void reportGraph(){
+        this.adjacencyList.debugPrint();
+    }
 }
