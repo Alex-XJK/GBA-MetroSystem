@@ -24,28 +24,30 @@ public class Main
         }
         System.out.println();
 
-        //Declare new criteria
-        Criteria c = new CrtStation();
-        System.out.println(c);
-
-        //Compute the shortest path
-        Station startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
-        Station endStation = m.getDatabase().getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
-        ArrayList<Integer> result = c.findRoute(startStation.getId(), endStation.getId());
-
-        //Print out the final result
-        ArrayList<String> nameResult = m.getDatabase().translateId2Name(result);
-        System.out.println(nameResult);
+//        //Already covered in our Junit test
+//        //Declare new criteria
+//        Criteria c = new CrtStation();
+//        System.out.println(c);
+//
+//        //Compute the shortest path
+//        Station startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
+//        Station endStation = m.getDatabase().getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
+//        ArrayList<Integer> result = c.findRoute(startStation.getId(), endStation.getId());
+//
+//        //Print out the final result
+//        ArrayList<String> nameResult = m.getDatabase().translateId2Name(result);
+//        System.out.println(nameResult);
 
         // Demo of "Price" function
-        System.out.println();
+        Station startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
+        Station endStation = m.getDatabase().getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
         Station.getStationPrice(startStation, endStation);
         endStation = m.getDatabase().getStationByName("Lo Wu", Language.English, AdministratorHK.getInstance());
         Station.getStationPrice(startStation, endStation);
         startStation = m.getDatabase().getStationByName("Luohu", Language.English, AdministratorSZ.getInstance());
         endStation = m.getDatabase().getStationByName("Bitou", Language.English, AdministratorSZ.getInstance());
         Station.getStationPrice(startStation, endStation);
-        
+
       //Declare new criteria
         Criteria c2 = new CrtTime();
         System.out.println(c2);
