@@ -45,6 +45,19 @@ public class Main
         startStation = m.getDatabase().getStationByName("Luohu", Language.English, AdministratorSZ.getInstance());
         endStation = m.getDatabase().getStationByName("Bitou", Language.English, AdministratorSZ.getInstance());
         Station.getStationPrice(startStation, endStation);
+        
+      //Declare new criteria
+        Criteria c2 = new CrtTime();
+        System.out.println(c2);
+
+        //Compute the shortest path
+        Station startStation2 = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
+        Station endStation2 = m.getDatabase().getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
+        ArrayList<Integer> result2 = c2.findRoute(startStation2.getId(), endStation2.getId());
+
+        //Print out the final result
+        ArrayList<String> nameResult2 = m.getDatabase().translateId2Name(result2);
+        System.out.println(nameResult2);
 
     }
    
