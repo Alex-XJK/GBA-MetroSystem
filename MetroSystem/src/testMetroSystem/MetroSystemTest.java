@@ -41,30 +41,43 @@ public class MetroSystemTest {
     @DisplayName("Run CrtStation 1")
     public void testCriteriaStaRun1(){
         Criteria c = new CrtStation();
-        Station startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
-        Station endStation = m.getDatabase().getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
-        ArrayList<Integer> result = c.findRoute(startStation.getId(), endStation.getId());
-        Integer[] expected = {64, 65, 66, 67, 68, 136, 288, 108, 147, 160};
-        assertArrayEquals(expected, result.toArray(new Integer[0]));
+        ArrayList<Integer> result = new ArrayList<>();
+        try{
+            Station startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
+            Station endStation = m.getDatabase().getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
+            result = c.findRoute(startStation.getId(), endStation.getId());
+        } catch (ExStationNotFound e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            Integer[] expected = {64, 65, 66, 67, 68, 136, 288, 108, 147, 160};
+            assertArrayEquals(expected, result.toArray(new Integer[0]));
+        }
     }
 
     @Test
     @DisplayName("Run CrtStation 2")
     public void testCriteriaStaRun2(){
         Criteria c = new CrtStation();
-        Station startStation = m.getDatabase().getStationByName("长沙湾", Language.SimplifiedChinese, AdministratorHK.getInstance());
-        Station endStation = m.getDatabase().getStationByName("九龙塘", Language.SimplifiedChinese, AdministratorHK.getInstance());
-        ArrayList<Integer> result = c.findRoute(startStation.getId(), endStation.getId());
-        Integer[] expected = {24, 23, 22, 34, 35};
-        assertArrayEquals(expected, result.toArray(new Integer[0]));
+        ArrayList<Integer> result = new ArrayList<>();
+        try{
+            Station startStation = m.getDatabase().getStationByName("长沙湾", Language.SimplifiedChinese, AdministratorHK.getInstance());
+            Station endStation = m.getDatabase().getStationByName("九龙塘", Language.SimplifiedChinese, AdministratorHK.getInstance());
+            result = c.findRoute(startStation.getId(), endStation.getId());
+        } catch (ExStationNotFound e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            Integer[] expected = {24, 23, 22, 34, 35};
+            assertArrayEquals(expected, result.toArray(new Integer[0]));
+        }
     }
 
     @Test
     @DisplayName("Price Retrieve 1")
     public void testPrice1(){
-        Station startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
-        Station endStation = m.getDatabase().getStationByName("Lo Wu", Language.English, AdministratorHK.getInstance());
-        Station.getStationPrice(startStation, endStation);
         // Assertion of the stdout stream is ok but seems to be difficult,
         // maybe we can let it return a string instead of directly printout?
     }
