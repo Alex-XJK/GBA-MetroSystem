@@ -13,7 +13,7 @@ public class Main
         try {
             testLine = m.getDatabase().getLineByName("Line 7", Language.English);
         } catch (ExLineNotFound e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
         System.out.println(testLine.getName());
         ArrayList<Edge> edges = testLine.getEdges();
@@ -25,7 +25,7 @@ public class Main
         try {
             testStation = m.getDatabase().getStationByName("Kowloon Tong", Language.English, AdministratorHK.getInstance());
         } catch (ExStationNotFound e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
         System.out.println(testStation.getName());
         edges = testStation.getEdgeTo();
@@ -47,7 +47,7 @@ public class Main
             endStation = m.getDatabase().getStationByName("Bitou", Language.English, AdministratorSZ.getInstance());
             Station.getStationPrice(startStation, endStation);
         } catch (ExStationNotFound e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
 
       //Declare new criteria
@@ -61,7 +61,7 @@ public class Main
             startStation2 = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
             endStation2 = m.getDatabase().getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
         } catch (ExStationNotFound e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         ArrayList<Integer> result2 = c2.findRoute(startStation2.getId(), endStation2.getId());
 
