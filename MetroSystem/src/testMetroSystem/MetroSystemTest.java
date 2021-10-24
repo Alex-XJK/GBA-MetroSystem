@@ -12,11 +12,13 @@ import java.util.ArrayList;
 
 public class MetroSystemTest {
     private MetroSystem m;
+    private Database db;
 
     @BeforeEach
     public void setUp() throws Exception {
         m = MetroSystem.getInstance();
         m.setSystemLanguage(Language.English);
+        db = m.getDatabase();
     }
 
     @Test
@@ -35,6 +37,32 @@ public class MetroSystemTest {
         System.out.println(c);
         c.reportGraph();
         // How to assert such a large item?
+    }
+
+    @Test
+    @DisplayName("Searching Station Eng")
+    public void testSearchStation1(){
+        Station s = null;
+        try {
+            s = db.getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
+        }catch (ExStationNotFound e){
+            System.out.println(e.getMessage());
+        }
+        int id = s.getId();
+        assertEquals(64, id);
+    }
+
+    @Test
+    @DisplayName("Searching Station SC")
+    public void testSearchStation2(){
+        Station s = null;
+        try {
+            s = db.getStationByName("长沙湾", Language.SimplifiedChinese, AdministratorHK.getInstance());
+        }catch (ExStationNotFound e){
+            System.out.println(e.getMessage());
+        }
+        int id = s.getId();
+        assertEquals(24, id);
     }
 
     @Test
