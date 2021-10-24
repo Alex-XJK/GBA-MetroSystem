@@ -9,14 +9,24 @@ public class Main
         m.setSystemLanguage(Language.SimplifiedChinese);
 
         // Demo of "edgeTo"
-        Line testLine = m.getDatabase().getLineByName("Line 7", Language.English);
+        Line testLine = null;
+        try {
+            testLine = m.getDatabase().getLineByName("Line 7", Language.English);
+        } catch (ExLineNotFound e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println(testLine.getName());
         ArrayList<Edge> edges = testLine.getEdges();
         for (Edge e : edges)
             System.out.println(e.toString());
         System.out.println();
 
-        Station testStation = m.getDatabase().getStationByName("Kowloon Tong", Language.English, AdministratorHK.getInstance());
+        Station testStation = null;
+        try {
+            testStation = m.getDatabase().getStationByName("Kowloon Tong", Language.English, AdministratorHK.getInstance());
+        } catch (ExStationNotFound e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println(testStation.getName());
         edges = testStation.getEdgeTo();
         for (Edge e : edges) {
@@ -24,37 +34,35 @@ public class Main
         }
         System.out.println();
 
-//        //Already covered in our Junit test
-//        //Declare new criteria
-//        Criteria c = new CrtStation();
-//        System.out.println(c);
-//
-//        //Compute the shortest path
-//        Station startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
-//        Station endStation = m.getDatabase().getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
-//        ArrayList<Integer> result = c.findRoute(startStation.getId(), endStation.getId());
-//
-//        //Print out the final result
-//        ArrayList<String> nameResult = m.getDatabase().translateId2Name(result);
-//        System.out.println(nameResult);
-
         // Demo of "Price" function
-        Station startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
-        Station endStation = m.getDatabase().getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
-        Station.getStationPrice(startStation, endStation);
-        endStation = m.getDatabase().getStationByName("Lo Wu", Language.English, AdministratorHK.getInstance());
-        Station.getStationPrice(startStation, endStation);
-        startStation = m.getDatabase().getStationByName("Luohu", Language.English, AdministratorSZ.getInstance());
-        endStation = m.getDatabase().getStationByName("Bitou", Language.English, AdministratorSZ.getInstance());
-        Station.getStationPrice(startStation, endStation);
+        Station startStation = null;
+        Station endStation = null;
+        try {
+            startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
+            endStation = m.getDatabase().getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
+            Station.getStationPrice(startStation, endStation);
+            endStation = m.getDatabase().getStationByName("Lo Wu", Language.English, AdministratorHK.getInstance());
+            Station.getStationPrice(startStation, endStation);
+            startStation = m.getDatabase().getStationByName("Luohu", Language.English, AdministratorSZ.getInstance());
+            endStation = m.getDatabase().getStationByName("Bitou", Language.English, AdministratorSZ.getInstance());
+            Station.getStationPrice(startStation, endStation);
+        } catch (ExStationNotFound e) {
+            System.out.println(e.getMessage());
+        }
 
       //Declare new criteria
         Criteria c2 = new CrtTime();
         System.out.println(c2);
 
         //Compute the shortest path
-        Station startStation2 = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
-        Station endStation2 = m.getDatabase().getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
+        Station startStation2 = null;
+        Station endStation2 = null;
+        try {
+            startStation2 = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
+            endStation2 = m.getDatabase().getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
+        } catch (ExStationNotFound e) {
+            System.out.println(e.getMessage());
+        }
         ArrayList<Integer> result2 = c2.findRoute(startStation2.getId(), endStation2.getId());
 
         //Print out the final result
