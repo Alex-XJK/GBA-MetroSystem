@@ -79,4 +79,36 @@ public class Station
 				System.out.println("两站属于不同管辖范围，需根据路线经过站进行跨段计算");
 		}
 	}
+
+	/**
+	 * Find a station according to its station_name.
+	 * Code Refactoring by Alex using “Extract Method” strategy from xrr's original function inside Database.
+	 * @param name      The name of your target station
+	 * @param language  The language you are using
+	 * @param admin     The instance of the administrator of the station.
+	 * @return The reference of your target station
+	 */
+	public static Station searchStationByName(ArrayList<Station> allStations, String name, Language language, Administrator admin) {
+		for(Station s : allStations) {
+			if(s.getNameInSpecificLanguage(language).equals(name) && s.getAdmin() == admin)
+				return s;
+		}
+		return null;
+	}
+
+	/**
+	 * Find a station according to its station_id.
+	 * Code Refactoring by Alex using “Extract Method” strategy from Alex's original function inside Database.
+	 * @param allStations 	The whole arraylist of stations we have.
+	 * @param id    		The id of your target station
+	 * @return The reference of your target station
+	 */
+	public static Station searchStationById(ArrayList<Station> allStations, int id) {
+		for(Station s : allStations) {
+			if(s.getId() == id) {
+				return s;
+			}
+		}
+		return null;
+	}
 }

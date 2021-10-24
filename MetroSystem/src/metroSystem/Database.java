@@ -220,40 +220,54 @@ public class Database {
         }
     }
 
-    //TODO: Consider whether we need to refactor into the Line class
-    public Line getLineByName(String name, Language language) {
-        for(Line l : allLines) {
-            if(l.getNameInSpecificLanguage(language).equals(name))
-                return l;
+    /**
+     * Find a line according to its line name.
+     * Involve {@code Line} to handle core searching.
+     * @param name      The name of your target subway line
+     * @param language  The language you are using
+     * @return The reference of your target line
+     * @throws ExLineNotFound    If the given name cannot be matching with any line in database
+     */
+    public Line getLineByName(String name, Language language) throws ExLineNotFound {
+        Line l = Line.searchLineByName(allLines, name, language);
+        if (l == null) {
+            throw new ExLineNotFound();
         }
-        return null;
+        return l;
     }
 
-    //TODO: Consider whether we need to refactor into the Station class
-    //TODO: Resolve all Exceptions
+    /**
+     * Find a station according to its station_name.
+     * Involve {@code Station} to handle core searching.
+     * @param name      The name of your target station
+     * @param language  The language you are using
+     * @param admin     The instance of the administrator of the station.
+     * @return The reference of your target station
+     * @throws ExStationNotFound    If the given name cannot be matching with any station in database
+     */
     public Station getStationByName(String name, Language language, Administrator admin) throws ExStationNotFound {
-        for(Station s : allStations) {
-            if(s.getNameInSpecificLanguage(language).equals(name) && s.getAdmin() == admin)
-                return s;
+        Station sta = Station.searchStationByName(allStations, name, language, admin);
+        if (sta == null) {
+            String exp = "Station with name " + name +" cannot be found in our database!";
+            throw new ExStationNotFound(exp);
         }
-        throw new ExStationNotFound();
+        return sta;
     }
 
-    //TODO: Consider whether we need to refactor into the Station class
-    /***
+    /**
      * Find a station according to its station_id.
+     * Involve {@code Station} to handle core searching.
      * @param id    The id of your target station
      * @return      The reference of your target station
      * @throws ExStationNotFound    If the given id cannot be matching with any station in database
      */
     public Station getStationById(int id) throws ExStationNotFound {
-        for(Station s : allStations) {
-            if(s.getId() == id) {
-                return s;
-            }
+        Station sta = Station.searchStationById(allStations, id);
+        if (sta == null) {
+            String exp = "Station of id = " + id +" cannot be found in our database!";
+            throw new ExStationNotFound(exp);
         }
-        String exp = "Station of id = " + id +" cannot be found in our database!";
-        throw new ExStationNotFound(exp);
+        return sta;
     }
 
     public int getStationCount(){
@@ -264,7 +278,7 @@ public class Database {
         return allEdges;
     }
 
-    /***
+    /**
      * Translate an array of station id to its station name
      * @param ids       An arraylist of station_id in integer format
      * @return An arraylist of station_name in your desired language with the original order

@@ -42,4 +42,20 @@ public class Line {
     public ArrayList<Edge> getEdges() {
         return edges;
     }
+
+    /**
+     * Find a line according to its line name.
+     * Involve {@code Line} to handle core searching.
+     * @param allLines  All the subway lines we have
+     * @param name      The name of your target subway line
+     * @param language  The language you are using
+     * @return The reference of your target line
+     */
+    public static Line searchLineByName(ArrayList<Line> allLines, String name, Language language) {
+        for(Line l : allLines) {
+            if(l.getNameInSpecificLanguage(language).equals(name))
+                return l;
+        }
+        return null;
+    }
 }
