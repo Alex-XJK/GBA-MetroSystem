@@ -155,7 +155,7 @@ public class MetroSystemTest {
         m.setSystemLanguage(Language.SimplifiedChinese);
         Line line = m.getDatabase().getLineByName("港岛线", Language.SimplifiedChinese);
         result = line.getName();
-        assertEquals("Island Line", result);
+        assertEquals("港岛线", result);
     }
     
     @Test
@@ -165,7 +165,7 @@ public class MetroSystemTest {
         m.setSystemLanguage(Language.TraditionalChinese);
         Line line = m.getDatabase().getLineByName("港島線", Language.TraditionalChinese);
         result = line.getName();
-        assertEquals("Island Line", result);
+        assertEquals("港島線", result);
     }
     
     @Test
@@ -179,11 +179,12 @@ public class MetroSystemTest {
     }
     
     @Test
-    @DisplayName("Line getEdges Method")
+    @DisplayName("Line getEdges and Edge getLine Method")
     public void testLineGetEdges() throws ExLineNotFound {
     	ArrayList<Edge> result = null;
         Line line = m.getDatabase().getLineByName("Island Line", Language.English);
-        result = line.getEdges();String expected = "[Kennedy Town->HKU, HKU->Kennedy Town, HKU->Sai Ying Pun, Sai Ying Pun->HKU, Sai Ying Pun->Sheung Wan, Sheung Wan->Sai Ying Pun, Sheung Wan->Central, Central->Sheung Wan, Central->Admiralty, Admiralty->Central, Admiralty->Wan Chai, Wan Chai->Admiralty, Wan Chai->Causeway Bay, Causeway Bay->Wan Chai, Causeway Bay->Tin Hau, Tin Hau->Causeway Bay, Tin Hau->Fortress Hill, Fortress Hill->Tin Hau, Fortress Hill->North Point, North Point->Fortress Hill, North Point->Quarry Bay, Quarry Bay->North Point, Quarry Bay->Tai Koo, Tai Koo->Quarry Bay, Tai Koo->Sai Wan Ho, Sai Wan Ho->Tai Koo, Sai Wan Ho->Shau Kei Wan, Shau Kei Wan->Sai Wan Ho, Shau Kei Wan->Heng Fa Chuen, Heng Fa Chuen->Shau Kei Wan, Heng Fa Chuen->Chai Wan, Chai Wan->Heng Fa Chuen]";
+        result = line.getEdges();
+        String expected = "[Kennedy Town->HKU, HKU->Kennedy Town, HKU->Sai Ying Pun, Sai Ying Pun->HKU, Sai Ying Pun->Sheung Wan, Sheung Wan->Sai Ying Pun, Sheung Wan->Central, Central->Sheung Wan, Central->Admiralty, Admiralty->Central, Admiralty->Wan Chai, Wan Chai->Admiralty, Wan Chai->Causeway Bay, Causeway Bay->Wan Chai, Causeway Bay->Tin Hau, Tin Hau->Causeway Bay, Tin Hau->Fortress Hill, Fortress Hill->Tin Hau, Fortress Hill->North Point, North Point->Fortress Hill, North Point->Quarry Bay, Quarry Bay->North Point, Quarry Bay->Tai Koo, Tai Koo->Quarry Bay, Tai Koo->Sai Wan Ho, Sai Wan Ho->Tai Koo, Sai Wan Ho->Shau Kei Wan, Shau Kei Wan->Sai Wan Ho, Shau Kei Wan->Heng Fa Chuen, Heng Fa Chuen->Shau Kei Wan, Heng Fa Chuen->Chai Wan, Chai Wan->Heng Fa Chuen]";
         assertEquals(expected, result.toString());
     }
     
@@ -218,17 +219,47 @@ public class MetroSystemTest {
     
     @Test
     @DisplayName("Database getPrice method 1")
-    public void getPrice1() {
+    public void testGetPrice1() {
     	float result = db.getPrice(0, 1, AdministratorHK.getInstance());
     	assertEquals(0.0, result);
     }
     
     @Test
     @DisplayName("Database getPrice method 2")
-    public void getPrice2() {
+    public void testGetPrice2() {
     	float result = db.getPrice(0, 1, null);
     	assertEquals(-1, result);
     }
     
+    @Test
+    @DisplayName("Edge getLine method 1")
+    public void testGetLine1() throws ExStationNotFound {
+    	Station startStation = m.getDatabase().getStationByName("Kennedy Town", Language.English, AdministratorHK.getInstance());
+        Station endStation = m.getDatabase().getStationByName("HKU", Language.English, AdministratorHK.getInstance());
+    	Edge edge = new Edge(0, startStation, endStation, 0, AdministratorHK.getInstance());
+    	String result = edge.getLine();
+    	assertEquals("null", result);
+    }
+    
+    @Test
+    @DisplayName("Edge getLine method 2")
+    public void testGetLine2() throws ExStationNotFound, ExLineNotFound {
+    	Station startStation = m.getDatabase().getStationByName("Kennedy Town", Language.English, AdministratorHK.getInstance());
+        Station endStation = m.getDatabase().getStationByName("HKU", Language.English, AdministratorHK.getInstance());
+        Edge edge = new Edge(0, startStation, endStation, 0, AdministratorHK.getInstance());
+    	edge.setLine(m.getDatabase().getLineByName("Island Line", Language.English));
+        String result = edge.getLine();
+    	assertEquals("Island Line", result);
+    }
+    
+    @Test
+    @DisplayName("Edge getIsConnect method")
+    public void testGetIsConnect() throws ExStationNotFound, ExLineNotFound {
+    	Station startStation = m.getDatabase().getStationByName("Kennedy Town", Language.English, AdministratorHK.getInstance());
+        Station endStation = m.getDatabase().getStationByName("HKU", Language.English, AdministratorHK.getInstance());
+        Edge edge = new Edge(0, startStation, endStation, 0, AdministratorHK.getInstance());
+        boolean result = edge.getIsConnect();
+    	assertEquals(true, result);
+    }
 }
 
