@@ -71,5 +71,5 @@ jobs:
     # java -classpath ./MetroSystem/src/metroSystem Main
     
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
+    # name: Perform CodeQL Analysis
+    # uses: github/codeql-action/analyze@v1
