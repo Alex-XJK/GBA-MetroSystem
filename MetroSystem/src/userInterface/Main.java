@@ -86,8 +86,8 @@ public class Main {
         ImageIcon hkimg = new ImageIcon(ImageIO.read(new File("./MetroSystem/data/hk.jpg")));
         JLabel picLabel = new JLabel(hkimg);
 
-        JButton btnhk=new JButton("Traffic Map (HK)");
-        JButton btnsz=new JButton("Traffic Map (SZ)");
+        JButton btnhk = new JButton("Traffic Map (HK)");
+        JButton btnsz = new JButton("Traffic Map (SZ)");
 
         btnsz.addActionListener(new ActionListener() {
 
@@ -105,9 +105,7 @@ public class Main {
             }
         });
 
-
-        JButton btn3=new JButton("Clear");  
-        
+        JButton btn3 = new JButton("Clear");  
         
         // jp.add(username);
         jp.add(picLabel);
@@ -118,6 +116,53 @@ public class Main {
 
         jp.add(btnsz);
         jp.add(btn3);
+
+        // Language settings
+        langcn.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnMap.setText("地图");
+                btnExit.setText("退出");
+                from.setText("起始地");
+                to.setText("目的地");
+                btnhk.setText("香港地铁线路图");
+                btnsz.setText("深圳地铁线路图");
+                btn3.setText("清除");
+                user.setText("<html><h1>Jacky</h1><p>注册用户</p><br></html>");
+            }
+        });
+
+        langhk.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnMap.setText("地圖");
+                btnExit.setText("退出");
+                from.setText("起始地");
+                to.setText("目的地");
+                btnhk.setText("香港地鐵線路圖");
+                btnsz.setText("深圳地鐵線路圖");
+                btn3.setText("清除");
+                user.setText("<html><h1>Jacky</h1><p>註冊用戶</p><br></html>");
+            }
+        });
+
+        langen.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnMap.setText("Map");
+                btnExit.setText("Exit");
+                from.setText("From: ");
+                to.setText("To: ");
+                btnhk.setText("Traffic Map (HK)");
+                btnsz.setText("Traffic Map (SZ)");
+                btn3.setText("Clear");
+                user.setText("<html><h1>Jacky</h1><p>Registered user</p><br></html>");
+            }
+        });
+
 
         // btn3.setEnabled(false); 
         // Dimension preferredSize=new Dimension(160, 60);
