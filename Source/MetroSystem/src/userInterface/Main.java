@@ -1,4 +1,4 @@
-package MetroSystem.src.userInterface;
+package userInterface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Main {
-    
+
     public static void main(String[] args) throws IOException { 
 
         // Theme parity
@@ -80,10 +80,11 @@ public class Main {
         jp.add(to_text);
         jp.add(date);
 
+        String base = System.getProperty("user.dir");
+        System.out.println("Current workspace: " + base);
 
-
-        ImageIcon szimg = new ImageIcon(ImageIO.read(new File("./MetroSystem/data/sz.png")));
-        ImageIcon hkimg = new ImageIcon(ImageIO.read(new File("./MetroSystem/data/hk.jpg")));
+        ImageIcon szimg = new ImageIcon(ImageIO.read(new File(base + "/data/sz.png")));
+        ImageIcon hkimg = new ImageIcon(ImageIO.read(new File(base + "/data/hk.jpg")));
         JLabel picLabel = new JLabel(hkimg);
 
         JButton btnhk = new JButton("Traffic Map (HK)");

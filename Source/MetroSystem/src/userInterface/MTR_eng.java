@@ -1,4 +1,4 @@
-package MetroSystem.src.userInterface;
+package userInterface;
 
 import java.awt.Color;
 import java.awt.Graphics;

@@ -1,4 +1,4 @@
-package MetroSystem.src.metroSystem;
+package metroSystem;
 
 public class AdministratorBorder implements Administrator {
     private static AdministratorBorder instance = new AdministratorBorder();
