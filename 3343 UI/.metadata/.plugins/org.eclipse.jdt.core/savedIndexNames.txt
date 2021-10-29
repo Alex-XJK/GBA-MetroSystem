@@ -1,4 +1,0 @@
-INDEX VERSION 1.131+/Users/weiliu/Desktop/3343 UI/.metadata/.plugins/org.eclipse.jdt.core
-3468314333.index
-414136979.index
-1865797976.index
