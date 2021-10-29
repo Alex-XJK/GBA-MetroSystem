@@ -90,11 +90,31 @@ public class Main {
         JButton btnhk = new JButton("Traffic Map (HK)");
         JButton btnsz = new JButton("Traffic Map (SZ)");
 
+        JButton btn3 = new JButton("Clear");  
+        
+        // jp.add(username);
+        // jp.add(picLabel);
+
+        MTR_eng mtr_en = new MTR_eng();
+        // jp.add(mtr_en.getPanel());
+
+        JScrollPane scrollPane = new JScrollPane(mtr_en.getPanel());
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        // scrollPane.setSize(500, 300);
+        JPanel contentPane = new JPanel(null);
+        contentPane.setPreferredSize(new Dimension(800, 800));
+        contentPane.add(mtr_en.getPanel());
+        jp.add(contentPane);
+
         btnsz.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                picLabel.setIcon(szimg);
+                // picLabel.setIcon(szimg);
+                contentPane.removeAll();
+                contentPane.revalidate();
+                contentPane.repaint();
             }
         });
 
@@ -102,14 +122,12 @@ public class Main {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                picLabel.setIcon(hkimg);
+                contentPane.add(mtr_en.getPanel());
+                contentPane.revalidate();
+                contentPane.repaint();
             }
         });
 
-        JButton btn3 = new JButton("Clear");  
-        
-        // jp.add(username);
-        jp.add(picLabel);
 
         jp.add(btnhk);
 
@@ -171,6 +189,10 @@ public class Main {
         // btn4.setVerticalAlignment(SwingConstants.BOTTOM);
 
         frame.add(jp);
+
+        // MTR_eng mtr_en = new MTR_eng();
+        // frame.add(mtr_en.getPanel());
+
         frame.setBounds(300, 300, 600, 300);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

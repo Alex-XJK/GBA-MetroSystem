@@ -1,4 +1,4 @@
-package userInterface;
+package MetroSystem.src.userInterface;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -1487,6 +1487,10 @@ public class MTR_eng extends javax.swing.JFrame {
                 NewJFrame.setVisible(true);
             }
         });
+    }
+
+    public javax.swing.JPanel getPanel() {
+        return jPanel1;
     }
 
     // Variables declaration - do not modify                     
