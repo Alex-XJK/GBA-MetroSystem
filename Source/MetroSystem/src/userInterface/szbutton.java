@@ -7,12 +7,14 @@
  *
  * @author weiliu
  */
-public class Main extends javax.swing.JPanel {
+package userInterface;
+
+public class szbutton extends javax.swing.JPanel {
 
     /**
      * Creates new form Main
      */
-    public Main() {
+    public szbutton() {
         initComponents();
     }
 
