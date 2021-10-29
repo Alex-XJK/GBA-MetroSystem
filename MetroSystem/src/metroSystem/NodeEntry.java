@@ -9,7 +9,7 @@ package MetroSystem.src.metroSystem;
  * @since Oct. 3, 2021
  * @version 1.0
  */
-public class NodeEntry<K, V> {
+public class NodeEntry<K, V> implements Comparable<NodeEntry>{
     private final K key;
     private V value;
 
@@ -28,5 +28,20 @@ public class NodeEntry<K, V> {
 
     public V getValue(){
         return value;
+    }
+
+	@Override
+	public int compareTo(NodeEntry o) {
+		if (toInt(this.value) < toInt(o.getValue())) {
+			return 1;
+		} else if (toInt(this.value) > toInt(o.getValue())) {
+			return -1;
+		} else {
+			return 0;
+		}
+	}
+	
+	private int toInt(Object obj) {
+    	return Integer.parseInt(obj.toString());
     }
 }

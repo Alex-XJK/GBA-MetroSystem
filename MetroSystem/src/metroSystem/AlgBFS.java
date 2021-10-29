@@ -9,7 +9,7 @@ public class AlgBFS implements Algorithm{
 
     @Override
     public ArrayList<Integer> findRoute(int startId, int endId, DataList data) {
-        //Implement BFS algorithm
+        // Implement BFS algorithm
     	// Initialize
         ArrayList<Integer> shortestRoute = new ArrayList<>();
         Queue<Integer> bfsQueue = new LinkedList<Integer>();

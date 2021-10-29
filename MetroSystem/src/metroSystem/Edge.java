@@ -41,7 +41,7 @@ public class Edge {
         return st_station;
     }
 
-    public  Station getEndSta(){
+    public Station getEndSta(){
         return ed_station;
     }
     
@@ -49,7 +49,15 @@ public class Edge {
      * A member of {@code getData} member series to retrieve IsConnected data.
      * @return	whether this edge is OK to use (in case some station is offline temporally)
      */
-    public boolean dataIsConnect() {
+    public boolean getIsConnect() {
     	return this.isOpen;
+    }
+
+    /**
+     * A member of {@code getData} member series to retrieve time data.
+     * @return	the time that need to spend on this edge
+     */
+    public int getTimeSpend() {
+        return this.time;
     }
 }
