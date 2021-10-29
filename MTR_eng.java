@@ -1489,6 +1489,10 @@ public class MTR_eng extends javax.swing.JFrame {
         });
     }
 
+    public javax.swing.JPanel getPanel() {
+        return jPanel1;
+    }
+
     // Variables declaration - do not modify                     
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton1;
