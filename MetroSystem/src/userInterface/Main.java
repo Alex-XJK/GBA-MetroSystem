@@ -95,6 +95,9 @@ public class Main {
         // jp.add(picLabel);
 
         MTR_eng mtr_en = new MTR_eng();
+        Szbutton mtr_sz = new Szbutton();
+        Image sz_bg = ImageIO.read(new File("./MetroSystem/data/hk.jpg"));
+        BackgroundPanel mtr_sz_bg = new BackgroundPanel(sz_bg, 2);
         // jp.add(mtr_en.getPanel());
 
         JScrollPane scrollPane = new JScrollPane(mtr_en.getPanel());
@@ -112,6 +115,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 // picLabel.setIcon(szimg);
                 contentPane.removeAll();
+                contentPane.add(mtr_sz);
                 contentPane.revalidate();
                 contentPane.repaint();
             }
@@ -121,6 +125,7 @@ public class Main {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                contentPane.removeAll();
                 contentPane.add(mtr_en.getPanel());
                 contentPane.revalidate();
                 contentPane.repaint();
@@ -187,6 +192,7 @@ public class Main {
         // btn4.setPreferredSize(preferredSize); 
         // btn4.setVerticalAlignment(SwingConstants.BOTTOM);
 
+        jp.add(mtr_sz_bg);
         frame.add(jp);
 
         // MTR_eng mtr_en = new MTR_eng();
