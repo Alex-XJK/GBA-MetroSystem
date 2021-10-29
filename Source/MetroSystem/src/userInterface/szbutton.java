@@ -1,4 +1,4 @@
-package MetroSystem.src.userInterface;
+package userInterface;
 
 import java.io.File;
 import java.io.IOException;

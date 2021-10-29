@@ -97,7 +97,7 @@ public class Main {
 
         MTR_eng mtr_en = new MTR_eng();
         Szbutton mtr_sz = new Szbutton();
-        Image sz_bg = ImageIO.read(new File("./MetroSystem/data/hk.jpg"));
+        Image sz_bg = ImageIO.read(new File(base + "/data/sz.png"));
         BackgroundPanel mtr_sz_bg = new BackgroundPanel(sz_bg, 2);
         // jp.add(mtr_en.getPanel());
 
