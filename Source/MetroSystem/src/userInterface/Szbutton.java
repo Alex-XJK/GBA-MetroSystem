@@ -96,7 +96,7 @@ public class Szbutton extends javax.swing.JPanel {
             System.out.println("Cannot read file: " + e);
         }*/
         try {
-			jLabel1.setIcon(new javax.swing.ImageIcon(ImageIO.read(new File("./MetroSystem/data/sz.png"))));
+			jLabel1.setIcon(new javax.swing.ImageIcon(ImageIO.read(new File("./data/sz.png"))));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
