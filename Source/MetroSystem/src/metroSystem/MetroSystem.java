@@ -1,4 +1,4 @@
-package metroSystem;
+package MetroSystem.src.metroSystem;
 import java.util.*;
 
 public class MetroSystem

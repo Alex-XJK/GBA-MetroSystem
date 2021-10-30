@@ -1,6 +1,6 @@
-package testMetroSystem;
+package MetroSystem.src.testMetroSystem;
 
-import metroSystem.*;
+import MetroSystem.src.metroSystem.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 

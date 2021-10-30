@@ -1,4 +1,4 @@
-package metroSystem;
+package MetroSystem.src.metroSystem;
 
 public class CrtTime extends Criteria{
     public CrtTime() {

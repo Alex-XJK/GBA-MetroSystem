@@ -1,4 +1,4 @@
-package metroSystem;
+package MetroSystem.src.metroSystem;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
