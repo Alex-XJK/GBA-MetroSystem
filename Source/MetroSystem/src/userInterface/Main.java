@@ -1,4 +1,4 @@
-package MetroSystem.src.userInterface;
+package userInterface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Main {
-    
+
     public static void main(String[] args) throws IOException { 
 
         // Theme parity
@@ -80,10 +80,11 @@ public class Main {
         jp.add(to_text);
         jp.add(date);
 
+        String base = System.getProperty("user.dir");
+        System.out.println("Current workspace: " + base);
 
-
-        ImageIcon szimg = new ImageIcon(ImageIO.read(new File("./MetroSystem/data/sz.png")));
-        ImageIcon hkimg = new ImageIcon(ImageIO.read(new File("./MetroSystem/data/hk.jpg")));
+        ImageIcon szimg = new ImageIcon(ImageIO.read(new File(base + "/data/sz.png")));
+        ImageIcon hkimg = new ImageIcon(ImageIO.read(new File(base + "/data/hk.jpg")));
         JLabel picLabel = new JLabel(hkimg);
 
         JButton btnhk = new JButton("Traffic Map (HK)");
@@ -95,6 +96,9 @@ public class Main {
         // jp.add(picLabel);
 
         MTR_eng mtr_en = new MTR_eng();
+        Szbutton mtr_sz = new Szbutton();
+        Image sz_bg = ImageIO.read(new File(base + "/data/sz.png"));
+        BackgroundPanel mtr_sz_bg = new BackgroundPanel(sz_bg, 2);
         // jp.add(mtr_en.getPanel());
 
         JScrollPane scrollPane = new JScrollPane(mtr_en.getPanel());
@@ -112,6 +116,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 // picLabel.setIcon(szimg);
                 contentPane.removeAll();
+                contentPane.add(mtr_sz);
                 contentPane.revalidate();
                 contentPane.repaint();
             }
@@ -121,6 +126,7 @@ public class Main {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                contentPane.removeAll();
                 contentPane.add(mtr_en.getPanel());
                 contentPane.revalidate();
                 contentPane.repaint();
@@ -187,6 +193,7 @@ public class Main {
         // btn4.setPreferredSize(preferredSize); 
         // btn4.setVerticalAlignment(SwingConstants.BOTTOM);
 
+        jp.add(mtr_sz_bg);
         frame.add(jp);
 
         // MTR_eng mtr_en = new MTR_eng();
