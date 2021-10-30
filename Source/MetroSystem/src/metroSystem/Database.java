@@ -1,4 +1,4 @@
-package metroSystem;
+package MetroSystem.src.metroSystem;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +16,6 @@ public class Database {
     private ArrayList<Line> allLines;
     private float[][] priceHK, priceSZ;
     private int stationsHK, stationsSZ, edgesHK, edgesSZ;
-    private String base;
 
     private Database() {
         allStations = new ArrayList<>();
@@ -43,10 +42,9 @@ public class Database {
     public void loadStations() {
         XSSFWorkbook workbookHK = null, workbookSZ = null;
         try {
-            base = System.getProperty("user.dir");
-            System.out.println("Current workspace: " + base);
-            File fileHK = new File(base + "/data/stations_HK.xlsx");
-            File fileSZ = new File(base + "/data/stations_SZ.xlsx");
+            System.out.println("Current workspace: " + System.getProperty("user.dir"));
+            File fileHK = new File("./MetroSystem/data/stations_HK.xlsx");
+            File fileSZ = new File("./MetroSystem/data/stations_SZ.xlsx");
             InputStream inputStreamHK = new FileInputStream(fileHK);
             InputStream inputStreamSZ = new FileInputStream(fileSZ);
             workbookHK = new XSSFWorkbook(inputStreamHK);
@@ -80,9 +78,9 @@ public class Database {
     public void loadEdges() {
         XSSFWorkbook workbookHK = null, workbookSZ = null, workbookBorder = null;
         try {
-            File fileHK = new File(base + "/data/edges_HK.xlsx");
-            File fileSZ = new File(base + "/data/edges_SZ.xlsx");
-            File fileBorder = new File(base + "/data/edges_border.xlsx");
+            File fileHK = new File("./MetroSystem/data/edges_HK.xlsx");
+            File fileSZ = new File("./MetroSystem/data/edges_SZ.xlsx");
+            File fileBorder = new File("./MetroSystem/data/edges_border.xlsx");
             InputStream inputStreamHK = new FileInputStream(fileHK);
             InputStream inputStreamSZ = new FileInputStream(fileSZ);
             InputStream inputStreamBorder = new FileInputStream(fileBorder);
@@ -135,8 +133,8 @@ public class Database {
     public void loadLines() {
         XSSFWorkbook workbookHK = null, workbookSZ = null;
         try {
-            File fileHK = new File(base + "/data/lines_HK.xlsx");
-            File fileSZ = new File(base + "/data/lines_SZ.xlsx");
+            File fileHK = new File("./MetroSystem/data/lines_HK.xlsx");
+            File fileSZ = new File("./MetroSystem/data/lines_SZ.xlsx");
             InputStream inputStreamHK = new FileInputStream(fileHK);
             InputStream inputStreamSZ = new FileInputStream(fileSZ);
             workbookHK = new XSSFWorkbook(inputStreamHK);
@@ -179,8 +177,8 @@ public class Database {
     public void loadPrice() {
         XSSFWorkbook workbookHK = null, workbookSZ = null;
         try {
-            File fileHK = new File(base + "/data/price_HK.xlsx");
-            File fileSZ = new File(base + "/data/price_SZ.xlsx");
+            File fileHK = new File("./MetroSystem/data/price_HK.xlsx");
+            File fileSZ = new File("./MetroSystem/data/price_SZ.xlsx");
             InputStream inputStreamHK = new FileInputStream(fileHK);
             InputStream inputStreamSZ = new FileInputStream(fileSZ);
             workbookHK = new XSSFWorkbook(inputStreamHK);
