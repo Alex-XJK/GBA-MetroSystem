@@ -66,9 +66,10 @@ jobs:
     #    and modify them (or add more) to build your code if your project
     #    uses a compiled language
 
-    - run: javac -classpath ./MetroSystem/lib/ -d ./MetroSystem/src/metroSystem ./MetroSystem/src/metroSystem/*.java
+    - run: tree -aC ./Source/MetroSystem/src
+    # run: javac -classpath ./MetroSystem/lib/ -d ./MetroSystem/src/metroSystem ./MetroSystem/src/metroSystem/*.java
     # java -classpath ./MetroSystem/src/metroSystem Main
     
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
+    # name: Perform CodeQL Analysis
+    # uses: github/codeql-action/analyze@v1
