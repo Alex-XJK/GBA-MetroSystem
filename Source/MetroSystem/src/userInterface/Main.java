@@ -10,11 +10,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class Main {
 
     public static void main(String[] args) throws IOException { 
 
+        
         // Theme parity
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -96,6 +98,23 @@ public class Main {
         // jp.add(picLabel);
 
         MTR_eng mtr_en = new MTR_eng();
+
+
+
+        /*Map hk_en = new Map("en", "hk");
+        ArrayList<JButton> hkButtons = hk_en.getAllButtons();
+        for(JButton b: hkButtons) {
+            b.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    from_text.setText( ((JButton) (e.getSource())).getName() );
+                };
+            }
+            );
+        }*/
+
+
+
+
         Szbutton mtr_sz = new Szbutton();
         Image sz_bg = ImageIO.read(new File(base + "/data/sz.png"));
         BackgroundPanel mtr_sz_bg = new BackgroundPanel(sz_bg, 2);
@@ -158,7 +177,6 @@ public class Main {
         });
 
         langhk.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 btnMap.setText("地圖");
