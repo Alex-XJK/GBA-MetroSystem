@@ -1,6 +1,7 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
+<<<<<<< HEAD
         "Source/MetroSystem/lib/commons-collections4-4.4.jar",
         "Source/MetroSystem/lib/commons-collections4-4.4-javadoc.jar",
         "Source/MetroSystem/lib/commons-collections4-4.4-sources.jar",
@@ -25,5 +26,8 @@
         "Source/MetroSystem/lib/xmlbeans-5.0.1.jar",
         "Source/MetroSystem/lib/xmlbeans-5.0.1-javadoc.jar",
         "Source/MetroSystem/lib/xmlbeans-5.0.1-sources.jar"
+=======
+        "MetroSystem/**/*.jar"
+>>>>>>> e6bc9d19acac66122fa7530aa4b24213dbd67b2e
     ]
 }
