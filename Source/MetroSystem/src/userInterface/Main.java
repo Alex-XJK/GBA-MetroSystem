@@ -6,7 +6,7 @@ import java.util.*;
 import javax.imageio.*;
 import java.io.File;
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;  
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +14,7 @@ import java.awt.event.*;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException { 
+    public static void main(String[] args) throws IOException {
 
         
         // Theme parity
@@ -28,11 +28,11 @@ public class Main {
 
         // JLabel spacer;
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-        LocalDateTime now = LocalDateTime.now();  
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
         // System.out.println(dtf.format(now));
 
-        JFrame frame=new JFrame("Traffic Map");
+        JFrame frame = new JFrame("Traffic Map");
 
         JPanel sideBar = new JPanel();
         sideBar.setBounds(0, 0, 180, 1000);
@@ -92,8 +92,8 @@ public class Main {
         JButton btnhk = new JButton("Traffic Map (HK)");
         JButton btnsz = new JButton("Traffic Map (SZ)");
 
-        JButton btn3 = new JButton("Clear");  
-        
+        JButton btn3 = new JButton("Clear");
+
         // jp.add(username);
         // jp.add(picLabel);
 
@@ -152,7 +152,6 @@ public class Main {
             }
         });
 
-
         jp.add(btnhk);
 
         btnExit.setBackground(Color.RED);
@@ -205,10 +204,9 @@ public class Main {
             }
         });
 
-
-        // btn3.setEnabled(false); 
+        // btn3.setEnabled(false);
         // Dimension preferredSize=new Dimension(160, 60);
-        // btn4.setPreferredSize(preferredSize); 
+        // btn4.setPreferredSize(preferredSize);
         // btn4.setVerticalAlignment(SwingConstants.BOTTOM);
 
         jp.add(mtr_sz_bg);

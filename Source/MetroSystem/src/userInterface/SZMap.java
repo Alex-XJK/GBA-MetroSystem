@@ -35,6 +35,7 @@ import java.awt.*;
 
 public class SZMap extends JPanel implements ActionListener {
 
+
     String area = null;
     JTextField from_station = null;
     JTextField to_station = null;
@@ -49,12 +50,14 @@ public class SZMap extends JPanel implements ActionListener {
         super();
 
         this.area = area;
+
         // setLayout(new FlowLayout(FlowLayout.CENTER));
         setLayout(null);
         this.setPreferredSize(getPreferredSize());
 
         try {
             generateButtons(lan, area);
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
