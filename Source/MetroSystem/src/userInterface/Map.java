@@ -35,7 +35,6 @@ import java.awt.*;
 
 public class Map extends JPanel implements ActionListener {
 
-
     String area = null;
     JTextField from_station = null;
     JTextField to_station = null;
@@ -91,24 +90,29 @@ public class Map extends JPanel implements ActionListener {
         XSSFWorkbook wb = new XSSFWorkbook(fis);
 
         XSSFSheet sheet = wb.getSheetAt(0);
+        boolean firstLine = true;
 
         for (Row row : sheet) {
-            int bx = (int) (row.getCell(0).getNumericCellValue() * 0.6);
+            if (firstLine) {
+                firstLine = false;
+                continue;
+            }
+            int bx = (int) (row.getCell(3).getNumericCellValue() * 0.6);
             if (bx == 0)
                 break;
             JButton b = new JButton();
 
-            int by = (int) (row.getCell(1).getNumericCellValue() * 0.6);
+            int by = (int) (row.getCell(4).getNumericCellValue() * 0.6);
             String s = null;
             switch (lan) {
             case ("en"):
-                s = row.getCell(2).getStringCellValue();
+                s = row.getCell(0).getStringCellValue();
                 break;
             case ("hk"):
-                s = row.getCell(3).getStringCellValue();
+                s = row.getCell(1).getStringCellValue();
                 break;
             case ("ch"):
-                s = row.getCell(4).getStringCellValue();
+                s = row.getCell(2).getStringCellValue();
                 break;
             }
 
