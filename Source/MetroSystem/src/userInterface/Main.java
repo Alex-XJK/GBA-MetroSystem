@@ -1,5 +1,7 @@
 package userInterface;
 
+import metroSystem.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
@@ -23,7 +25,6 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         // JLabel spacer;
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
@@ -73,12 +74,14 @@ public class Main {
         JTextField to_text = new JTextField("Causeway Bay");
 
         JLabel date = new JLabel("<html>&emsp;" + dtf.format(now) + "</html>");
+        JLabel result = new JLabel("[Path]");
 
         jp.add(from);
         jp.add(from_text);
         jp.add(to);
         jp.add(to_text);
         jp.add(date);
+        jp.add(result);
 
         String base = System.getProperty("user.dir");
         System.out.println("Current workspace: " + base);
@@ -90,7 +93,7 @@ public class Main {
         JButton btnhk = new JButton("Traffic Map (HK)");
         JButton btnsz = new JButton("Traffic Map (SZ)");
 
-        JButton btn3 = new JButton("Clear");  
+        JButton find_path = new JButton("Find Path");
         
         // jp.add(username);
         // jp.add(picLabel);
@@ -133,13 +136,50 @@ public class Main {
             }
         });
 
+        find_path.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // result.setText("new Value");
+                MetroSystem m;
+                m = MetroSystem.getInstance();
+                m.setSystemLanguage(Language.English);
+                Criteria c = new CrtStation();
+                ArrayList<Integer> res = new ArrayList<>();
+                Station startStation = null;
+                Station endStation = null;
+                String from_str = from_text.getText();
+                String to_str = to_text.getText();
+                System.out.println(from_str + " --> " + to_str);
+                try {
+                    startStation = m.getDatabase().getStationByName(from_str, Language.English, AdministratorHK.getInstance());
+                    endStation = m.getDatabase().getStationByName(to_str, Language.English, AdministratorHK.getInstance());
+                } catch (ExStationNotFound ex) {
+                    System.out.println(ex.getMessage());
+                }
+                res = c.findRoute(startStation.getId(), endStation.getId());
+                ArrayList<String> allres = new ArrayList<>();
+                for (int x : res) {
+                    try {
+                        allres.add(m.getDatabase().getStationById(x).getName());
+                    } catch (ExStationNotFound ex) {
+                        ex.printStackTrace();
+                    }
+                }
+                System.out.println(allres.toString());
+                result.setText("<html>&emsp;<b>" + from_str + " --> " + to_str + "<br>" + allres.toString() + "</b></html>");
+            }
+        });
+
 
         jp.add(btnhk);
 
         btnExit.setBackground(Color.RED);
+        find_path.setBackground(Color.GREEN);
 
         jp.add(btnsz);
-        jp.add(btn3);
+        jp.add(find_path);
+        jp.add(find_path);
 
         // Language settings
         langcn.addActionListener(new ActionListener() {
@@ -152,7 +192,7 @@ public class Main {
                 to.setText("目的地");
                 btnhk.setText("香港地铁线路图");
                 btnsz.setText("深圳地铁线路图");
-                btn3.setText("清除");
+                find_path.setText("查找路径");
                 user.setText("<html><h1>Jacky</h1><p>注册用户</p><br></html>");
             }
         });
@@ -167,7 +207,7 @@ public class Main {
                 to.setText("目的地");
                 btnhk.setText("香港地鐵線路圖");
                 btnsz.setText("深圳地鐵線路圖");
-                btn3.setText("清除");
+                find_path.setText("查找路徑");
                 user.setText("<html><h1>Jacky</h1><p>註冊用戶</p><br></html>");
             }
         });
@@ -182,7 +222,7 @@ public class Main {
                 to.setText("To: ");
                 btnhk.setText("Traffic Map (HK)");
                 btnsz.setText("Traffic Map (SZ)");
-                btn3.setText("Clear");
+                find_path.setText("Find Path");
                 user.setText("<html><h1>Jacky</h1><p>Registered user</p><br></html>");
             }
         });
