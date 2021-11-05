@@ -2,12 +2,6 @@ package metroSystem;
 
 import java.util.ArrayList;
 
-/**
- * The Algorithm Interface used to implement the specified route finding algorithm.
- * <br>
- * By calling {@link #findRoute(int, int, DataList)} function you can get the desired optimal route.
- * @since Sept. 30, 2021
- */
 public interface Algorithm {
     /**
      * Find the optimal route from start_station to end_station.
