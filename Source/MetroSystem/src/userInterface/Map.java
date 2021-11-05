@@ -64,6 +64,7 @@ public class Map extends JPanel implements ActionListener {
 
         for (JButton b : allButtons) {
             add(b);
+            b.addActionListener(this);
         }
 
         for (JLabel l : allLabels) {
@@ -85,7 +86,7 @@ public class Map extends JPanel implements ActionListener {
     public void generateButtons(String lan, String area) throws IOException {
         String base = System.getProperty("user.dir");
         FileInputStream fis = new FileInputStream(
-                new File(base + "/Source/MetroSystem/data/stations_" + area + ".xlsx"));
+                new File(base + "/data/stations_" + area + ".xlsx"));
 
         XSSFWorkbook wb = new XSSFWorkbook(fis);
 
@@ -116,7 +117,7 @@ public class Map extends JPanel implements ActionListener {
                 break;
             }
 
-            b.setBounds(bx, by, 5, 5);
+            b.setBounds(bx, by, 10, 10);
 
             b.setName(s);
 
@@ -148,6 +149,11 @@ public class Map extends JPanel implements ActionListener {
         this.to_station = to_station;
     }
 
+    /*public ArrayList<JButton> getAllButtons() {
+        // return allButtons;
+
+    }*/
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -159,7 +165,7 @@ public class Map extends JPanel implements ActionListener {
 
         FileInputStream lineStream = null;
         try {
-            lineStream = new FileInputStream(new File(base + "/Source/MetroSystem/data/edges_" + area + ".xlsx"));
+            lineStream = new FileInputStream(new File(base + "/data/edges_" + area + ".xlsx"));
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -197,7 +203,7 @@ public class Map extends JPanel implements ActionListener {
     public void showResult(ArrayList<Integer> stations_on_path) {
         // TODO Auto-generated method stub
         Graphics g = getGraphics();
-        paint(g);
+        // paint(g);
 
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(3));
@@ -206,8 +212,18 @@ public class Map extends JPanel implements ActionListener {
         for (int i = 0; i < stations_on_path.size() - 1; i++) {
             Point p1 = SwingUtilities.convertPoint(allButtons.get(stations_on_path.get(i)), 0, 0, this);
             Point p2 = SwingUtilities.convertPoint(allButtons.get(stations_on_path.get(i + 1)), 0, 0, this);
+            // System.out.println(p1.x);
+            // System.out.println(p2.x);
             g2.drawLine(p1.x + 3, p1.y + 3, p2.x + 3, p2.y + 3);
         }
+
+        /*for (int i = 0; i < 10; i++) {
+            Point p1 = SwingUtilities.convertPoint(allButtons.get(i), 0, 0, this);
+            Point p2 = SwingUtilities.convertPoint(allButtons.get(i + 1), 0, 0, this);
+            g2.drawLine(p1.x + 3, p1.y + 3, p2.x + 3, p2.y + 3);
+            // System.out.println(p1.x);
+            // System.out.println(p2.x);
+        }*/
     }
 
 }
