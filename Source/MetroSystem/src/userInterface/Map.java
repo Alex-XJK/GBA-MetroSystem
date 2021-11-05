@@ -33,8 +33,7 @@ import java.awt.Point;
 import java.awt.Dimension;
 import java.awt.*;
 
-public class SZMap extends JPanel implements ActionListener {
-
+public class Map extends JPanel implements ActionListener {
 
     String area = null;
     JTextField from_station = null;
@@ -45,7 +44,7 @@ public class SZMap extends JPanel implements ActionListener {
 
     // to_zx: Initialize three different JPanel for different language option -
     // provide parameter
-    public SZMap(String lan, String area) {
+    public Map(String lan, String area) {
 
         super();
 
@@ -86,29 +85,34 @@ public class SZMap extends JPanel implements ActionListener {
     public void generateButtons(String lan, String area) throws IOException {
         String base = System.getProperty("user.dir");
         FileInputStream fis = new FileInputStream(
-                new File(base + "/Source/MetroSystem/data/UI_stations_" + area + ".xlsx"));
+                new File(base + "/Source/MetroSystem/data/stations_" + area + ".xlsx"));
 
         XSSFWorkbook wb = new XSSFWorkbook(fis);
 
         XSSFSheet sheet = wb.getSheetAt(0);
+        boolean firstLine = true;
 
         for (Row row : sheet) {
-            int bx = (int) (row.getCell(0).getNumericCellValue() * 0.6);
+            if (firstLine) {
+                firstLine = false;
+                continue;
+            }
+            int bx = (int) (row.getCell(3).getNumericCellValue() * 0.6);
             if (bx == 0)
                 break;
             JButton b = new JButton();
 
-            int by = (int) (row.getCell(1).getNumericCellValue() * 0.6);
+            int by = (int) (row.getCell(4).getNumericCellValue() * 0.6);
             String s = null;
             switch (lan) {
             case ("en"):
-                s = row.getCell(2).getStringCellValue();
+                s = row.getCell(0).getStringCellValue();
                 break;
             case ("hk"):
-                s = row.getCell(3).getStringCellValue();
+                s = row.getCell(1).getStringCellValue();
                 break;
             case ("ch"):
-                s = row.getCell(4).getStringCellValue();
+                s = row.getCell(2).getStringCellValue();
                 break;
             }
 
