@@ -26,7 +26,7 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Desktop**
+**Environment**
  - OS: [e.g. iOS]
  - IDE: [e.g. IntelliJ IDEA, Eclipse IDE]
  - Version [e.g. 22]
