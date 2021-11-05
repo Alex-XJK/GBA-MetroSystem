@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Main
 {
-	// test push
     public static void main(String[] args) {
         MetroSystem m = MetroSystem.getInstance();
         m.setSystemLanguage(Language.SimplifiedChinese);
