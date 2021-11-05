@@ -1,6 +1,7 @@
 package userInterface;
 
 import metroSystem.*;
+import org.apache.commons.collections4.functors.ExceptionPredicate;
 
 import javax.swing.*;
 import java.awt.*;
@@ -81,7 +82,7 @@ public class Main {
         jp.add(to);
         jp.add(to_text);
         jp.add(date);
-        jp.add(result);
+        // jp.add(result);
 
         String base = System.getProperty("user.dir");
         System.out.println("Current workspace: " + base);
@@ -178,6 +179,7 @@ public class Main {
                     try {
                         startStation = m.getDatabase().getStationByName(from_str, Language.English, AdministratorSZ.getInstance());
                     } catch (ExStationNotFound exc) {
+                        startStation = null;
                         exc.printStackTrace();
                     }
                 }
@@ -188,17 +190,36 @@ public class Main {
                     try {
                         endStation = m.getDatabase().getStationByName(to_str, Language.English, AdministratorSZ.getInstance());
                     } catch (ExStationNotFound exc) {
+                        endStation = null;
                         exc.printStackTrace();
                     }
                 }
 
                 res = c.findRoute(startStation.getId(), endStation.getId());
+                ArrayList<Integer> hkres = new ArrayList<>();
                 ArrayList<Integer> szres = new ArrayList<>();
                 for(int id: res) {
-                    szres.add(id - 98);
+                    if (id >= 98)
+                        szres.add(id - 98);
+                    else
+                        hkres.add(id - 1);
                 }
-                System.out.println(szres);
-                mtr_en_sz.showResult(szres);
+                if (!hkres.isEmpty()) {
+                    System.out.println("This route has passed Hong Kong region. Points are: ");
+                    System.out.println(hkres);
+                    try {
+                        mtr_en_hk.showResult(hkres);
+                    } catch (Exception ignored) {
+                    }
+                }
+                if (!szres.isEmpty()) {
+                    System.out.println("This route has passed Shen Zhen region. Points are: ");
+                    System.out.println(szres);
+                    try {
+                        mtr_en_sz.showResult(szres);
+                    } catch (Exception ignored) {
+                    }
+                }
 
                 ArrayList<String> allres = new ArrayList<>();
                 for (int x : res) {
@@ -208,8 +229,10 @@ public class Main {
                         ex.printStackTrace();
                     }
                 }
+                System.out.println("All Stations are: ");
                 System.out.println(allres.toString());
                 result.setText("<html>&emsp;<b>" + from_str + " --> " + to_str + "<br>" + allres.toString() + "</b></html>");
+                System.out.println();
             }
         });
 
@@ -268,6 +291,15 @@ public class Main {
                 btnsz.setText("Traffic Map (SZ)");
                 find_path.setText("Find Path");
                 user.setText("<html><h1>Jacky</h1><p>Registered user</p><br></html>");
+            }
+        });
+
+        clear.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                from_text.setText("");
+                to_text.setText("");
             }
         });
 

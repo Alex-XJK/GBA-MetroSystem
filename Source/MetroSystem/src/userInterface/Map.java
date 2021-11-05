@@ -203,7 +203,7 @@ public class Map extends JPanel implements ActionListener {
     public void showResult(ArrayList<Integer> stations_on_path) {
         // TODO Auto-generated method stub
         Graphics g = getGraphics();
-        repaint();
+        // paint(g);
 
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(3));
@@ -212,8 +212,18 @@ public class Map extends JPanel implements ActionListener {
         for (int i = 0; i < stations_on_path.size() - 1; i++) {
             Point p1 = SwingUtilities.convertPoint(allButtons.get(stations_on_path.get(i)), 0, 0, this);
             Point p2 = SwingUtilities.convertPoint(allButtons.get(stations_on_path.get(i + 1)), 0, 0, this);
+            // System.out.println(p1.x);
+            // System.out.println(p2.x);
             g2.drawLine(p1.x + 3, p1.y + 3, p2.x + 3, p2.y + 3);
         }
+
+        /*for (int i = 0; i < 10; i++) {
+            Point p1 = SwingUtilities.convertPoint(allButtons.get(i), 0, 0, this);
+            Point p2 = SwingUtilities.convertPoint(allButtons.get(i + 1), 0, 0, this);
+            g2.drawLine(p1.x + 3, p1.y + 3, p2.x + 3, p2.y + 3);
+            // System.out.println(p1.x);
+            // System.out.println(p2.x);
+        }*/
     }
 
 }
