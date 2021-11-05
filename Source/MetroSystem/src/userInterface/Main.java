@@ -54,6 +54,7 @@ public class Main {
             }
         });
 
+
         // sideBar.add(profileLabel);
         sideBar.setLayout(new BoxLayout(sideBar, BoxLayout.Y_AXIS));
         sideBar.add(user);
@@ -69,9 +70,9 @@ public class Main {
         JPanel jp = new JPanel();
 
         JLabel from = new JLabel("From: ");
-        JTextField from_text = new JTextField("Kowloon Tong");
+        JTextField from_text = new JTextField("",10);
         JLabel to = new JLabel("To: ");
-        JTextField to_text = new JTextField("Causeway Bay");
+        JTextField to_text = new JTextField("",10);
 
         JLabel date = new JLabel("<html>&emsp;" + dtf.format(now) + "</html>");
         JLabel result = new JLabel("[Path]");
@@ -86,33 +87,73 @@ public class Main {
         String base = System.getProperty("user.dir");
         System.out.println("Current workspace: " + base);
 
-        ImageIcon szimg = new ImageIcon(ImageIO.read(new File(base + "/data/sz.png")));
-        ImageIcon hkimg = new ImageIcon(ImageIO.read(new File(base + "/data/hk.jpg")));
-        JLabel picLabel = new JLabel(hkimg);
+        //ImageIcon szimg = new ImageIcon(ImageIO.read(new File(base + "/data/sz.png")));
+        //ImageIcon hkimg = new ImageIcon(ImageIO.read(new File(base + "/data/hk.jpg")));
+        //JLabel picLabel = new JLabel(hkimg);
 
         JButton btnhk = new JButton("Traffic Map (HK)");
         JButton btnsz = new JButton("Traffic Map (SZ)");
 
-        JButton find_path = new JButton("Find Path");
-        
+        JButton btn3 = new JButton("Clear");
+
+        btn3.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                from_text.setText("");
+                to_text.setText("");
+            }
+        });
+
         // jp.add(username);
         // jp.add(picLabel);
 
-        // MTR_eng mtr_en = new MTR_eng();
-        // Szbutton mtr_sz = new Szbutton();
-        Map mtr_en = new Map("en", "HK");
-        Image sz_bg = ImageIO.read(new File(base + "/data/sz.png"));
-        // BackgroundPanel mtr_sz_bg = new BackgroundPanel(sz_bg, 2);
+        //MTR_eng mtr_en = new MTR_eng();
+
+
+
+        /*Map hk_en = new Map("en", "hk");
+        ArrayList<JButton> hkButtons = hk_en.getAllButtons();
+        for(JButton b: hkButtons) {
+            b.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    from_text.setText( ((JButton) (e.getSource())).getName() );
+                };
+            }
+            );
+        }*/
+
+
+
+
+        SZMap mtr_sz = new SZMap("en","sz");
+        ArrayList<JButton> szButtons = mtr_sz.getAllButtons();
+        for(JButton b: szButtons) {
+            b.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    if(from_text.getText().equals("")){
+                        from_text.setText(((JButton) (e.getSource())).getName());
+                    }
+                    else{
+                        to_text.setText(((JButton) (e.getSource())).getName());
+                    }
+                };
+            }
+            );
+        }
+        //SZMap mtr_en = new SZMap("en","hk");
+        //Image sz_bg = ImageIO.read(new File(base + "/data/sz.png"));
+        //BackgroundPanel mtr_sz_bg = new BackgroundPanel(sz_bg, 2);
         // jp.add(mtr_en.getPanel());
 
-        JScrollPane scrollPane = new JScrollPane(mtr_en);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        //JScrollPane scrollPane = new JScrollPane(mtr_en.getPanel());
+        //scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        //scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         // scrollPane.setSize(500, 300);
         JPanel contentPane = new JPanel(null);
         contentPane.setPreferredSize(new Dimension(800, 800));
-
-        contentPane.add(mtr_en);
+        contentPane.add(mtr_sz);
+        contentPane.setLocation(400, 400);
         jp.add(contentPane);
 
         btnsz.addActionListener(new ActionListener() {
@@ -127,16 +168,16 @@ public class Main {
             }
         });
 
-        btnhk.addActionListener(new ActionListener() {
+        //btnhk.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                contentPane.removeAll();
-                contentPane.add(mtr_en);
-                contentPane.revalidate();
-                contentPane.repaint();
-            }
-        });
+            // @Override
+            // public void actionPerformed(ActionEvent e) {
+            //     contentPane.removeAll();
+            //     contentPane.add(mtr_en);
+            //     contentPane.revalidate();
+            //     contentPane.repaint();
+            // }
+        //});
 
         find_path.addActionListener(new ActionListener() {
 
@@ -235,7 +276,7 @@ public class Main {
         // btn4.setPreferredSize(preferredSize); 
         // btn4.setVerticalAlignment(SwingConstants.BOTTOM);
 
-        // jp.add(mtr_sz_bg);
+        jp.add(mtr_sz);
         frame.add(jp);
 
         // MTR_eng mtr_en = new MTR_eng();
