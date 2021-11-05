@@ -85,7 +85,7 @@ public class Map extends JPanel implements ActionListener {
     public void generateButtons(String lan, String area) throws IOException {
         String base = System.getProperty("user.dir");
         FileInputStream fis = new FileInputStream(
-                new File(base + "/Source/MetroSystem/data/stations_" + area + ".xlsx"));
+                new File(base + "/data/stations_" + area + ".xlsx"));
 
         XSSFWorkbook wb = new XSSFWorkbook(fis);
 
@@ -159,7 +159,7 @@ public class Map extends JPanel implements ActionListener {
 
         FileInputStream lineStream = null;
         try {
-            lineStream = new FileInputStream(new File(base + "/Source/MetroSystem/data/edges_" + area + ".xlsx"));
+            lineStream = new FileInputStream(new File(base + "/data/edges_" + area + ".xlsx"));
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

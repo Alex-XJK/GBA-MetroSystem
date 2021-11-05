@@ -98,19 +98,21 @@ public class Main {
         // jp.add(username);
         // jp.add(picLabel);
 
-        MTR_eng mtr_en = new MTR_eng();
-        Szbutton mtr_sz = new Szbutton();
+        // MTR_eng mtr_en = new MTR_eng();
+        // Szbutton mtr_sz = new Szbutton();
+        Map mtr_en = new Map("en", "HK");
         Image sz_bg = ImageIO.read(new File(base + "/data/sz.png"));
-        BackgroundPanel mtr_sz_bg = new BackgroundPanel(sz_bg, 2);
+        // BackgroundPanel mtr_sz_bg = new BackgroundPanel(sz_bg, 2);
         // jp.add(mtr_en.getPanel());
 
-        JScrollPane scrollPane = new JScrollPane(mtr_en.getPanel());
+        JScrollPane scrollPane = new JScrollPane(mtr_en);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         // scrollPane.setSize(500, 300);
         JPanel contentPane = new JPanel(null);
         contentPane.setPreferredSize(new Dimension(800, 800));
-        contentPane.add(mtr_en.getPanel());
+
+        contentPane.add(mtr_en);
         jp.add(contentPane);
 
         btnsz.addActionListener(new ActionListener() {
@@ -119,7 +121,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 // picLabel.setIcon(szimg);
                 contentPane.removeAll();
-                contentPane.add(mtr_sz);
+                // contentPane.add(mtr_sz);
                 contentPane.revalidate();
                 contentPane.repaint();
             }
@@ -130,7 +132,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 contentPane.removeAll();
-                contentPane.add(mtr_en.getPanel());
+                contentPane.add(mtr_en);
                 contentPane.revalidate();
                 contentPane.repaint();
             }
@@ -233,7 +235,7 @@ public class Main {
         // btn4.setPreferredSize(preferredSize); 
         // btn4.setVerticalAlignment(SwingConstants.BOTTOM);
 
-        jp.add(mtr_sz_bg);
+        // jp.add(mtr_sz_bg);
         frame.add(jp);
 
         // MTR_eng mtr_en = new MTR_eng();
