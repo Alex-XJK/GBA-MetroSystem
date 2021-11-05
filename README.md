@@ -16,4 +16,9 @@ This is our group project. Unauthorized dissemination of the contents is express
 ## Links
 
 * Entrance to Google Drive Shared Files
+
 https://drive.google.com/drive/folders/1w_vxT-xQL8LNJ8Yn4SFruweBbJ0oawGd
+
+* Group Project Page
+
+https://canvas.cityu.edu.hk/groups/89769/wiki
