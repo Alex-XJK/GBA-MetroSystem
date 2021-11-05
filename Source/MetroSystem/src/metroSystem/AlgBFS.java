@@ -5,20 +5,11 @@ import java.util.Queue;
 import java.util.LinkedList;
 import java.util.Stack;
 
-/**
- * Implements {@link metroSystem.Algorithm}, and use Breadth-First Search to search for the route.
- * @see <a href="https://en.wikipedia.org/wiki/Breadth-first_search">BFS Algorithm</a>
- * @version 1.0
- */
 public class AlgBFS implements Algorithm{
 
-	/**
-	 * {@inheritDoc}.
-	 * <br>
-	 * Use BFS algorithm to search for the shortest path.
-	 */
     @Override
     public ArrayList<Integer> findRoute(int startId, int endId, DataList data) {
+        // Implement BFS algorithm
     	// Initialize
         ArrayList<Integer> shortestRoute = new ArrayList<>();
         Queue<Integer> bfsQueue = new LinkedList<Integer>();

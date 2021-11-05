@@ -4,18 +4,7 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
-/**
- * Implements {@link metroSystem.Algorithm}, and use Dijkstra's Algorithm to search for the route.
- * @see <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra's Algorithm</a>
- * @version 1.0
- */
 public class AlgDijkstra implements Algorithm{
-
-	/**
-	 * {@inheritDoc}.
-	 * <br>
-	 * Use Dijkstra's Algorithm to search for the least cost path.
-	 */
     @Override
     public ArrayList<Integer> findRoute(int startId, int endId, DataList data) {
         // Implement Dijkstra algorithm
