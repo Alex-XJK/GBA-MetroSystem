@@ -64,6 +64,7 @@ public class Map extends JPanel implements ActionListener {
 
         for (JButton b : allButtons) {
             add(b);
+            b.addActionListener(this);
         }
 
         for (JLabel l : allLabels) {
@@ -116,7 +117,7 @@ public class Map extends JPanel implements ActionListener {
                 break;
             }
 
-            b.setBounds(bx, by, 5, 5);
+            b.setBounds(bx, by, 10, 10);
 
             b.setName(s);
 
@@ -147,6 +148,11 @@ public class Map extends JPanel implements ActionListener {
         this.from_station = from_station;
         this.to_station = to_station;
     }
+
+    /*public ArrayList<JButton> getAllButtons() {
+        // return allButtons;
+
+    }*/
 
     @Override
     public void paint(Graphics g) {
@@ -197,7 +203,7 @@ public class Map extends JPanel implements ActionListener {
     public void showResult(ArrayList<Integer> stations_on_path) {
         // TODO Auto-generated method stub
         Graphics g = getGraphics();
-        paint(g);
+        repaint();
 
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(3));
