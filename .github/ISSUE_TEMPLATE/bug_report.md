@@ -27,6 +27,7 @@ If applicable, add screenshots to help explain your problem.
  - OS: [e.g. iOS]
  - IDE: [e.g. IntelliJ IDEA, Eclipse IDE]
  - Version [e.g. 22]
+ - JDK/JRE version [e.g. JDK-11]
 
 **Additional context**
 Add any other context about the problem here.
