@@ -35,4 +35,5 @@ MetroSystem.iml
 # macOS System file
 .DS_Store
 
-/bin/
+# ignore visual-paradigm backup files
+*.vpp.bak_*
