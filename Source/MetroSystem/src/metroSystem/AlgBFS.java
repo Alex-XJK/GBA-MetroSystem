@@ -38,7 +38,7 @@ public class AlgBFS implements Algorithm{
         	int headId = toInt(bfsQueue.poll());
         	for (NodeEntry e : data.getNeighbors(headId)) {
         		int nextId = toInt(e.getKey());
-        		if (!visited[nextId]) { // if haven't been visited yet
+        		if (!visited[nextId]) { // if node [nextId] hasn't been visited yet
         			visited[nextId] = true;
         			bfsQueue.offer(nextId);
         			parent[nextId] = headId;
