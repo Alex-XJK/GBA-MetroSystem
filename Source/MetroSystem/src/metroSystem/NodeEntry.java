@@ -30,15 +30,17 @@ public class NodeEntry<K, V> implements Comparable<NodeEntry>{
         return value;
     }
 
+    /**
+     * Compare two NodeEntry by their Value.
+     * @param o another NodeEntry that waiting compare
+     * @return  >0  iff this value < other's value;
+     *          0   iff the two value are equal;
+     *          <0  iff this value > other's value.
+     */
 	@Override
 	public int compareTo(NodeEntry o) {
-		if (toInt(this.value) < toInt(o.getValue())) {
-			return 1;
-		} else if (toInt(this.value) > toInt(o.getValue())) {
-			return -1;
-		} else {
-			return 0;
-		}
+        // Code Refactoring to java-liked version
+        return Integer.compare(toInt(o.getValue()), toInt(this.value));
 	}
 	
 	private int toInt(Object obj) {
