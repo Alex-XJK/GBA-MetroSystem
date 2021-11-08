@@ -13,7 +13,7 @@ import java.util.Stack;
 public class AlgBFS implements Algorithm{
 
 	/**
-	 * {@inheritDoc}.
+	 * {@inheritDoc}
 	 * <br>
 	 * Use BFS algorithm to search for the shortest path.
 	 */
@@ -21,10 +21,10 @@ public class AlgBFS implements Algorithm{
     public ArrayList<Integer> findRoute(int startId, int endId, DataList data) {
     	// Initialize
         ArrayList<Integer> shortestRoute = new ArrayList<>();
-        Queue<Integer> bfsQueue = new LinkedList<Integer>();
+        Queue<Integer> bfsQueue = new LinkedList<>();
         int size = data.getSize() + 1;
-        int parent[] = new int[size];
-        boolean visited[] = new boolean[size];
+        int[] parent = new int[size];
+        boolean[] visited = new boolean[size];
         for (int i=0; i<size; i++) {
         	visited[i] = false;
         	parent[i] = -1;
@@ -44,7 +44,7 @@ public class AlgBFS implements Algorithm{
         			parent[nextId] = headId;
         		}
         		if (nextId == endId) {
-        			Stack<Integer> backtracking = new Stack<Integer>(); // for backtracking
+        			Stack<Integer> backtracking = new Stack<>(); // for backtracking
         			int pathNode = endId;
         			while (pathNode != startId) {
         				backtracking.push(pathNode);
