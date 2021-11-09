@@ -21,10 +21,10 @@ public class AlgDijkstra implements Algorithm{
         // Implement Dijkstra algorithm
     	// Initialize
         ArrayList<Integer> shortestRoute = new ArrayList<>();
-        PriorityQueue<NodeEntry> dijkstraQueue = new PriorityQueue<NodeEntry>();
+        PriorityQueue<NodeEntry> dijkstraQueue = new PriorityQueue<>();
         int size = data.getSize() + 1;
-        int parent[] = new int[size];
-        boolean visited[] = new boolean[size];
+        int[] parent = new int[size];
+        boolean[] visited = new boolean[size];
         for (int i=0; i<size; i++) {
         	visited[i] = false;
         	parent[i] = -1;
@@ -42,12 +42,12 @@ public class AlgDijkstra implements Algorithm{
     		visited[headId] = true;
     		parent[headId] = toInt(((ArrayList) head.getKey()).get(0)); 
     		for (NodeEntry e : data.getNeighbors(headId)) {
-    			if (!visited[toInt(((ArrayList) e.getKey()).get(1))]) { // if haven't been visited yet
-    	        dijkstraQueue.offer(e);
+    			if (!visited[toInt(((ArrayList) e.getKey()).get(1))]) { // if node hasn't been visited yet
+    	        	dijkstraQueue.offer(e);
     	        } 
     		}
         	if (headId == endId) {
-        		Stack<Integer> backtracking = new Stack<Integer>(); // for backtracking
+        		Stack<Integer> backtracking = new Stack<>(); // for backtracking
         		int pathNode = endId;
         		while (pathNode != startId) {
         			backtracking.push(pathNode);
