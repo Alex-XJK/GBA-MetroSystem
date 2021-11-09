@@ -8,6 +8,8 @@ public class Main
         MetroSystem m = MetroSystem.getInstance();
         m.setSystemLanguage(Language.SimplifiedChinese);
 
+        // For testing
+        /*
         m.getAllEdgesInALine("7号线", Language.SimplifiedChinese);
         m.getAllEdgesInALine("ERROR", Language.English);
         m.getAllEdgesInAStation("九龍塘", Language.TraditionalChinese, AdministratorHK.getInstance());
@@ -24,6 +26,7 @@ public class Main
         startStation = m.getStationByName("屯門", Language.TraditionalChinese, AdministratorHK.getInstance());
         endStation = m.getStationByName("少年宫", Language.SimplifiedChinese, AdministratorSZ.getInstance());
         m.computeShortestPath(startStation, endStation, new CrtTime());
+        */
     }
    
 }

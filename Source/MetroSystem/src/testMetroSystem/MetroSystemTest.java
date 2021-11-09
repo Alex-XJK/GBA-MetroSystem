@@ -18,7 +18,6 @@ public class MetroSystemTest {
     public void setUp() throws Exception {
         m = MetroSystem.getInstance();
         m.setSystemLanguage(Language.English);
-        db = m.getDatabase();
     }
 
     @Test
@@ -62,8 +61,8 @@ public class MetroSystemTest {
     public void testCriteriaStaRun1() throws ExStationNotFound {
         Criteria c = new CrtStation();
         ArrayList<Integer> result = new ArrayList<>();
-        Station startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
-        Station endStation = m.getDatabase().getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
+        Station startStation = m.getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
+        Station endStation = m.getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
         result = c.findRoute(startStation.getId(), endStation.getId());
         Integer[] expected = {64, 65, 66, 67, 68, 136, 288, 108, 147, 160};
         assertArrayEquals(expected, result.toArray(new Integer[0]));
@@ -74,8 +73,8 @@ public class MetroSystemTest {
     public void testCriteriaStaRun2() throws ExStationNotFound {
         Criteria c = new CrtStation();
         ArrayList<Integer> result = new ArrayList<>();
-        Station startStation = m.getDatabase().getStationByName("长沙湾", Language.SimplifiedChinese, AdministratorHK.getInstance());
-        Station endStation = m.getDatabase().getStationByName("九龙塘", Language.SimplifiedChinese, AdministratorHK.getInstance());
+        Station startStation = m.getStationByName("长沙湾", Language.SimplifiedChinese, AdministratorHK.getInstance());
+        Station endStation = m.getStationByName("九龙塘", Language.SimplifiedChinese, AdministratorHK.getInstance());
         result = c.findRoute(startStation.getId(), endStation.getId());
         Integer[] expected = {24, 23, 22, 34, 35};
         assertArrayEquals(expected, result.toArray(new Integer[0]));
@@ -93,8 +92,8 @@ public class MetroSystemTest {
     public void testCriteriaTimeRun() throws ExStationNotFound {
     	Criteria c = new CrtTime();
         ArrayList<Integer> result = new ArrayList<>();
-        Station startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
-        Station endStation = m.getDatabase().getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
+        Station startStation = m.getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
+        Station endStation = m.getStationByName("Children's Palace", Language.English, AdministratorSZ.getInstance());
         result = c.findRoute(startStation.getId(), endStation.getId());
         Integer[] expected = {64, 65, 66, 67, 68, 136, 288, 108, 147, 160};
         assertArrayEquals(expected, result.toArray(new Integer[0]));
@@ -104,7 +103,7 @@ public class MetroSystemTest {
     @DisplayName("Station getName Method 1")
     public void testStaGetName1() throws ExStationNotFound {
     	String result = null;
-        Station station = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
+        Station station = m.getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
         result = station.getName();
         assertEquals("Tuen Mun", result);
     }
@@ -114,7 +113,7 @@ public class MetroSystemTest {
     public void testStaGetName2() throws ExStationNotFound {
     	String result = null;
         m.setSystemLanguage(Language.TraditionalChinese);
-        Station station = m.getDatabase().getStationByName("屯門", Language.TraditionalChinese, AdministratorHK.getInstance());
+        Station station = m.getStationByName("屯門", Language.TraditionalChinese, AdministratorHK.getInstance());
         result = station.getName();
         assertEquals("屯門", result);
     }
@@ -124,7 +123,7 @@ public class MetroSystemTest {
     public void testStaGetName3() throws ExStationNotFound {
     	String result = null;
         m.setSystemLanguage(Language.SimplifiedChinese);
-        Station station = m.getDatabase().getStationByName("屯门", Language.SimplifiedChinese, AdministratorHK.getInstance());
+        Station station = m.getStationByName("屯门", Language.SimplifiedChinese, AdministratorHK.getInstance());
         result = station.getName();
         assertEquals("屯门", result);
     }
@@ -134,7 +133,7 @@ public class MetroSystemTest {
     public void testStaGetName4() throws ExStationNotFound {
     	String result = null;
         m.setSystemLanguage(null);
-        Station station = m.getDatabase().getStationByName("屯门", Language.SimplifiedChinese, AdministratorHK.getInstance());
+        Station station = m.getStationByName("屯门", Language.SimplifiedChinese, AdministratorHK.getInstance());
         result = station.getName();
         assertEquals("Error", result);
     }
@@ -143,7 +142,7 @@ public class MetroSystemTest {
     @DisplayName("Line getName Method 1")
     public void testLineGetName1() throws ExLineNotFound {
     	String result = null;
-        Line line = m.getDatabase().getLineByName("Island Line", Language.English);
+        Line line = m.getLineByName("Island Line", Language.English);
         result = line.getName();
         assertEquals("Island Line", result);
     }
@@ -153,7 +152,7 @@ public class MetroSystemTest {
     public void testLineGetName3() throws ExLineNotFound {
     	String result = null;
         m.setSystemLanguage(Language.SimplifiedChinese);
-        Line line = m.getDatabase().getLineByName("港岛线", Language.SimplifiedChinese);
+        Line line = m.getLineByName("港岛线", Language.SimplifiedChinese);
         result = line.getName();
         assertEquals("港岛线", result);
     }
@@ -163,7 +162,7 @@ public class MetroSystemTest {
     public void testLineGetName4() throws ExLineNotFound {
     	String result = null;
         m.setSystemLanguage(Language.TraditionalChinese);
-        Line line = m.getDatabase().getLineByName("港島線", Language.TraditionalChinese);
+        Line line = m.getLineByName("港島線", Language.TraditionalChinese);
         result = line.getName();
         assertEquals("港島線", result);
     }
@@ -173,7 +172,7 @@ public class MetroSystemTest {
     public void testLineGetName2() throws ExLineNotFound {
     	String result = null;
         m.setSystemLanguage(null);
-        Line line = m.getDatabase().getLineByName("Island Line", Language.English);
+        Line line = m.getLineByName("Island Line", Language.English);
         result = line.getName();
         assertEquals("Error", result);
     }
@@ -182,7 +181,7 @@ public class MetroSystemTest {
     @DisplayName("Line getEdges and Edge getLine Method")
     public void testLineGetEdges() throws ExLineNotFound {
     	ArrayList<Edge> result = null;
-        Line line = m.getDatabase().getLineByName("Island Line", Language.English);
+        Line line = m.getLineByName("Island Line", Language.English);
         result = line.getEdges();
         String expected = "[Kennedy Town->HKU, HKU->Kennedy Town, HKU->Sai Ying Pun, Sai Ying Pun->HKU, Sai Ying Pun->Sheung Wan, Sheung Wan->Sai Ying Pun, Sheung Wan->Central, Central->Sheung Wan, Central->Admiralty, Admiralty->Central, Admiralty->Wan Chai, Wan Chai->Admiralty, Wan Chai->Causeway Bay, Causeway Bay->Wan Chai, Causeway Bay->Tin Hau, Tin Hau->Causeway Bay, Tin Hau->Fortress Hill, Fortress Hill->Tin Hau, Fortress Hill->North Point, North Point->Fortress Hill, North Point->Quarry Bay, Quarry Bay->North Point, Quarry Bay->Tai Koo, Tai Koo->Quarry Bay, Tai Koo->Sai Wan Ho, Sai Wan Ho->Tai Koo, Sai Wan Ho->Shau Kei Wan, Shau Kei Wan->Sai Wan Ho, Shau Kei Wan->Heng Fa Chuen, Heng Fa Chuen->Shau Kei Wan, Heng Fa Chuen->Chai Wan, Chai Wan->Heng Fa Chuen]";
         assertEquals(expected, result.toString());
@@ -191,21 +190,15 @@ public class MetroSystemTest {
     @Test
     @DisplayName("ExLineNotFound")
     public void testExLineNotFound() {
-    	try {
-			Line line = m.getDatabase().getLineByName("Islan Line", Language.English);
-		} catch (ExLineNotFound e) {
-			assertEquals("The line you look for does not exist.", e.getMessage());
-		}
+        Line line = m.getLineByName("Islan Line", Language.English);
+		assertEquals(null, line);
     }
     
     @Test
     @DisplayName("ExLineNotFound")
     public void testExStationNotFound() {
-    	try {
-    		Station station = m.getDatabase().getStationByName("Tue Mun", Language.English, AdministratorHK.getInstance());
-		} catch (ExStationNotFound e) {
-			assertEquals("Station with name Tue Mun cannot be found in our database!", e.getMessage());
-		}
+        Station station = m.getStationByName("Tue Mun", Language.English, AdministratorHK.getInstance());
+        assertEquals(null, station);
     }
     
     @Test
@@ -234,8 +227,8 @@ public class MetroSystemTest {
     @Test
     @DisplayName("Edge getLine method 1")
     public void testGetLine1() throws ExStationNotFound {
-    	Station startStation = m.getDatabase().getStationByName("Kennedy Town", Language.English, AdministratorHK.getInstance());
-        Station endStation = m.getDatabase().getStationByName("HKU", Language.English, AdministratorHK.getInstance());
+    	Station startStation = m.getStationByName("Kennedy Town", Language.English, AdministratorHK.getInstance());
+        Station endStation = m.getStationByName("HKU", Language.English, AdministratorHK.getInstance());
     	Edge edge = new Edge(0, startStation, endStation, 0, AdministratorHK.getInstance());
     	String result = edge.getLine();
     	assertEquals("null", result);
@@ -244,10 +237,10 @@ public class MetroSystemTest {
     @Test
     @DisplayName("Edge getLine method 2")
     public void testGetLine2() throws ExStationNotFound, ExLineNotFound {
-    	Station startStation = m.getDatabase().getStationByName("Kennedy Town", Language.English, AdministratorHK.getInstance());
-        Station endStation = m.getDatabase().getStationByName("HKU", Language.English, AdministratorHK.getInstance());
+    	Station startStation = m.getStationByName("Kennedy Town", Language.English, AdministratorHK.getInstance());
+        Station endStation = m.getStationByName("HKU", Language.English, AdministratorHK.getInstance());
         Edge edge = new Edge(0, startStation, endStation, 0, AdministratorHK.getInstance());
-    	edge.setLine(m.getDatabase().getLineByName("Island Line", Language.English));
+    	edge.setLine(m.getLineByName("Island Line", Language.English));
         String result = edge.getLine();
     	assertEquals("Island Line", result);
     }
@@ -255,8 +248,8 @@ public class MetroSystemTest {
     @Test
     @DisplayName("Edge getIsConnect method")
     public void testGetIsConnect() throws ExStationNotFound, ExLineNotFound {
-    	Station startStation = m.getDatabase().getStationByName("Kennedy Town", Language.English, AdministratorHK.getInstance());
-        Station endStation = m.getDatabase().getStationByName("HKU", Language.English, AdministratorHK.getInstance());
+    	Station startStation = m.getStationByName("Kennedy Town", Language.English, AdministratorHK.getInstance());
+        Station endStation = m.getStationByName("HKU", Language.English, AdministratorHK.getInstance());
         Edge edge = new Edge(0, startStation, endStation, 0, AdministratorHK.getInstance());
         boolean result = edge.getIsConnect();
     	assertEquals(true, result);

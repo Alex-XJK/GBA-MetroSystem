@@ -29,15 +29,14 @@ public class MetroSystem
         return systemLanguage;
     }
 
-    public Database getDatabase() {
-        return database;
-    }
+    public Database getDatabase() { return database; }
 
     /**
      * Get all edges in a line.
      * @return  All edges in a line
      * @since   Nov. 9, 2021
      */
+    /*
     public void getAllEdgesInALine(String name, Language language) {
         Line testLine = null;
         try {
@@ -51,12 +50,14 @@ public class MetroSystem
             System.out.println(e.getMessage());
         }
     }
+    */
 
     /**
      * Get all edges in a station.
      * @return  All edges in a station
      * @since   Nov. 9, 2021
      */
+    /*
     public void getAllEdgesInAStation(String name, Language language, Administrator admin) {
         Station testStation = null;
         try {
@@ -71,6 +72,7 @@ public class MetroSystem
             System.out.println(e.getMessage());
         }
     }
+    */
 
     public Station getStationByName(String name, Language language, Administrator admin) {
         try {
@@ -81,6 +83,16 @@ public class MetroSystem
         }
     }
 
+    public Line getLineByName(String name, Language language) {
+        try {
+            return database.getLineByName(name, language);
+        } catch (ExLineNotFound e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    /*
     public void computePrice(Station st_Station, Station ed_Station) {
         // Demo of "Price" function
         if(st_Station == null || ed_Station == null)
@@ -90,7 +102,9 @@ public class MetroSystem
 
         Station.getStationPrice(startStation, endStation);
     }
+    */
 
+    /*
     public void computeShortestPath(Station st_Station, Station ed_Station, Criteria myCriteria) {
         if(st_Station == null || ed_Station == null)
             return;
@@ -108,4 +122,5 @@ public class MetroSystem
         ArrayList<String> nameResult2 = database.translateId2Name(result2);
         System.out.println(nameResult2);
     }
+    */
 }
