@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * <h2>Junit test for {@code Station} related functions.</h2>
  * <p>
  *     This test case runs all the public functions within {@link metroSystem.Station}.
- *     With testing strategy designed by <i>Chuwei</i> and implemented by <i>Alex</i>.
+ *     With testing strategy designed by <i>Chuwei</i> and implemented by <i>Alex & Chuwei</i>.
  *     <br>
  *     <b>
  *         Passed all the 18 test cases on Nov. 8.
@@ -48,8 +48,8 @@ public class testStation {
     }
 
     @BeforeEach
-    public void setUp() throws Exception {
-        allstation = new ArrayList<Station>();
+    public void setUp() {
+        allstation = new ArrayList<>();
         s1 = new Station(1, "ABC", "壹貳叄", "一二三", AdministratorHK.getInstance());
         s2 = new Station(2, "XYZ", "捌玖拾", "八九十", AdministratorHK.getInstance());
         allstation.add(s1);
@@ -197,6 +197,24 @@ public class testStation {
         sys.setSystemLanguage(Language.SimplifiedChinese);
         String name = s1.getName();
         assertEquals("一二三", name);
+    }
+
+    @Test
+    @DisplayName("test_getName iii")
+    public void test_getNameS3() {
+        MetroSystem sys = MetroSystem.getInstance();
+        sys.setSystemLanguage(Language.TraditionalChinese);
+        String name = s1.getName();
+        assertEquals("壹貳叄", name);
+    }
+
+    @Test
+    @DisplayName("test_getName iv")
+    public void test_getNameS4() {
+        MetroSystem sys = MetroSystem.getInstance();
+        sys.setSystemLanguage(null);
+        String name = s1.getName();
+        assertEquals("Error", name);
     }
 
 //    @Test
