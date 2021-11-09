@@ -11,13 +11,28 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 public class testMetroSystem {
-    private MetroSystem m;
-    private Database db;
 
-    @BeforeEach
-    public void setUp() throws Exception {
-        m = MetroSystem.getInstance();
+    @Test
+    @DisplayName("MetroSystem Class test - getInstance Method")
+    public void test_getInstance() {
+        MetroSystem m = MetroSystem.getInstance();
+        assertNotNull(m);
+    }
+
+    @Test
+    @DisplayName("MetroSystem Class test - setSystemLanguage & getSystemLanguage Methods")
+    public void test_language_related() {
+        MetroSystem m = MetroSystem.getInstance();
         m.setSystemLanguage(Language.English);
-        db = m.getDatabase();
+        Language expected = m.getSystemLanguage();
+        assertEquals(Language.English, expected);
+    }
+
+    @Test
+    @DisplayName("MetroSystem Class test - getDatabase Method")
+    public void test_getDatabase() {
+        MetroSystem m = MetroSystem.getInstance();
+        Database db = m.getDatabase();
+        assertNotNull(db);
     }
 }

@@ -15,9 +15,16 @@ public class testMain {
     private Database db;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         m = MetroSystem.getInstance();
         m.setSystemLanguage(Language.English);
         db = m.getDatabase();
     }
+
+    @Test
+    @DisplayName("Integral test - Main.java")
+    public void test_main() {
+        Main.main(null);
+    }
+
 }
