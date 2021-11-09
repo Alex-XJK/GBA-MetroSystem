@@ -15,7 +15,7 @@ public class testCriteria {
     private Database db;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         m = MetroSystem.getInstance();
         m.setSystemLanguage(Language.English);
         db = m.getDatabase();
@@ -50,10 +50,24 @@ public class testCriteria {
 
     @Test
     @DisplayName("CrtStation Class test - toString Method")
-    public void test_toString() {
+    public void test_toString_time() {
         CrtTime crtTime = new CrtTime();
         String result = crtTime.toString();
         String expected = "The criteria : Minimal Travelling Time";
         assertEquals(expected, result);
+    }
+
+    @Test
+    @DisplayName("CrtStation Class Test - reportGraph Method")
+    public void test_reportGraph_station() {
+        Criteria c = new CrtStation();
+        c.reportGraph();
+    }
+
+    @Test
+    @DisplayName("CrtTime Class Test - reportGraph Method")
+    public void test_reportGraph_time() {
+        Criteria c = new CrtTime();
+        c.reportGraph();
     }
 }
