@@ -22,8 +22,8 @@ public class testEdge {
         m = MetroSystem.getInstance();
         m.setSystemLanguage(Language.English);
         db = m.getDatabase();
-        startStation = m.getDatabase().getStationByName("Kennedy Town", Language.English, AdministratorHK.getInstance());
-        endStation = m.getDatabase().getStationByName("HKU", Language.English, AdministratorHK.getInstance());
+        startStation = m.getStationByName("Kennedy Town", Language.English, AdministratorHK.getInstance());
+        endStation = m.getStationByName("HKU", Language.English, AdministratorHK.getInstance());
         edge = new Edge(0, startStation, endStation, 10, AdministratorHK.getInstance());
     }
 
@@ -58,7 +58,7 @@ public class testEdge {
     @Test
     @DisplayName("Edge Class test - getLine Method 2")
     public void test_getLine_2() throws ExLineNotFound {
-        edge.setLine(m.getDatabase().getLineByName("Island Line", Language.English));
+        edge.setLine(m.getLineByName("Island Line", Language.English));
         String result = edge.getLine();
         assertEquals("Island Line", result);
     }
