@@ -3,7 +3,7 @@ import java.util.*;
 
 public class MetroSystem
 {
-	private static MetroSystem instance = new MetroSystem();
+    private volatile static MetroSystem instance;
     private Language systemLanguage;
     private Database database;
     
@@ -17,7 +17,19 @@ public class MetroSystem
         database.loadPrice();
     }
 
+    /**
+     * Apply double-checked locking method to create this important singleton object.
+     * @return  the unique MetroSystem instance
+     * @since   Nov. 12, 2021 (Refactored)
+     */
     public static MetroSystem getInstance() {
+        if(instance == null) {
+            synchronized (MetroSystem.class) {
+                if(instance == null) {
+                    instance = new MetroSystem();
+                }
+            }
+        }
         return instance;
     }
 
