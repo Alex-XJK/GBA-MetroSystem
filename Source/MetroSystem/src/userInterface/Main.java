@@ -188,10 +188,16 @@ public class Main {
                 MetroSystem m;
                 m = MetroSystem.getInstance();
                 m.setSystemLanguage(Language.English);
-                Criteria c;
-                if (select.getSelectedItem().toString().equals("Least Station"))
+                Criteria c = null;
+                if (select.getSelectedItem().toString().equals("Least Station")
+                        || select.getSelectedItem().toString().equals("最少站数")
+                        || select.getSelectedItem().toString().equals("最少站數")
+                )
                     c = new CrtStation();
-                else
+                else if (select.getSelectedItem().toString().equals("Least Time")
+                        || select.getSelectedItem().toString().equals("最短时间")
+                        || select.getSelectedItem().toString().equals("最短時間")
+                )
                     c = new CrtTime();
                 ArrayList<Integer> res = new ArrayList<>();
                 Station startStation = null;
@@ -329,6 +335,11 @@ public class Main {
                 contentPane.repaint();
                 from_text.setText("");
                 to_text.setText("");
+                select.removeItemAt(0);
+                select.removeItemAt(0);
+                select.addItem("最少站数");
+                select.addItem("最短时间");
+                lc.setText("标准: ");
             }
         });
 
@@ -355,6 +366,11 @@ public class Main {
                 contentPane.repaint();
                 from_text.setText("");
                 to_text.setText("");
+                select.removeItemAt(0);
+                select.removeItemAt(0);
+                select.addItem("最少站數");
+                select.addItem("最短時間");
+                lc.setText("準則: ");
             }
         });
 
@@ -381,6 +397,11 @@ public class Main {
                 contentPane.repaint();
                 from_text.setText("");
                 to_text.setText("");
+                select.removeItemAt(0);
+                select.removeItemAt(0);
+                select.addItem("Least Station");
+                select.addItem("Least Time");
+                lc.setText("Criteria: ");
             }
         });
 
@@ -405,6 +426,11 @@ public class Main {
                 find_path.setText("Find Path");
                 user.setText("<html><h1>Jacky</h1><p>Registered user</p><br></html>");
                 reset.setText("Reset");
+                select.removeItemAt(0);
+                select.removeItemAt(0);
+                select.addItem("Least Station");
+                select.addItem("Least Time");
+                lc.setText("Criteria: ");
             }
         });
 
