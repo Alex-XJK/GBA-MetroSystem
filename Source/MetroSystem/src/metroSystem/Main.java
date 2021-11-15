@@ -27,6 +27,14 @@ public class Main
         endStation = m.getStationByName("少年宫", Language.SimplifiedChinese, AdministratorSZ.getInstance());
         m.computeShortestPath(startStation, endStation, new CrtTime());
         */
+
+        /*CrtStation crtStation  = new CrtStation();
+        ArrayList<Integer> route1 = crtStation.findRoute(4, 59);
+        System.out.println(route1);
+
+        CrtTime crtTime = new CrtTime();
+        ArrayList<Integer> route = crtTime.findRoute(4, 59);
+        System.out.println(route);*/
     }
    
 }

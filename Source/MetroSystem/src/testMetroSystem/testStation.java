@@ -105,6 +105,13 @@ public class testStation {
     }
 
     @Test
+    @DisplayName("test_getName error")
+    public void test_getName7() {
+        String name = s2.getNameInSpecificLanguage(null);
+        assertEquals("Error", name);
+    }
+
+    @Test
     @DisplayName("test_getId 1")
     public void test_getId1() {
         int id = s1.getId();
