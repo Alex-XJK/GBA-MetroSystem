@@ -24,25 +24,26 @@ public class AlgDijkstra implements Algorithm{
         PriorityQueue<NodeEntry> dijkstraQueue = new PriorityQueue<>();
         int size = data.getSize() + 1;
         int[] parent = new int[size];
-        boolean[] visited = new boolean[size];
+		int[] currentDis = new int[size]; // the total distance between start station and current station
         for (int i=0; i<size; i++) {
-        	visited[i] = false;
         	parent[i] = -1;
+			currentDis[i] = 1000000;
         }
         
         shortestRoute.add(startId);
-        visited[startId] = true;
+		currentDis[startId] = 0;
         for (NodeEntry e : data.getNeighbors(startId)) {
-        	dijkstraQueue.offer(e); // for the next possible nodes
+			NodeEntry<Object, Object> adjacent = new NodeEntry<>(e.getKey(), toInt(e.getValue())+currentDis[startId]);
+        	dijkstraQueue.offer(adjacent); // for the next possible nodes
         }
         
         while (!dijkstraQueue.isEmpty()) {
-        	NodeEntry head = dijkstraQueue.poll(); // the shortest edge
+        	NodeEntry head = dijkstraQueue.poll(); // the shortest path so far
         	int headId = toInt(((ArrayList) head.getKey()).get(1)); 
-    		visited[headId] = true;
-    		parent[headId] = toInt(((ArrayList) head.getKey()).get(0)); 
+    		parent[headId] = toInt(((ArrayList) head.getKey()).get(0));
+			currentDis[headId] = toInt(head.getValue());
     		for (NodeEntry e : data.getNeighbors(headId)) {
-    			if (!visited[toInt(((ArrayList) e.getKey()).get(1))]) { // if node hasn't been visited yet
+    			if (currentDis[toInt(((ArrayList) e.getKey()).get(1))] > currentDis[headId]+toInt(e.getValue())) {
     	        	dijkstraQueue.offer(e);
     	        } 
     		}
@@ -62,7 +63,7 @@ public class AlgDijkstra implements Algorithm{
         return null;
     }
     
-    // Convert object to integer
+    // Convert object to int
     private int toInt(Object obj) {
     	return Integer.parseInt(obj.toString());
     }
