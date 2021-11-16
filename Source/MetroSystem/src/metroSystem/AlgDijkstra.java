@@ -24,13 +24,16 @@ public class AlgDijkstra implements Algorithm{
         PriorityQueue<NodeEntry> dijkstraQueue = new PriorityQueue<>();
         int size = data.getSize() + 1;
         int[] parent = new int[size];
+		int[] toVisit = new int[size];
 		int[] currentDis = new int[size]; // the total distance between start station and current station
         for (int i=0; i<size; i++) {
         	parent[i] = -1;
+			toVisit[i] = 1000000;
 			currentDis[i] = 1000000;
         }
         
         shortestRoute.add(startId);
+		toVisit[startId] = 0;
 		currentDis[startId] = 0;
         for (NodeEntry e : data.getNeighbors(startId)) {
 			NodeEntry<Object, Object> adjacent = new NodeEntry<>(e.getKey(), toInt(e.getValue())+currentDis[startId]);
@@ -38,15 +41,28 @@ public class AlgDijkstra implements Algorithm{
         }
         
         while (!dijkstraQueue.isEmpty()) {
+			/*NodeEntry head = dijkstraQueue.poll();
+			System.out.println("key-->");
+			System.out.println(head.getKey());
+			System.out.println("value-->");
+			System.out.println(head.getValue());*/
         	NodeEntry head = dijkstraQueue.poll(); // the shortest path so far
-        	int headId = toInt(((ArrayList) head.getKey()).get(1)); 
+//			System.out.println(head.getValue());
+        	int headId = toInt(((ArrayList) head.getKey()).get(1));
+			if (currentDis[headId] != 1000000 || toVisit[headId] < toInt(head.getValue())) { // the node that has been visited || the node that has been abandoned
+				continue;
+			}
     		parent[headId] = toInt(((ArrayList) head.getKey()).get(0));
-			currentDis[headId] = toInt(head.getValue());
+			currentDis[headId] = toInt(head.getValue()); // mark visited and record the distance between start and current one
     		for (NodeEntry e : data.getNeighbors(headId)) {
-    			if (currentDis[toInt(((ArrayList) e.getKey()).get(1))] > currentDis[headId]+toInt(e.getValue())) {
-    	        	dijkstraQueue.offer(e);
-    	        } 
-    		}
+				int nextId = toInt(((ArrayList) e.getKey()).get(1));
+				if (currentDis[nextId] == 1000000 && // not been visited yet && the value need to be updated
+						toVisit[nextId] > currentDis[headId] + toInt(e.getValue())) {
+					NodeEntry<Object, Object> adjacent = new NodeEntry<>(e.getKey(), toInt(e.getValue()) + currentDis[headId]);
+					dijkstraQueue.offer(adjacent);
+					toVisit[nextId] = currentDis[headId]+toInt(e.getValue());
+				}
+			}
         	if (headId == endId) {
         		Stack<Integer> backtracking = new Stack<>(); // for backtracking
         		int pathNode = endId;

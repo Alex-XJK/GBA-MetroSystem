@@ -29,11 +29,11 @@ public class Main
         */
 
         /*CrtStation crtStation  = new CrtStation();
-        ArrayList<Integer> route1 = crtStation.findRoute(4, 59);
+        ArrayList<Integer> route1 = crtStation.findRoute(5, 60);
         System.out.println(route1);
 
         CrtTime crtTime = new CrtTime();
-        ArrayList<Integer> route = crtTime.findRoute(4, 59);
+        ArrayList<Integer> route = crtTime.findRoute(5, 60);
         System.out.println(route);*/
     }
    
