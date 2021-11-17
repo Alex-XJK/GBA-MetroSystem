@@ -49,6 +49,10 @@ public class Main {
         JButton reset = new JButton("Reset");
         JButton btnExit = new JButton("Exit");
         JLabel user = new JLabel("<html><h1>Jacky</h1><p>Registered user</p><br></html>");
+        String modes[] = { "Least Station", "Least Time"};
+        JLabel lc = new JLabel("Criteria: ");
+        JComboBox select = new JComboBox(modes);
+        select.setMaximumSize(new Dimension(120, 25));
 
         // BufferedImage myProfile = ImageIO.read(new File("profilePic.jpg"));
         // JLabel profileLabel = new JLabel(new ImageIcon(myProfile));
@@ -69,6 +73,8 @@ public class Main {
         sideBar.add(langen);
         sideBar.add(reset);
         sideBar.add(btnExit);
+        // sideBar.add(lc);
+        // sideBar.add(select);
 
         frame.add(sideBar);
 
@@ -93,9 +99,9 @@ public class Main {
         String base = System.getProperty("user.dir");
         System.out.println("Current workspace: " + base);
 
-        ImageIcon szimg = new ImageIcon(ImageIO.read(new File(base + "/data/sz.png")));
-        ImageIcon hkimg = new ImageIcon(ImageIO.read(new File(base + "/data/hk.jpg")));
-        JLabel picLabel = new JLabel(hkimg);
+        // ImageIcon szimg = new ImageIcon(ImageIO.read(new File(base + "/data/sz.png")));
+        // ImageIcon hkimg = new ImageIcon(ImageIO.read(new File(base + "/data/hk.jpg")));
+        // JLabel picLabel = new JLabel(hkimg);
 
         JButton btnhk = new JButton("Traffic Map (HK)");
         JButton btnsz = new JButton("Traffic Map (SZ)");
@@ -137,6 +143,8 @@ public class Main {
         contentPane.setPreferredSize(new Dimension(800, 800));
         contentPane.add(mtr_en_hk);
         jp.add(contentPane);
+        jp.add(lc);
+        jp.add(select);
 
         btnsz.addActionListener(new ActionListener() {
 
@@ -180,13 +188,24 @@ public class Main {
                 MetroSystem m;
                 m = MetroSystem.getInstance();
                 m.setSystemLanguage(Language.English);
-                Criteria c = new CrtStation();
+                Criteria c = null;
+                if (select.getSelectedItem().toString().equals("Least Station")
+                        || select.getSelectedItem().toString().equals("最少站数")
+                        || select.getSelectedItem().toString().equals("最少站數")
+                )
+                    c = new CrtStation();
+                else if (select.getSelectedItem().toString().equals("Least Time")
+                        || select.getSelectedItem().toString().equals("最短时间")
+                        || select.getSelectedItem().toString().equals("最短時間")
+                )
+                    c = new CrtTime();
                 ArrayList<Integer> res = new ArrayList<>();
                 Station startStation = null;
                 Station endStation = null;
                 String from_str = from_text.getText();
                 String to_str = to_text.getText();
                 System.out.println(from_str + " --> " + to_str);
+                System.out.println(select.getSelectedItem().toString());
                 try {
                     if (lang.peek().equals("en"))
                         startStation = m.getDatabase().getStationByName(from_str, Language.English, AdministratorHK.getInstance());
@@ -316,6 +335,11 @@ public class Main {
                 contentPane.repaint();
                 from_text.setText("");
                 to_text.setText("");
+                select.removeItemAt(0);
+                select.removeItemAt(0);
+                select.addItem("最少站数");
+                select.addItem("最短时间");
+                lc.setText("标准: ");
             }
         });
 
@@ -342,6 +366,11 @@ public class Main {
                 contentPane.repaint();
                 from_text.setText("");
                 to_text.setText("");
+                select.removeItemAt(0);
+                select.removeItemAt(0);
+                select.addItem("最少站數");
+                select.addItem("最短時間");
+                lc.setText("準則: ");
             }
         });
 
@@ -368,6 +397,11 @@ public class Main {
                 contentPane.repaint();
                 from_text.setText("");
                 to_text.setText("");
+                select.removeItemAt(0);
+                select.removeItemAt(0);
+                select.addItem("Least Station");
+                select.addItem("Least Time");
+                lc.setText("Criteria: ");
             }
         });
 
@@ -392,6 +426,11 @@ public class Main {
                 find_path.setText("Find Path");
                 user.setText("<html><h1>Jacky</h1><p>Registered user</p><br></html>");
                 reset.setText("Reset");
+                select.removeItemAt(0);
+                select.removeItemAt(0);
+                select.addItem("Least Station");
+                select.addItem("Least Time");
+                lc.setText("Criteria: ");
             }
         });
 
