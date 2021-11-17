@@ -40,7 +40,7 @@ public class NodeEntry<K, V> implements Comparable<NodeEntry>{
 	@Override
 	public int compareTo(NodeEntry o) {
         // Code Refactoring to java-liked version
-        return Integer.compare(toInt(o.getValue()), toInt(this.value));
+        return Integer.compare(toInt(this.value), toInt(o.getValue()));
 	}
 	
 	private int toInt(Object obj) {
