@@ -46,17 +46,18 @@ public class testAlgorithm {
     public void test_findRoute_Dijkstra_1() {
         DLTime dlTime = new DLTime();
         AlgDijkstra algDijkstra = new AlgDijkstra();
-        ArrayList<Integer> route = algDijkstra.findRoute(64, 160, dlTime);
-        Integer[] expected = {64, 65, 66, 67, 68, 136, 288, 108, 147, 160};
+        ArrayList<Integer> route = algDijkstra.findRoute(5, 60, dlTime);
+        //Integer[] expected = {64, 65, 66, 67, 68, 136, 288, 108, 147, 160};
+        Integer[] expected = {5, 6, 60};
         assertArrayEquals(expected, route.toArray(new Integer[0]));
     }
 
-    /*@Test
+    @Test
     @DisplayName("AlgBFS Class test - findRoute method - start equals to end")
     public void test_findRoute_Dijkstra_2() {
         DLTime dlTime = new DLTime();
         AlgDijkstra algDijkstra = new AlgDijkstra();
         ArrayList<Integer> route = algDijkstra.findRoute(64, 64, dlTime);
         assertNull(route);
-    }*/
+    }
 }
