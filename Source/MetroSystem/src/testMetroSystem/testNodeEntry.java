@@ -105,7 +105,7 @@ public class testNodeEntry {
     public void test_compareTo1() {
         NodeEntry<Integer, Integer> nodeA = new NodeEntry<Integer, Integer>(5, 25);
         NodeEntry<Integer, Integer> nodeB = new NodeEntry<Integer, Integer>(10, 100);
-        boolean result = nodeA.compareTo(nodeB) > 0;
+        boolean result = nodeA.compareTo(nodeB) < 0;
         assertTrue(result);
     }
 
@@ -123,7 +123,7 @@ public class testNodeEntry {
     public void test_compareTo3() {
         NodeEntry<Integer, Integer> nodeA = new NodeEntry<Integer, Integer>(5, 500);
         NodeEntry<Integer, Integer> nodeB = new NodeEntry<Integer, Integer>(10, 50);
-        boolean result = nodeA.compareTo(nodeB) < 0;
+        boolean result = nodeA.compareTo(nodeB) > 0;
         assertTrue(result);
     }
 }

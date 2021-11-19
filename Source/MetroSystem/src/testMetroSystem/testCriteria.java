@@ -43,8 +43,9 @@ public class testCriteria {
     @DisplayName("CrtTime Class test - findRoute Method")
     public void test_findRoute_time() {
         CrtTime crtTime = new CrtTime();
-        ArrayList<Integer> route = crtTime.findRoute(64, 160);
-        Integer[] expected = {64, 65, 66, 67, 68, 136, 288, 108, 147, 160};
+        ArrayList<Integer> route = crtTime.findRoute(5, 60);
+        //Integer[] expected = {64, 65, 66, 67, 68, 136, 288, 108, 147, 160};
+        Integer[] expected = {5, 6, 60};
         assertArrayEquals(expected, route.toArray(new Integer[0]));
     }
 
