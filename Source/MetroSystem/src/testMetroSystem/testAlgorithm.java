@@ -15,7 +15,7 @@ public class testAlgorithm {
     private Database db;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         m = MetroSystem.getInstance();
         m.setSystemLanguage(Language.English);
         db = m.getDatabase();
@@ -42,7 +42,7 @@ public class testAlgorithm {
     }*/
 
     @Test
-    @DisplayName("AlgBFS Class test - findRoute method - normal")
+    @DisplayName("AlgDijkstra Class test - findRoute method - normal")
     public void test_findRoute_Dijkstra_1() {
         DLTime dlTime = new DLTime();
         AlgDijkstra algDijkstra = new AlgDijkstra();
@@ -53,7 +53,7 @@ public class testAlgorithm {
     }
 
     @Test
-    @DisplayName("AlgBFS Class test - findRoute method - start equals to end")
+    @DisplayName("AlgDijkstra Class test - findRoute method - start equals to end")
     public void test_findRoute_Dijkstra_2() {
         DLTime dlTime = new DLTime();
         AlgDijkstra algDijkstra = new AlgDijkstra();

@@ -224,23 +224,35 @@ public class testStation {
         assertEquals("Error", name);
     }
 
-//    @Test
-//    @DisplayName("test_getStationPrice")
-//    public void test_getStationPrice() {
-//        MetroSystem m = MetroSystem.getInstance();
-//        m.setSystemLanguage(Language.English);
-//        Station startStation, endStation;
-//        try {
-//            startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
-//            endStation = m.getDatabase().getStationByName("Lo Wu", Language.English, AdministratorHK.getInstance());
-//            Station.getStationPrice(startStation, endStation);
-//        } catch (ExStationNotFound e) {
-//            System.out.println(e.getMessage());
-//        }
-//
-//        String expected = "Tuen Mun->Lo Wu: 59.5";
+    /*@Test
+    @DisplayName("test_getStationPrice")
+    public void test_getStationPrice() throws Exception {
+        setOutput();
+        MetroSystem m = MetroSystem.getInstance();
+        m.setSystemLanguage(Language.English);
+        Station startStation, endStation;
+        startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
+        endStation = m.getDatabase().getStationByName("Lo Wu", Language.English, AdministratorHK.getInstance());
+        Station.getStationPrice(startStation, endStation);
+
+        String expected = "Tuen Mun->Lo Wu: 59.5";
 //        String result = outContent.toString();
-//
+        assertEquals(expected, getOutput());
 //        assertEquals(expected, result);
-//    }
+    }
+
+    PrintStream oldPrintStream;
+    ByteArrayOutputStream bos;
+
+    private void setOutput() throws Exception {
+        oldPrintStream = System.out;
+        bos = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(bos));
+    }
+
+    private String getOutput() { // throws Exception
+        System.setOut(oldPrintStream);
+        return bos.toString();
+    }*/
+
 }
