@@ -1,24 +1,12 @@
 package userInterface;
-
 import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.*;
-
 import javax.swing.*;
-import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import org.apache.poi.examples.hslf.Graphics2DDemo;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -26,31 +14,27 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Insets;
-import java.awt.Point;
 import java.awt.Dimension;
 import java.awt.*;
 
 public class Map extends JPanel implements ActionListener {
 
     String area = null;
+    String lan = null;
     JTextField from_station = null;
     JTextField to_station = null;
 
     private ArrayList<JButton> allButtons = new ArrayList<JButton>();
     private ArrayList<JLabel> allLabels = new ArrayList<JLabel>();
 
-    // to_zx: Initialize three different JPanel for different language option -
-    // provide parameter
     public Map(String lan, String area) {
 
         super();
 
         this.area = area;
+        this.lan = lan;
 
-        // setLayout(new FlowLayout(FlowLayout.CENTER));
         setLayout(null);
         this.setPreferredSize(getPreferredSize());
 
@@ -58,7 +42,6 @@ public class Map extends JPanel implements ActionListener {
             generateButtons(lan, area);
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -71,17 +54,6 @@ public class Map extends JPanel implements ActionListener {
             add(l);
         }
     }
-
-    /*
-     * public static void main(String[] args) { JFrame win = new JFrame();
-     * 
-     * win.getContentPane().add(new SZMap()); // win.add(checkButton);
-     * 
-     * win.setBounds(200, 200, 200, 200); win.setVisible(true); win.pack();
-     * win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-     * 
-     * }
-     */
 
     public void generateButtons(String lan, String area) throws IOException {
         String base = System.getProperty("user.dir");
@@ -131,15 +103,6 @@ public class Map extends JPanel implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (from_station.getText().equals("")) {
-            from_station.setText(((JButton) (e.getSource())).getName());
-        } else {
-            to_station.setText(((JButton) (e.getSource())).getName());
-        }
-    }
-
-    @Override
     public Dimension getPreferredSize() {
         return new Dimension(800, 800);
     };
@@ -149,17 +112,20 @@ public class Map extends JPanel implements ActionListener {
         this.to_station = to_station;
     }
 
-    /*public ArrayList<JButton> getAllButtons() {
-        // return allButtons;
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (from_station.getText().equals("")) {
+            from_station.setText(((JButton) (e.getSource())).getName());
+        } else {
+            to_station.setText(((JButton) (e.getSource())).getName());
+        }
+    }
 
-    }*/
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         String base = System.getProperty("user.dir");
-        // g2.drawLine(jButton1.getX(), jButton1.getY(), jButton2.getX(),
-        // jButton2.getY());
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.BLACK);
 
@@ -167,7 +133,6 @@ public class Map extends JPanel implements ActionListener {
         try {
             lineStream = new FileInputStream(new File(base + "/data/edges_" + area + ".xlsx"));
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -175,7 +140,6 @@ public class Map extends JPanel implements ActionListener {
         try {
             wb = new XSSFWorkbook(lineStream);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -195,12 +159,12 @@ public class Map extends JPanel implements ActionListener {
             Point p2 = SwingUtilities.convertPoint(allButtons.get(y - 1), 0, 0, this);
             g2.drawLine(p1.x + 3, p1.y + 3, p2.x + 3, p2.y + 3);
 
-            // System.out.println(x);
+            System.out.print("successfully painting!");
         }
 
     }
 
-    public void showResult(ArrayList<Integer> stations_on_path) {
+    public String showResult(ArrayList<Integer> stations_on_path) {
         // TODO Auto-generated method stub
         Graphics g = getGraphics();
         // paint(g);
@@ -212,18 +176,33 @@ public class Map extends JPanel implements ActionListener {
         for (int i = 0; i < stations_on_path.size() - 1; i++) {
             Point p1 = SwingUtilities.convertPoint(allButtons.get(stations_on_path.get(i)), 0, 0, this);
             Point p2 = SwingUtilities.convertPoint(allButtons.get(stations_on_path.get(i + 1)), 0, 0, this);
-            // System.out.println(p1.x);
-            // System.out.println(p2.x);
             g2.drawLine(p1.x + 3, p1.y + 3, p2.x + 3, p2.y + 3);
         }
+        return "successfully showing the result!";
+    }
 
-        /*for (int i = 0; i < 10; i++) {
-            Point p1 = SwingUtilities.convertPoint(allButtons.get(i), 0, 0, this);
-            Point p2 = SwingUtilities.convertPoint(allButtons.get(i + 1), 0, 0, this);
-            g2.drawLine(p1.x + 3, p1.y + 3, p2.x + 3, p2.y + 3);
-            // System.out.println(p1.x);
-            // System.out.println(p2.x);
-        }*/
+    public String getArea() {
+        return area;
+    }
+
+    public String getLan() {
+        return lan;
+    }
+
+    public int getButtonNumber() {
+        return allButtons.size();
+    }
+
+    public int getLabelNumber() {
+        return allLabels.size();
+    }
+
+    public JTextField getFrom_station() {
+        return from_station;
+    }
+
+    public JTextField getTo_station() {
+        return to_station;
     }
 
 }

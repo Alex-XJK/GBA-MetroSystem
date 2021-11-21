@@ -5,17 +5,26 @@ import java.util.Queue;
 import java.util.LinkedList;
 import java.util.Stack;
 
+/**
+ * Implements {@link metroSystem.Algorithm}, and use Breadth-First Search to search for the route.
+ * @see <a href="https://en.wikipedia.org/wiki/Breadth-first_search">BFS Algorithm</a>
+ * @version 1.0
+ */
 public class AlgBFS implements Algorithm{
 
+	/**
+	 * {@inheritDoc}
+	 * <br>
+	 * Use BFS algorithm to search for the shortest path.
+	 */
     @Override
     public ArrayList<Integer> findRoute(int startId, int endId, DataList data) {
-        // Implement BFS algorithm
     	// Initialize
         ArrayList<Integer> shortestRoute = new ArrayList<>();
-        Queue<Integer> bfsQueue = new LinkedList<Integer>();
+        Queue<Integer> bfsQueue = new LinkedList<>();
         int size = data.getSize() + 1;
-        int parent[] = new int[size];
-        boolean visited[] = new boolean[size];
+        int[] parent = new int[size];
+        boolean[] visited = new boolean[size];
         for (int i=0; i<size; i++) {
         	visited[i] = false;
         	parent[i] = -1;
@@ -29,13 +38,13 @@ public class AlgBFS implements Algorithm{
         	int headId = toInt(bfsQueue.poll());
         	for (NodeEntry e : data.getNeighbors(headId)) {
         		int nextId = toInt(e.getKey());
-        		if (!visited[nextId]) { // if haven't been visited yet
+        		if (!visited[nextId]) { // if node [nextId] hasn't been visited yet
         			visited[nextId] = true;
         			bfsQueue.offer(nextId);
         			parent[nextId] = headId;
         		}
         		if (nextId == endId) {
-        			Stack<Integer> backtracking = new Stack<Integer>(); // for backtracking
+        			Stack<Integer> backtracking = new Stack<>(); // for backtracking
         			int pathNode = endId;
         			while (pathNode != startId) {
         				backtracking.push(pathNode);
