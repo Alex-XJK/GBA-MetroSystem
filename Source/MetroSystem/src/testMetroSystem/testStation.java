@@ -40,6 +40,7 @@ public class testStation {
     ArrayList<Station> allstation = null;
     Station s1 = null;
     Station s2 = null;
+    Station s3 = null;
 
     @BeforeAll
     static void setUpStreams() {
@@ -52,8 +53,10 @@ public class testStation {
         allstation = new ArrayList<>();
         s1 = new Station(1, "ABC", "壹貳叄", "一二三", AdministratorHK.getInstance());
         s2 = new Station(2, "XYZ", "捌玖拾", "八九十", AdministratorHK.getInstance());
+        s3 = new Station(3, "XYZ", "玖拾貳", "九十二", AdministratorSZ.getInstance());
         allstation.add(s1);
         allstation.add(s2);
+        allstation.add(s3);
     }
 
     @AfterAll
@@ -158,6 +161,14 @@ public class testStation {
     }
 
     @Test
+    @DisplayName("test_searchStationByName Same Name")
+    public void test_searchStationByName4() {
+        Station s = Station.searchStationByName(allstation, "XYZ", Language.English, AdministratorSZ.getInstance());
+        int id = s.getId();
+        assertEquals(3, id);
+    }
+
+    @Test
     @DisplayName("test_searchStationById 1")
     public void test_searchStationById1() {
         Station s = Station.searchStationById(allstation,1);
@@ -176,7 +187,7 @@ public class testStation {
     @Test
     @DisplayName("test_searchStationById Not Found")
     public void test_searchStationById3() {
-        Station s = Station.searchStationById(allstation,3);
+        Station s = Station.searchStationById(allstation,9);
         assertNull(s);
     }
 
@@ -306,6 +317,21 @@ public class testStation {
         String expected = getOutput();
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("test_ExStationNotFound")
+    public void test_stationException() {
+        boolean isThrow = false;
+        try {
+            throw new ExStationNotFound();
+        }
+        catch (ExStationNotFound e) {
+            isThrow = true;
+        }
+        finally {
+            assertTrue(isThrow);
+        }
     }
 
     PrintStream oldPrintStream;

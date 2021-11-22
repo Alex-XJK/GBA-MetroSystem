@@ -96,4 +96,19 @@ public class testLine {
         String expected = "[Kennedy Town->HKU, HKU->Kennedy Town, HKU->Sai Ying Pun, Sai Ying Pun->HKU, Sai Ying Pun->Sheung Wan, Sheung Wan->Sai Ying Pun, Sheung Wan->Central, Central->Sheung Wan, Central->Admiralty, Admiralty->Central, Admiralty->Wan Chai, Wan Chai->Admiralty, Wan Chai->Causeway Bay, Causeway Bay->Wan Chai, Causeway Bay->Tin Hau, Tin Hau->Causeway Bay, Tin Hau->Fortress Hill, Fortress Hill->Tin Hau, Fortress Hill->North Point, North Point->Fortress Hill, North Point->Quarry Bay, Quarry Bay->North Point, Quarry Bay->Tai Koo, Tai Koo->Quarry Bay, Tai Koo->Sai Wan Ho, Sai Wan Ho->Tai Koo, Sai Wan Ho->Shau Kei Wan, Shau Kei Wan->Sai Wan Ho, Shau Kei Wan->Heng Fa Chuen, Heng Fa Chuen->Shau Kei Wan, Heng Fa Chuen->Chai Wan, Chai Wan->Heng Fa Chuen]";
         assertEquals(expected, result.toString());
     }
+
+    @Test
+    @DisplayName("test_ExLineNotFound")
+    public void test_lineException() {
+        boolean isThrow = false;
+        try {
+            throw new ExLineNotFound("test");
+        }
+        catch (ExLineNotFound e) {
+            isThrow = true;
+        }
+        finally {
+            assertTrue(isThrow);
+        }
+    }
 }
