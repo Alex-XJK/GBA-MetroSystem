@@ -43,7 +43,7 @@ public class MetroSystem
 
     public Database getDatabase() { return database; }
 
-    /**
+    /*
      * Get all edges in a line.
      * @return  All edges in a line
      * @since   Nov. 9, 2021
@@ -64,7 +64,7 @@ public class MetroSystem
     }
     */
 
-    /**
+    /*
      * Get all edges in a station.
      * @return  All edges in a station
      * @since   Nov. 9, 2021
