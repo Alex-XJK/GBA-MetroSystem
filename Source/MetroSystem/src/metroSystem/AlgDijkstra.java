@@ -49,9 +49,6 @@ public class AlgDijkstra implements Algorithm{
         	NodeEntry head = dijkstraQueue.poll(); // the shortest path so far
 //			System.out.println(head.getValue());
         	int headId = toInt(((ArrayList) head.getKey()).get(1));
-			if (currentDis[headId] != 1000000 || toVisit[headId] < toInt(head.getValue())) { // the node that has been visited || the node that has been abandoned
-				continue;
-			}
     		parent[headId] = toInt(((ArrayList) head.getKey()).get(0));
 			currentDis[headId] = toInt(head.getValue()); // mark visited and record the distance between start and current one
     		for (NodeEntry e : data.getNeighbors(headId)) {
