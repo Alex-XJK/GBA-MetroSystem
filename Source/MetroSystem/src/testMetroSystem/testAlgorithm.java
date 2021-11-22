@@ -28,22 +28,36 @@ public class testAlgorithm {
         AlgBFS algBFS = new AlgBFS();
         ArrayList<Integer> route = algBFS.findRoute(64, 160, dlConnectivity);
         Integer[] expected = {64, 65, 66, 67, 68, 136, 288, 108, 147, 160};
-        /*ArrayList<String> testName = m.getDatabase().translateId2Name(route);
-        for (int a=0; a<testName.size();a++) {
-            System.out.println(testName.get(a));
-        }*/
         assertArrayEquals(expected, route.toArray(new Integer[0]));
     }
 
-    /*@Test
-    @DisplayName("AlgBFS Class test - findRoute method - start equals to end")
-    public void test_findRoute_BFS_2() {
-        DLConnectivity dlConnectivity = new DLConnectivity();
+//    @Test
+//    @DisplayName("AlgBFS Class test - findRoute method - start equals to end")
+//    public void test_findRoute_BFS_2() {
+//        DLConnectivity dlConnectivity = new DLConnectivity();
+//        AlgBFS algBFS = new AlgBFS();
+//        ArrayList<Integer> route = algBFS.findRoute(64, 64, dlConnectivity);
+//        Integer[] expected = {64};
+//        assertArrayEquals(expected, route.toArray(new Integer[0]));
+//    }
+
+    @Test
+    @DisplayName("AlgBFS Class test - findRoute method - cannot found")
+    public void test_test_findRoute_BFS_3() {
+        class stub_DLConnectivity extends DLConnectivity{
+            @Override
+            protected void createGraph() {
+                data[1].add(new NodeEntry<Integer, Integer>(10, 1));
+                data[10].add(new NodeEntry<Integer, Integer>(20, 1));
+                data[5].add(new NodeEntry<Integer, Integer>(15, 1));
+                data[15].add(new NodeEntry<Integer, Integer>(25, 1));
+            }
+        }
+        stub_DLConnectivity stub_datalist = new stub_DLConnectivity();
         AlgBFS algBFS = new AlgBFS();
-        ArrayList<Integer> route = algBFS.findRoute(64, 64, dlConnectivity);
-        Integer[] expected = {64};
-        assertArrayEquals(expected, route.toArray(new Integer[0]));
-    }*/
+        ArrayList<Integer> route = algBFS.findRoute(1, 25, stub_datalist);
+        assertNull(route);
+    }
 
     @Test
     @DisplayName("AlgDijkstra Class test - findRoute method - normal")
