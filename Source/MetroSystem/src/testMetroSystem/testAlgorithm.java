@@ -28,6 +28,10 @@ public class testAlgorithm {
         AlgBFS algBFS = new AlgBFS();
         ArrayList<Integer> route = algBFS.findRoute(64, 160, dlConnectivity);
         Integer[] expected = {64, 65, 66, 67, 68, 136, 288, 108, 147, 160};
+        /*ArrayList<String> testName = m.getDatabase().translateId2Name(route);
+        for (int a=0; a<testName.size();a++) {
+            System.out.println(testName.get(a));
+        }*/
         assertArrayEquals(expected, route.toArray(new Integer[0]));
     }
 

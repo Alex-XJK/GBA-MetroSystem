@@ -35,4 +35,48 @@ public class testMetroSystem {
         Database db = m.getDatabase();
         assertNotNull(db);
     }
+
+    @Test
+    @DisplayName("MetroSystem Class test - getStationByName Method 1")
+    public void  test_getStationByName_1() {
+        MetroSystem m = MetroSystem.getInstance();
+        m.setSystemLanguage(Language.English);
+        Language language = m.getSystemLanguage();
+        String name = "HKU";
+        Station result = m.getStationByName(name, language, AdministratorHK.getInstance());
+        assertNotNull(result);
+    }
+
+    @Test
+    @DisplayName("MetroSystem Class test - getStationByName Method 2")
+    public void  test_getStationByName_2() {
+        MetroSystem m = MetroSystem.getInstance();
+        m.setSystemLanguage(Language.English);
+        Language language = m.getSystemLanguage();
+        String name = "HK";
+        Station result = m.getStationByName(name, language, AdministratorHK.getInstance());
+        assertNull(result);
+    }
+
+    @Test
+    @DisplayName("MetroSystem Class test - getLineByName Method 1")
+    public void  test_getLineByName_1() {
+        MetroSystem m = MetroSystem.getInstance();
+        m.setSystemLanguage(Language.English);
+        Language language = m.getSystemLanguage();
+        String name = "Kwun Tong Line";
+        Line result = m.getLineByName(name, language);
+        assertNotNull(result);
+    }
+
+    @Test
+    @DisplayName("MetroSystem Class test - getLineByName Method 2")
+    public void  test_getLineByName_2() {
+        MetroSystem m = MetroSystem.getInstance();
+        m.setSystemLanguage(Language.English);
+        Language language = m.getSystemLanguage();
+        String name = "Kwun Tong";
+        Line result = m.getLineByName(name, language);
+        assertNull(result);
+    }
 }
