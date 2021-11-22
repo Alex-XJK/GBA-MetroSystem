@@ -40,11 +40,14 @@ public class Database {
         return uniqueInstance;
     }
 
+    /**
+     * Load all the station information from file.
+     */
     public void loadStations() {
         XSSFWorkbook workbookHK = null, workbookSZ = null;
         try {
             base = System.getProperty("user.dir");
-            System.out.println("Current workspace: " + base);
+            //System.out.println("Current workspace: " + base);
             File fileHK = new File(base + "/data/stations_HK.xlsx");
             File fileSZ = new File(base + "/data/stations_SZ.xlsx");
             InputStream inputStreamHK = new FileInputStream(fileHK);
@@ -77,6 +80,9 @@ public class Database {
         stationsSZ = allStations.size() - stationsHK;
     }
 
+    /**
+     * Load all the edge information from file.
+     */
     public void loadEdges() {
         XSSFWorkbook workbookHK = null, workbookSZ = null, workbookBorder = null;
         try {
@@ -121,7 +127,7 @@ public class Database {
                 continue;
             Station st_station = allStations.get((int)row.getCell(0).getNumericCellValue() - 1);
             Station ed_station = allStations.get(stationsHK + (int)row.getCell(1).getNumericCellValue() - 1);
-            boolean isOpen = ((int)row.getCell(2).getNumericCellValue()) == 0? false : true;
+            boolean isOpen = ((int) row.getCell(2).getNumericCellValue()) != 0;
             int time = (int) row.getCell(3).getNumericCellValue();
             Edge tempEdge = new Edge(allEdges.size() + 1, st_station, ed_station, time, AdministratorBorder.getInstance());
             allEdges.add(tempEdge);
@@ -132,6 +138,9 @@ public class Database {
         }
     }
 
+    /**
+     * Load all the line information from file.
+     */
     public void loadLines() {
         XSSFWorkbook workbookHK = null, workbookSZ = null;
         try {
@@ -176,6 +185,9 @@ public class Database {
         }
     }
 
+    /**
+     * Load price information from file.
+     */
     public void loadPrice() {
         XSSFWorkbook workbookHK = null, workbookSZ = null;
         try {
@@ -272,16 +284,24 @@ public class Database {
         return sta;
     }
 
+    /**
+     * Get the total number of the stations we have.
+     * @return  count of stations
+     */
     public int getStationCount(){
         return allStations.size();
     }
 
+    /**
+     * Retrieve edge list
+     * @return  An arrayList of edges
+     */
     public ArrayList<Edge> getEdges(){
         return allEdges;
     }
 
     /**
-     * Translate an array of station id to its station name
+     * Translate an array of station id to its station name.
      * @param ids       An arraylist of station_id in integer format
      * @return An arraylist of station_name in your desired language with the original order
      */
@@ -302,6 +322,13 @@ public class Database {
         return names;
     }
 
+    /**
+     * Handle the price look-up for the stations within the same administrator area
+     * @param startStationId    The id of starting point.
+     * @param endStationId      The id of ending point.
+     * @param adm               Of which administrator those stations are belongs to
+     * @return  A numeric floating point number that shows the price.
+     */
     public float getPrice(int startStationId, int endStationId, Administrator adm) {
         if(adm == AdministratorHK.getInstance()) {
             return priceHK[startStationId][endStationId];
