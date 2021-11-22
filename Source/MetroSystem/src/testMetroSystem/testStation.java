@@ -224,21 +224,88 @@ public class testStation {
         assertEquals("Error", name);
     }
 
-    /*@Test
-    @DisplayName("test_getStationPrice")
-    public void test_getStationPrice() throws Exception {
-        setOutput();
+    @Test
+    @DisplayName("test_getStationPrice-HK2-Eng")
+    public void test_getStationPrice0() throws Exception {
+
         MetroSystem m = MetroSystem.getInstance();
         m.setSystemLanguage(Language.English);
-        Station startStation, endStation;
-        startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
-        endStation = m.getDatabase().getStationByName("Lo Wu", Language.English, AdministratorHK.getInstance());
-        Station.getStationPrice(startStation, endStation);
 
-        String expected = "Tuen Mun->Lo Wu: 59.5";
-//        String result = outContent.toString();
-        assertEquals(expected, getOutput());
-//        assertEquals(expected, result);
+        setOutput();
+        Station startStation, endStation;
+        startStation = m.getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
+        endStation = m.getStationByName("Lo Wu", Language.English, AdministratorHK.getInstance());
+        Station.getStationPrice(startStation, endStation);
+        String actual = getOutput();
+
+        setOutput();
+        System.out.println("Tuen Mun->Lo Wu: 59.5");
+        String expected = getOutput();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("test_getStationPrice-HKSZ-eng")
+    public void test_getStationPrice1() throws Exception {
+
+        MetroSystem m = MetroSystem.getInstance();
+        m.setSystemLanguage(Language.English);
+
+        setOutput();
+        Station startStation, endStation;
+        startStation = m.getStationByName("Laojie", Language.English, AdministratorSZ.getInstance());
+        endStation = m.getStationByName("Lo Wu", Language.English, AdministratorHK.getInstance());
+        Station.getStationPrice(startStation, endStation);
+        String actual = getOutput();
+
+        setOutput();
+        System.out.println("The two stations belong to different administrations, and the cross-segment calculation should be carried out according to the stations through the route");
+        String expected = getOutput();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("test_getStationPrice-HKSZ-zhhk")
+    public void test_getStationPrice2() throws Exception {
+
+        MetroSystem m = MetroSystem.getInstance();
+        m.setSystemLanguage(Language.TraditionalChinese);
+
+        setOutput();
+        Station startStation, endStation;
+        startStation = m.getStationByName("香梅北", Language.TraditionalChinese, AdministratorSZ.getInstance());
+        endStation = m.getStationByName("顯徑", Language.TraditionalChinese, AdministratorHK.getInstance());
+        Station.getStationPrice(startStation, endStation);
+        String actual = getOutput();
+
+        setOutput();
+        System.out.println("兩站屬於不同管轄範圍，需根據路線經過站進行跨段計算");
+        String expected = getOutput();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("test_getStationPrice-HKSZ-zhcn")
+    public void test_getStationPrice3() throws Exception {
+
+        MetroSystem m = MetroSystem.getInstance();
+        m.setSystemLanguage(Language.SimplifiedChinese);
+
+        setOutput();
+        Station startStation, endStation;
+        startStation = m.getStationByName("深大", Language.SimplifiedChinese, AdministratorSZ.getInstance());
+        endStation = m.getStationByName("尖东", Language.SimplifiedChinese, AdministratorHK.getInstance());
+        Station.getStationPrice(startStation, endStation);
+        String actual = getOutput();
+
+        setOutput();
+        System.out.println("两站属于不同管辖范围，需根据路线经过站进行跨段计算");
+        String expected = getOutput();
+
+        assertEquals(expected, actual);
     }
 
     PrintStream oldPrintStream;
@@ -253,6 +320,6 @@ public class testStation {
     private String getOutput() { // throws Exception
         System.setOut(oldPrintStream);
         return bos.toString();
-    }*/
+    }
 
 }
