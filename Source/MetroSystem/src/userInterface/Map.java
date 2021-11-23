@@ -159,7 +159,7 @@ public class Map extends JPanel implements ActionListener {
             Point p2 = SwingUtilities.convertPoint(allButtons.get(y - 1), 0, 0, this);
             g2.drawLine(p1.x + 3, p1.y + 3, p2.x + 3, p2.y + 3);
 
-            System.out.print("successfully painting!");
+            // System.out.print("successfully painting!");
         }
 
     }
