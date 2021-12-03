@@ -8,6 +8,16 @@ import java.util.ArrayList;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.*;
 
+/**
+ * The Singleton Database class.
+ * <p>
+ *     This class works as a integrated database to handle all database CRUD operation.<br>
+ *     Also work as a Facade to manage the internal relation of {@link metroSystem.Station}, {@link metroSystem.Line} and {@link metroSystem.Edge}.<br>
+ *     We use apache poi to handle the data files reading.
+ * </p>
+ * @see <a href="https://poi.apache.org/">Apache POI</a>
+ * @since Sept. 21, 2021
+ */
 public class Database {
 
     private volatile static Database uniqueInstance;

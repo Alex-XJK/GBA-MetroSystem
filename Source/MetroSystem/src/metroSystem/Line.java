@@ -2,6 +2,16 @@ package metroSystem;
 
 import java.util.ArrayList;
 
+/**
+ * A class that encapsulates information about a subway line.
+ * <p>
+ *     Encapsulate all the information required by the "line",
+ *     accept the management of the {@link metroSystem.Database},
+ *     used for more detailed function implementation.
+ * </p>
+ * @since Sept. 26, 2021
+ * @version 1
+ */
 public class Line {
     private final int identifier;
     private final String englishName, traditionalChineseName, simplifiedChineseName;
@@ -19,6 +29,11 @@ public class Line {
             e.setLine(this);
     }
 
+    /**
+     * Get the subway line name in default the system language.
+     * @return  The line name in string format;
+     *          "Error" if the line does not have a name in system language
+     */
     public String getName() {
         if(MetroSystem.getInstance().getSystemLanguage() == Language.English)
             return englishName;
@@ -29,6 +44,12 @@ public class Line {
         return "Error";
     }
 
+    /**
+     * Get the subway line name in a specified language.
+     * @param language Your desired language object to select language
+     * @return  The line name in string format;
+     *          "Error" if the line does not have a name in your specified language
+     */
     public String getNameInSpecificLanguage(Language language) {
         if(language == Language.English)
             return englishName;
@@ -39,6 +60,10 @@ public class Line {
         return "Error";
     }
 
+    /**
+     * Getter function of edge information
+     * @return An ArrayList that contains all the edges on this line
+     */
     public ArrayList<Edge> getEdges() {
         return edges;
     }

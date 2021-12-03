@@ -1,6 +1,16 @@
 package metroSystem;
 import java.util.*;
 
+/**
+ * A class that encapsulates information about an MTR station.
+ * <p>
+ *     Encapsulate all the information required by the "station",
+ *     accept the management of the {@link metroSystem.Database},
+ *     used for more detailed function implementation.
+ * </p>
+ * @since Sept. 21, 2021
+ * @version 1
+ */
 public class Station
 {
 	private final int identifier;
@@ -17,10 +27,19 @@ public class Station
 		edgeTo = new ArrayList<>();
 	}
 
+	/**
+	 * Add a new edge that this station is connected to
+	 * @param e the new edge
+	 */
 	public void addEdgeTo(Edge e) {
 		edgeTo.add(e);
 	}
 
+	/**
+	 * Get the MTR station name in default the system language.
+	 * @return  The station name in string format;
+	 *          "Error" if the station does not have a name in system language
+	 */
 	public String getName() {
 		if(MetroSystem.getInstance().getSystemLanguage() == Language.English)
 			return englishName;
@@ -31,6 +50,12 @@ public class Station
 		return "Error";
 	}
 
+	/**
+	 * Get the MTR station name in a specified language.
+	 * @param language Your desired language object to select language
+	 * @return  The station name in string format;
+	 *          "Error" if the station does not have a name in your specified language
+	 */
 	public String getNameInSpecificLanguage(Language language) {
 		if(language == Language.English)
 			return englishName;
@@ -41,14 +66,26 @@ public class Station
 		return "Error";
 	}
 
+	/**
+	 * Get the identifier of the current station.
+	 * @return station id
+	 */
 	public int getId(){
 		return identifier;
 	}
 
+	/**
+	 * Get the administrator of the current station.
+	 * @return the administrator that this station belongs to
+	 */
 	public Administrator getAdmin() {
 		return admin;
 	}
 
+	/**
+	 * Get all the edges the current station is connected to.
+	 * @return an arraylist of edges
+	 */
 	public ArrayList<Edge> getEdgeTo() {
 		return edgeTo;
 	}
@@ -83,9 +120,10 @@ public class Station
 	/**
 	 * Find a station according to its station_name.
 	 * Code Refactoring by Alex using “Extract Method” strategy from xrr's original function inside Database.
-	 * @param name      The name of your target station
-	 * @param language  The language you are using
-	 * @param admin     The instance of the administrator of the station.
+	 * @param allStations 	The whole arraylist of stations we have.
+	 * @param name      	The name of your target station
+	 * @param language  	The language you are using
+	 * @param admin     	The instance of the administrator of the station.
 	 * @return The reference of your target station
 	 */
 	public static Station searchStationByName(ArrayList<Station> allStations, String name, Language language, Administrator admin) {

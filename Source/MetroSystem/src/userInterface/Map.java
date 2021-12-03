@@ -18,6 +18,9 @@ import java.awt.Graphics2D;
 import java.awt.Dimension;
 import java.awt.*;
 
+/**
+ * Render the detailed route and site content inside the map.
+ */
 public class Map extends JPanel implements ActionListener {
 
     String area = null;
@@ -55,6 +58,12 @@ public class Map extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Generate buttons for each subway station.
+     * @param lan   Current language mode
+     * @param area  City code, used when switching map of different cities
+     * @throws IOException If the required data file cannot be found at the desired place
+     */
     public void generateButtons(String lan, String area) throws IOException {
         String base = System.getProperty("user.dir");
         FileInputStream fis = new FileInputStream(
@@ -76,18 +85,12 @@ public class Map extends JPanel implements ActionListener {
             JButton b = new JButton();
 
             int by = (int) (row.getCell(4).getNumericCellValue() * 0.6);
-            String s = null;
-            switch (lan) {
-            case ("en"):
-                s = row.getCell(0).getStringCellValue();
-                break;
-            case ("hk"):
-                s = row.getCell(1).getStringCellValue();
-                break;
-            case ("ch"):
-                s = row.getCell(2).getStringCellValue();
-                break;
-            }
+            String s = switch (lan) {
+                case ("en") -> row.getCell(0).getStringCellValue();
+                case ("hk") -> row.getCell(1).getStringCellValue();
+                case ("ch") -> row.getCell(2).getStringCellValue();
+                default -> null;
+            };
 
             b.setBounds(bx, by, 10, 10);
 
@@ -102,6 +105,10 @@ public class Map extends JPanel implements ActionListener {
         }
     }
 
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(800, 800);
@@ -112,6 +119,9 @@ public class Map extends JPanel implements ActionListener {
         this.to_station = to_station;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (from_station.getText().equals("")) {
@@ -121,7 +131,9 @@ public class Map extends JPanel implements ActionListener {
         }
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
