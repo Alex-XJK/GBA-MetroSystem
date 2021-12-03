@@ -2,12 +2,20 @@ package metroSystem;
 
 import java.util.ArrayList;
 
+/**
+ * A kind of {@link metroSystem.DataList} that focused on the time spend between two stations.
+ * @since Oct. 3, 2021
+ * @version 1
+ */
 public class DLTime extends DataList{
 
     public DLTime(){
         super();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void createGraph() {
         Database db = Database.getInstance();

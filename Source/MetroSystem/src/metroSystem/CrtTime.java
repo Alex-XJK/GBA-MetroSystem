@@ -7,6 +7,7 @@ package metroSystem;
  * @version 1.0
  */
 public class CrtTime extends Criteria{
+
     public CrtTime() {
         super("Minimal Travelling Time");
         super.algorithm = new AlgDijkstra();
