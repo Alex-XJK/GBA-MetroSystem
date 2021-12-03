@@ -2,8 +2,17 @@ package metroSystem;
 
 import java.util.ArrayList;
 
+/**
+ * Data list, just like an adjacency list.
+ * <p>
+ *     We apply Factory Method Pattern on it.<br>
+ *     At the sametime, the Hollywood principle has also been applied successfully.<br>
+ *     The key core is an array of arraylist which contains {@link metroSystem.NodeEntry} as its cells.
+ * </p>
+ * @since Oct 3, 2021
+ * @version 2
+ */
 public abstract class DataList {
-    //    private volatile static DataList uniqueInstance;
     protected ArrayList<NodeEntry>[] data;
     protected Integer size;
 
@@ -16,22 +25,6 @@ public abstract class DataList {
         }
         createGraph();
     }
-
-//    /**
-//     * Apply double-checked locking method to create this important singleton object.
-//     * @return  the unique DataList instance
-//     * @since   Oct. 3, 2021
-//     */
-//    public static DataList getInstance() {
-//        if(uniqueInstance == null) {
-//            synchronized (DataList.class) {
-//                if(uniqueInstance == null) {
-//                    uniqueInstance = new DataList();
-//                }
-//            }
-//        }
-//        return uniqueInstance;
-//    }
 
     /**
      * Load the data from Database and Create the data graph.

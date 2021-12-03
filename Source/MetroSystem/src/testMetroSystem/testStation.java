@@ -40,6 +40,7 @@ public class testStation {
     ArrayList<Station> allstation = null;
     Station s1 = null;
     Station s2 = null;
+    Station s3 = null;
 
     @BeforeAll
     static void setUpStreams() {
@@ -52,8 +53,10 @@ public class testStation {
         allstation = new ArrayList<>();
         s1 = new Station(1, "ABC", "壹貳叄", "一二三", AdministratorHK.getInstance());
         s2 = new Station(2, "XYZ", "捌玖拾", "八九十", AdministratorHK.getInstance());
+        s3 = new Station(3, "XYZ", "玖拾貳", "九十二", AdministratorSZ.getInstance());
         allstation.add(s1);
         allstation.add(s2);
+        allstation.add(s3);
     }
 
     @AfterAll
@@ -158,6 +161,14 @@ public class testStation {
     }
 
     @Test
+    @DisplayName("test_searchStationByName Same Name")
+    public void test_searchStationByName4() {
+        Station s = Station.searchStationByName(allstation, "XYZ", Language.English, AdministratorSZ.getInstance());
+        int id = s.getId();
+        assertEquals(3, id);
+    }
+
+    @Test
     @DisplayName("test_searchStationById 1")
     public void test_searchStationById1() {
         Station s = Station.searchStationById(allstation,1);
@@ -176,7 +187,7 @@ public class testStation {
     @Test
     @DisplayName("test_searchStationById Not Found")
     public void test_searchStationById3() {
-        Station s = Station.searchStationById(allstation,3);
+        Station s = Station.searchStationById(allstation,9);
         assertNull(s);
     }
 
@@ -224,23 +235,117 @@ public class testStation {
         assertEquals("Error", name);
     }
 
-//    @Test
-//    @DisplayName("test_getStationPrice")
-//    public void test_getStationPrice() {
-//        MetroSystem m = MetroSystem.getInstance();
-//        m.setSystemLanguage(Language.English);
-//        Station startStation, endStation;
-//        try {
-//            startStation = m.getDatabase().getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
-//            endStation = m.getDatabase().getStationByName("Lo Wu", Language.English, AdministratorHK.getInstance());
-//            Station.getStationPrice(startStation, endStation);
-//        } catch (ExStationNotFound e) {
-//            System.out.println(e.getMessage());
-//        }
-//
-//        String expected = "Tuen Mun->Lo Wu: 59.5";
-//        String result = outContent.toString();
-//
-//        assertEquals(expected, result);
-//    }
+    @Test
+    @DisplayName("test_getStationPrice-HK2-Eng")
+    public void test_getStationPrice0() throws Exception {
+
+        MetroSystem m = MetroSystem.getInstance();
+        m.setSystemLanguage(Language.English);
+
+        setOutput();
+        Station startStation, endStation;
+        startStation = m.getStationByName("Tuen Mun", Language.English, AdministratorHK.getInstance());
+        endStation = m.getStationByName("Lo Wu", Language.English, AdministratorHK.getInstance());
+        Station.getStationPrice(startStation, endStation);
+        String actual = getOutput();
+
+        setOutput();
+        System.out.println("Tuen Mun->Lo Wu: 59.5");
+        String expected = getOutput();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("test_getStationPrice-HKSZ-eng")
+    public void test_getStationPrice1() throws Exception {
+
+        MetroSystem m = MetroSystem.getInstance();
+        m.setSystemLanguage(Language.English);
+
+        setOutput();
+        Station startStation, endStation;
+        startStation = m.getStationByName("Laojie", Language.English, AdministratorSZ.getInstance());
+        endStation = m.getStationByName("Lo Wu", Language.English, AdministratorHK.getInstance());
+        Station.getStationPrice(startStation, endStation);
+        String actual = getOutput();
+
+        setOutput();
+        System.out.println("The two stations belong to different administrations, and the cross-segment calculation should be carried out according to the stations through the route");
+        String expected = getOutput();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("test_getStationPrice-HKSZ-zhhk")
+    public void test_getStationPrice2() throws Exception {
+
+        MetroSystem m = MetroSystem.getInstance();
+        m.setSystemLanguage(Language.TraditionalChinese);
+
+        setOutput();
+        Station startStation, endStation;
+        startStation = m.getStationByName("香梅北", Language.TraditionalChinese, AdministratorSZ.getInstance());
+        endStation = m.getStationByName("顯徑", Language.TraditionalChinese, AdministratorHK.getInstance());
+        Station.getStationPrice(startStation, endStation);
+        String actual = getOutput();
+
+        setOutput();
+        System.out.println("兩站屬於不同管轄範圍，需根據路線經過站進行跨段計算");
+        String expected = getOutput();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("test_getStationPrice-HKSZ-zhcn")
+    public void test_getStationPrice3() throws Exception {
+
+        MetroSystem m = MetroSystem.getInstance();
+        m.setSystemLanguage(Language.SimplifiedChinese);
+
+        setOutput();
+        Station startStation, endStation;
+        startStation = m.getStationByName("深大", Language.SimplifiedChinese, AdministratorSZ.getInstance());
+        endStation = m.getStationByName("尖东", Language.SimplifiedChinese, AdministratorHK.getInstance());
+        Station.getStationPrice(startStation, endStation);
+        String actual = getOutput();
+
+        setOutput();
+        System.out.println("两站属于不同管辖范围，需根据路线经过站进行跨段计算");
+        String expected = getOutput();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("test_ExStationNotFound")
+    public void test_stationException() {
+        boolean isThrow = false;
+        try {
+            throw new ExStationNotFound();
+        }
+        catch (ExStationNotFound e) {
+            isThrow = true;
+        }
+        finally {
+            assertTrue(isThrow);
+        }
+    }
+
+    PrintStream oldPrintStream;
+    ByteArrayOutputStream bos;
+
+    private void setOutput() throws Exception {
+        oldPrintStream = System.out;
+        bos = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(bos));
+    }
+
+    private String getOutput() { // throws Exception
+        System.setOut(oldPrintStream);
+        return bos.toString();
+    }
+
 }

@@ -14,6 +14,9 @@ import java.time.LocalDateTime;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The Main UI Entrance.
+ */
 public class Main {
 
     public static void main(String[] args) throws IOException {
@@ -131,7 +134,7 @@ public class Main {
         Map mtr_ch_sz = new Map("ch", "SZ");
         mtr_ch_sz.linkTextFieldComponent(from_text, to_text);
 
-        Image sz_bg = ImageIO.read(new File(base + "/data/sz.png"));
+        // Image sz_bg = ImageIO.read(new File(base + "/data/sz.png"));
         // BackgroundPanel mtr_sz_bg = new BackgroundPanel(sz_bg, 2);
         // jp.add(mtr_en.getPanel());
 

@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class testDatabase {
@@ -122,6 +124,28 @@ public class testDatabase {
     }
 
     @Test
+    @DisplayName("Database Class test - translateId2Name error id")
+    public void test_translateId2NameERR() throws Exception {
+        ArrayList<Integer> ids = new ArrayList<>();
+        ids.add(-1);
+        ids.add(0);
+
+        setOutput();
+        ArrayList<String> names = db.translateId2Name(ids);
+        String actu = getOutput();
+        setOutput();
+        System.out.println("Station of id = -1 cannot be found in our database!");
+        System.out.println("Station of id = 0 cannot be found in our database!");
+        String expt = getOutput();
+        assertEquals(expt, actu);
+
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("?");
+        expected.add("?");
+        assertEquals(expected, names);
+    }
+
+    @Test
     @DisplayName("Database Class test - getPrice Method 1")
     public void test_getPrice_1() {
         float price = db.getPrice(1, 2, AdministratorHK.getInstance());
@@ -142,5 +166,17 @@ public class testDatabase {
         assertEquals(-1 , price);
     }
 
+    PrintStream oldPrintStream;
+    ByteArrayOutputStream bos;
 
+    private void setOutput() throws Exception {
+        oldPrintStream = System.out;
+        bos = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(bos));
+    }
+
+    private String getOutput() { // throws Exception
+        System.setOut(oldPrintStream);
+        return bos.toString();
+    }
 }

@@ -7,7 +7,7 @@ import java.util.Stack;
 /**
  * Implements {@link metroSystem.Algorithm}, and use Dijkstra's Algorithm to search for the route.
  * @see <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra's Algorithm</a>
- * @version 1.0
+ * @version 3.0
  */
 public class AlgDijkstra implements Algorithm{
 
@@ -49,9 +49,6 @@ public class AlgDijkstra implements Algorithm{
         	NodeEntry head = dijkstraQueue.poll(); // the shortest path so far
 //			System.out.println(head.getValue());
         	int headId = toInt(((ArrayList) head.getKey()).get(1));
-			if (currentDis[headId] != 1000000 || toVisit[headId] < toInt(head.getValue())) { // the node that has been visited || the node that has been abandoned
-				continue;
-			}
     		parent[headId] = toInt(((ArrayList) head.getKey()).get(0));
 			currentDis[headId] = toInt(head.getValue()); // mark visited and record the distance between start and current one
     		for (NodeEntry e : data.getNeighbors(headId)) {
@@ -78,9 +75,13 @@ public class AlgDijkstra implements Algorithm{
         }
         return null;
     }
-    
-    // Convert object to int
-    private int toInt(Object obj) {
+
+	/**
+	 * Convert object to int.
+	 * @param obj An java object
+	 * @return The parsed integer
+	 */
+	private int toInt(Object obj) {
     	return Integer.parseInt(obj.toString());
     }
 }

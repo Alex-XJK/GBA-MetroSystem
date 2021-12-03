@@ -10,7 +10,10 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ * Generate the coordinate of the stations.
+ * @since Oct. 20, 2021
+ */
 public class genStationInfo {
     public static void main(String[] args) {
         JFrame imgWin = new JFrame();
