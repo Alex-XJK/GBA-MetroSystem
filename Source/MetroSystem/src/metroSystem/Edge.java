@@ -1,5 +1,17 @@
 package metroSystem;
 
+/**
+ * A class that encapsulates information about an edge.
+ * <p>
+ *     Encapsulate all the information required by the "edge",
+ *     accept the management of the {@link metroSystem.Database},
+ *     used for more detailed function implementation.
+ *     <br>
+ *     The "edge" here refers to the line between two subway stations.<br>
+ * </p>
+ * @since Sept. 30, 2021
+ * @version 2
+ */
 public class Edge {
     private final int identifier;
     private final Station st_station, ed_station;
@@ -18,10 +30,18 @@ public class Edge {
         st_station.addEdgeTo(this);
     }
 
+    /**
+     * Setter function of {@code inLine}.
+     * @param l The line that this edge belongs to
+     */
     public void setLine(Line l) {
         this.inLine = l;
     }
 
+    /**
+     * Setter function of {@code isOpen}.
+     * @param b The boolean switcher that shows the current
+     */
     public void setIsOpen(boolean b) {
         this.isOpen = b;
     }
@@ -31,16 +51,29 @@ public class Edge {
         return st_station.getName() + "->" + ed_station.getName();
     }
 
+    /**
+     * Getter function of the line it belongs to.
+     * @return  Line name;
+     *          "null" if no line information stored
+     */
     public String getLine() {
         if(inLine == null)
             return "null";
         return inLine.getName();
     }
 
+    /**
+     * Getter function of starting station.
+     * @return Station object that refers to its starting point
+     */
     public Station getStartSta(){
         return st_station;
     }
 
+    /**
+     * Getter function of ending station.
+     * @return Station object that refers to its ending point
+     */
     public Station getEndSta(){
         return ed_station;
     }

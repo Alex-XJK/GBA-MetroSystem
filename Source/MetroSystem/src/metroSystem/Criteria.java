@@ -5,9 +5,11 @@ import java.util.ArrayList;
 /**
  * The Criteria Abstract Class used to hold for a kind of searching criteria.
  * <br>
- * By calling {@link #findRoute(int, int)} function it will invoke {@link metroSystem.Algorithm#findRoute(int, int, DataList)} for you,
+ * By calling {@link metroSystem.Criteria#findRoute(int, int)} function
+ * it will invoke {@link metroSystem.Algorithm#findRoute(int, int, DataList)} for you,
  * then you can easily get the optimal route under your requirement.
  * @since Sept. 30, 2021
+ * @version 1
  */
 public abstract class Criteria {
     private final String criteriaName;
@@ -34,11 +36,19 @@ public abstract class Criteria {
         return algorithm.findRoute(startStationId, endStationId, adjacencyList);
     }
 
+    /**
+     * Display the basic information of this criteria
+     * @return The information message
+     */
     @Override
     public String toString(){
         return String.format("The criteria : %s", this.criteriaName);
     }
 
+    /**
+     * Display the graph structure which the current criteria is using.
+     * @return The information message string
+     */
     public void reportGraph(){
         this.adjacencyList.debugPrint();
     }

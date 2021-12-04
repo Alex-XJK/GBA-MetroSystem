@@ -14,6 +14,9 @@ import java.time.LocalDateTime;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The Main UI Entrance.
+ */
 public class Main {
 
     public static void main(String[] args) throws IOException {
