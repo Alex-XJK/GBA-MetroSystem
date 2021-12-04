@@ -119,3 +119,53 @@ v2.0.0 MetroSystem Fully Functional Version
 
 
 **Full Changelog**: https://github.com/Alex-XJK/CS3343_Group6/compare/v1.0.0...v2.0.0
+
+=======================================================================
+v3.0.0 MetroSystem Fully Completed Software
+=======================================================================
+## Description
+**This release provides a fully completed version of our metro system software.**  
+- We have formally compiled and archived a jar program that can run in its entirety.
+- System testing of branch with nearly 100% coverage was successful.
+- Some rare exceptions are also considered to test the robustness of the software.
+- Adopt the suggestions of users in the previous stage, and all bugs found have been dealt with.
+- Some unnecessary development code and files were cleaned to ensure the cleanliness of the project files.
+- Javadoc is written and released for developers to use.
+- Other minor modifications and refinements.
+
+
+## What's Changed
+* Updated new group progress by @Alex-XJK in https://github.com/Alex-XJK/CS3343_Group6/pull/97
+* sync Main -> Alex by @Alex-XJK in https://github.com/Alex-XJK/CS3343_Group6/pull/100
+* Alex dev by @Alex-XJK in https://github.com/Alex-XJK/CS3343_Group6/pull/101
+* Hcw dev by @Chuweiii in https://github.com/Alex-XJK/CS3343_Group6/pull/102
+* zx dev by @xz-cs in https://github.com/Alex-XJK/CS3343_Group6/pull/103
+* Alex dev by @Alex-XJK in https://github.com/Alex-XJK/CS3343_Group6/pull/104
+* UPDATED: deleted duplicated codes in algorithm Dijkstra, add several … by @Chuweiii in https://github.com/Alex-XJK/CS3343_Group6/pull/105
+* More testcases on special situations by @Alex-XJK in https://github.com/Alex-XJK/CS3343_Group6/pull/106
+* IMPORTANT UPDATE: Update of the HK map by @xrr-233 in https://github.com/Alex-XJK/CS3343_Group6/pull/107
+* Delete redundant class by @xrr-233 in https://github.com/Alex-XJK/CS3343_Group6/pull/108
+* Prepare forJavaDoc writing by @Alex-XJK in https://github.com/Alex-XJK/CS3343_Group6/pull/109
+* Zx dev by @xz-cs in https://github.com/Alex-XJK/CS3343_Group6/pull/110
+* Update jar by @xz-cs in https://github.com/Alex-XJK/CS3343_Group6/pull/111
+* Alex JavaDoc by @Alex-XJK in https://github.com/Alex-XJK/CS3343_Group6/pull/112
+* Prepare for Stable Release Version by @Alex-XJK in https://github.com/Alex-XJK/CS3343_Group6/pull/114
+
+
+**Full Changelog**: https://github.com/Alex-XJK/CS3343_Group6/compare/v2.0.0...v3.0.0
+
+=======================================================================
+v4.0.0 MetroSystem Fully Completed with documentation supported
+=======================================================================
+## Description
+**This release provides a fully completed version of our metro system software with documentation and reports included.**  
+- All development documentation has been completed.
+- Related project reports are also saved for publication.
+- And the development progress of the previous stage is as follows:
+  - We have formally compiled and archived a jar program that can run in its entirety.
+  - System testing of branches with nearly 100% coverage was successful.
+  - Some rare exceptions are also considered to test the robustness of the software.
+  - Adopt the suggestions of users in the previous stage, and all bugs found have been dealt with.
+  - Some unnecessary development code and files were cleaned to ensure the cleanliness of the project files.
+  - Javadoc is written and released for developers to use.
+  - Other minor modifications and refinements.
