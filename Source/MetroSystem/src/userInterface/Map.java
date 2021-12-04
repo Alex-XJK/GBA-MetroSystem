@@ -85,12 +85,18 @@ public class Map extends JPanel implements ActionListener {
             JButton b = new JButton();
 
             int by = (int) (row.getCell(4).getNumericCellValue() * 0.6);
-            String s = switch (lan) {
-                case ("en") -> row.getCell(0).getStringCellValue();
-                case ("hk") -> row.getCell(1).getStringCellValue();
-                case ("ch") -> row.getCell(2).getStringCellValue();
-                default -> null;
-            };
+            String s = null;
+            switch (lan) {
+                case ("en"):
+                    s = row.getCell(0).getStringCellValue();
+                    break;
+                case ("hk"):
+                    s = row.getCell(1).getStringCellValue();
+                    break;
+                case ("ch"):
+                    s = row.getCell(2).getStringCellValue();
+                    break;
+            }
 
             b.setBounds(bx, by, 10, 10);
 
