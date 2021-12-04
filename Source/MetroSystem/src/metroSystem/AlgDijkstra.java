@@ -7,7 +7,7 @@ import java.util.Stack;
 /**
  * Implements {@link metroSystem.Algorithm}, and use Dijkstra's Algorithm to search for the route.
  * @see <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra's Algorithm</a>
- * @version 1.0
+ * @version 3.0
  */
 public class AlgDijkstra implements Algorithm{
 
@@ -75,9 +75,13 @@ public class AlgDijkstra implements Algorithm{
         }
         return null;
     }
-    
-    // Convert object to int
-    private int toInt(Object obj) {
+
+	/**
+	 * Convert object to int.
+	 * @param obj An java object
+	 * @return The parsed integer
+	 */
+	private int toInt(Object obj) {
     	return Integer.parseInt(obj.toString());
     }
 }

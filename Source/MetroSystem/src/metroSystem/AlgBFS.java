@@ -8,6 +8,7 @@ import java.util.Stack;
 /**
  * Implements {@link metroSystem.Algorithm}, and use Breadth-First Search to search for the route.
  * @see <a href="https://en.wikipedia.org/wiki/Breadth-first_search">BFS Algorithm</a>
+ * @since Sept. 29, 2021
  * @version 1.0
  */
 public class AlgBFS implements Algorithm{
@@ -59,8 +60,12 @@ public class AlgBFS implements Algorithm{
         }
         return null;
     }
-    
-    // Convert object to integer
+
+	/**
+	 * Convert object to int.
+	 * @param obj An java object
+	 * @return The parsed integer
+	 */
     private int toInt(Object obj) {
     	return Integer.parseInt(obj.toString());
     }
